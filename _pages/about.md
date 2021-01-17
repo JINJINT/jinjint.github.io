@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a Ph.D. student in the Department of [Statistics & Data Science at Carnegie Mellon University](http://stat.cmu.edu). I am very fortunate to be advised by professor [Jing Lei](http://www.stat.cmu.edu/~jinglei/) and professor [Kathryn Roeder](http://www.stat.cmu.edu/~roeder/). We work on developing statistical and machine learning methodology and theory for high dimensional, non-parametric data analysis with special focus on feature dependency. I have also extensively worked with professor [Aaditya Ramdas](http://www.stat.cmu.edu/~aramdas/) on high-dimensional testing. Before coming to CMU, I obtained a Bacholor degree in statistics from the Special Class for the Gifted Young [SCGY](http://en.scgy.ustc.edu.cn/), [USTC](http://en.ustc.edu.cn/) in 2018, where I worked with professor [Zemin Zheng](http://bs.ustc.edu.cn/english/Profile-302.html) in high-dimensional statistical inference.
+I am a Ph.D. student in the Department of [Statistics & Data Science at Carnegie Mellon University](http://stat.cmu.edu). I am very fortunate to be advised by professor [Jing Lei](http://www.stat.cmu.edu/~jinglei/) and professor [Kathryn Roeder](http://www.stat.cmu.edu/~roeder/). We work on developing statistical and machine learning methodology and theory for high dimensional, non-parametric data analysis with special focus on feature dependency. I have also extensively worked with professor [Aaditya Ramdas](http://www.stat.cmu.edu/~aramdas/) on high-dimensional testing. Before coming to CMU, I obtained a Bacholor degree in statistics from [University of Science and Technology of China](http://en.ustc.edu.cn/) in 2018, where I worked with professor [Zemin Zheng](http://bs.ustc.edu.cn/english/Profile-302.html) in high-dimensional statistical inference.
 
 Here is my [Curriculum Vitae](https://jinjint.github.io/files/cv.pdf).
 
@@ -30,11 +30,8 @@ Research Interests
 My research interests take root in methods and theory for high dimensional, nonparametric data analysis with special focus on the interaction structure and temporal nature, specifically includes
 
 * High-dimensional Nonparametric inference
-
 * Graphical structure recovery
-
 * Statistical genetics
-
 * Reinforcement Learning
 
 
