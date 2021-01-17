@@ -50,22 +50,26 @@ Ongoing Research Projects
 Publications and Preprints
 =======
 
-* ESCO: single cell expression simulation incorporating gene co-expression. <small> (Bioinformatics, minor revision) [arxiv](https://www.biorxiv.org/content/10.1101/2020.10.20.347211v1) [package](https://github.com/JINJINT/ESCO)</small>
+* ESCO: single cell expression simulation incorporating gene co-expression. 
+<small> (Bioinformatics, minor revision) [Paper](https://www.biorxiv.org/content/10.1101/2020.10.20.347211v1)  [package](https://github.com/JINJINT/ESCO)</small>
 : **Jinjin Tian, Jiebiao Wang, Kathryn Roeder**
 : Gene-gene co-expression networks (GCN) are of biological interest for the useful information they provide for understanding gene-gene interactions. In this project, we constructed a new semiparametric scRNA-seq data simulation tool named ESCO, which ensembles current state of art in the first moment characterization, and fills in the gap of depicting higher order gene-gene interaction using a copula model.
 
 
-* Online experimentation in E-commerce with revenue and time constraints. <small>(ALMC, RL workship 2020) [code](https://github.com/JINJINT/) </small>
+* Online experimentation in E-commerce with revenue and time constraints. 
+<small>(ALMC, RL workship 2020)  [package](https://github.com/JINJINT/) </small>
 : **Jinjin Tian, Lenon Minorics, Guido Imbens**
 : Experimentation in E-commerce often have extra consideration of revenue constrain and time constrain. In this project we utilized recent advances in reinforcement learning and any-time valid inference to construct an online experimentation platform that allows efficient trading off between revenue constrain and time constrain in E-commerce. We also proposed new algorithm to deal with unknown abrupt changes over time, which only cost O(1) for each updates, and has much lower regret comparing with other state-of-arts.  
 
 
-* Online control of the familywise error rate. <small>(submitted to the Biometrical Journal, Special Issue on Multiple Comparisons Procedures) [arxiv](https://arxiv.org/pdf/2009.05892.pdf) </small>
+* Online control of the familywise error rate. 
+<small>(Statistical Research in Medical Research) [Paper](https://journals.sagepub.com/eprint/AYRRKZX7XMTVHKCFYBJY/full)  [code](https://github.com/JINJINT/onlineFWER) </small>
 : **Jinjin Tian, Aaditya Ramdas**
-: Classical nonparametric tests to compare multiple samples, such as the Wilcoxon test, are often based on the ranks of observations. We design an interactive rank test called i-Wilcoxon—an analyst is allowed to adaptively guide the algorithm using observed outcomes, covariates, working models and prior knowledge—that guarantees type-I error control using martingales. Numerical experiments demonstrate the advantage of (an automated version of) our algorithm under heterogeneous treatment effects. The i-Wilcoxon test is first proposed for two-sample comparison with unpaired data, and then extended to paired data, multi-sample comparison, and sequential settings, thus also extending the Kruskal-Wallis and Friedman tests. As alter- natives, we numerically investigate (non-interactive) covariance-adjusted variants of the Wilcoxon test, and provide practical recommendations based on the anticipated population properties of the treatment effects.
+: Biological research often involves testing a growing number of null hypotheses as new data is accumulated over time. We study the problem of online control of the familywise error rate (FWER), that is testing an apriori unbounded sequence of hypotheses (p-values) one by one over time without knowing the future, such that with high probability there are no false discoveries in the entire sequence. In this project we unified algorithmic concepts developed for offline FWER control and online FDR control to develop new powerful, adaptive online FWER control method. We also formally proved the substantial gains of power of the new methods, and derived closed form of effective hyper-parameters for optimizing the power in a Gaussian sequence model.
 
 
-* ADDIS: an adaptive discarding algorithm for online FDR control with conservative nulls. <small>(NeurIPS, 2019) [arxiv](https://papers.nips.cc/paper/9136-addis-an-adaptive-discarding-algorithm-for-online-fdr-control-with-conservative-nulls.pdf) [code](https://github.com/JINJINT/ADDIS)</small>
+* ADDIS: an adaptive discarding algorithm for online FDR control with conservative nulls. 
+<small>(NeurIPS, 2019) [Paper](https://papers.nips.cc/paper/9136-addis-an-adaptive-discarding-algorithm-for-online-fdr-control-with-conservative-nulls.pdf) [code](https://github.com/JINJINT/ADDIS)</small>
 : **Jinjin Tian, Aaditya Ramdas**
 : Classical nonparametric tests to compare multiple samples, such as the Wilcoxon test, are often based on the ranks of observations. We design an interactive rank test called i-Wilcoxon—an analyst is allowed to adaptively guide the algorithm using observed outcomes, covariates, working models and prior knowledge—that guarantees type-I error control using martingales. Numerical experiments demonstrate the advantage of (an automated version of) our algorithm under heterogeneous treatment effects. The i-Wilcoxon test is first proposed for two-sample comparison with unpaired data, and then extended to paired data, multi-sample comparison, and sequential settings, thus also extending the Kruskal-Wallis and Friedman tests. As alter- natives, we numerically investigate (non-interactive) covariance-adjusted variants of the Wilcoxon test, and provide practical recommendations based on the anticipated population properties of the treatment effects.
 
