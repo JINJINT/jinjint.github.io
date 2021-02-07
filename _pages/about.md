@@ -38,10 +38,10 @@ My research interests take root in methods and theory for high dimensional, nonp
 Ongoing Research Projects
 =======
 
-* Non-parametric co-clustering of noisy high-dimensional mixture data based on pairwise local dependency. 
+* Signals recovery in noisy high-dim mixture via local structure learning. 
 : **Jinjin Tian, Jing Lei, Kathryn Roeder**
-: In this project we study the problem of clustering samples and features simulatenously in high-dimensional setting using non-parametric methods, together with inference on the dependency among features. 
-
+: In this project we work on the problem of recovering signals in a high dimensional mixture model when the noises are enormous and signals are weak and sparse. We propose a statistics to capture local structure between a pair of features, which will only dominate iff the corresponding sample comes from a non-noise mixture component, in which the feature pairs are both relevant features.  
+We have proved exact recovery of signals in a single non-noise mixture setting using a non-parametric estimation, under even impossible scenarios for canonical methods like sparse PCA. We are working on proofs for multiple non-noise mixture cases.
 
 * Large-scale simultaneous inference under dependence. 
 : **Jinjin Tian, Xu Chen, Eugene Katsevich, Jelle Goeman, Aaditya Ramdas**
