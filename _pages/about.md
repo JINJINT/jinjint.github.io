@@ -43,13 +43,13 @@ Ongoing Research Projects
 : In this project we work on the problem of recovering signals in a high dimensional mixture model when the noises are enormous and signals are weak and sparse. We propose a statistics to capture local structure between a pair of features, which will only dominate iff the corresponding sample comes from a non-noise mixture component, in which the feature pairs are both relevant features.  
 We have proved exact recovery of signals in a single non-noise mixture setting using a non-parametric estimation, under even impossible scenarios for canonical methods like sparse PCA. We are working on proofs for multiple non-noise mixture cases.
 
-* Large-scale simultaneous inference under dependence. <small> (In Prepareration)</small>
+
+Publications and preprints
+=======
+
+* Large-scale simultaneous inference under dependence. <small>[Paper](https://arxiv.org/abs/2102.11253) </small>
 : **Jinjin Tian, Xu Chen, Eugene Katsevich, Jelle Goeman, Aaditya Ramdas**
 : Simultaneous, post-hoc inference is desirable in large scale hypotheses testing as it allows people to explore the data while deciding on criteria for proclaiming discoveries. It was recently proved that all admissible post-hoc inference methods must be based on closed testing. In this paper we investigate closed testing with local tests that have a special property called separability, that is the test thresholds a function of a sum of test scores for the individual hypotheses. With separable local tests, we derive a class of novel, fast algorithms forvarious types of simultaneous inference. Paired with recent advances in separable global null tests, our work immediately instantiates a series of simultaneous inference methods that are sufficient to handle many complex dependence structures and signal compositions. This work is close to be submitted.
-
-
-Publications
-=======
 
 * ESCO: single cell expression simulation incorporating gene co-expression. <small> (Bioinformatics, To appear) [Paper](https://www.biorxiv.org/content/10.1101/2020.10.20.347211v1)  [package](https://github.com/JINJINT/ESCO)</small>
 : **Jinjin Tian, Jiebiao Wang, Kathryn Roeder**
