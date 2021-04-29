@@ -27,12 +27,11 @@ Education
 
 Research Interests
 ======
-My research interests take root in methods and theory for high dimensional, nonparametric data analysis with special focus on the interaction structure and temporal nature, specifically includes
+My research interests take root in methods and theory for high dimensional, nonparametric data analysis with special focus on data structure/representation learning, specifically includes
 
 * High-dimensional Nonparametric inference
-* Graphical structure recovery
 * Statistical genetics
-* Reinforcement Learning
+* Self-supervised learning, reprensentational learning
 
 
 Ongoing Research Projects
@@ -40,8 +39,8 @@ Ongoing Research Projects
 
 * Signals recovery in noisy high-dim mixture via local structure learning. 
 : **Jinjin Tian, Jing Lei, Kathryn Roeder**
-: In this project we work on the problem of recovering signals in a high dimensional mixture model when the noises are enormous and signals are weak and sparse. We propose a statistics to capture local structure between a pair of features, which will only dominate iff the corresponding sample comes from a non-noise mixture component, in which the feature pairs are both relevant features.  
-We have proved exact recovery of signals in a single non-noise mixture setting using a non-parametric estimation, under even impossible scenarios for canonical methods like sparse PCA. We are working on proofs for multiple non-noise mixture cases.
+: In this project we work on the problem of recovering signals in a high dimensional mixture model when the noises are enormous and signals are weak and sparse. <!-- We propose a statistics to capture local structure between a pair of features, which will only dominate iff the corresponding sample comes from a non-noise mixture component, in which the feature pairs are both relevant features.  
+We have proved exact recovery of signals in a single non-noise mixture setting using a non-parametric estimation, under even impossible scenarios for canonical methods like sparse PCA. We are working on proofs for multiple non-noise mixture cases. -->
 
 
 Publications and preprints
