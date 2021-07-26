@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a Ph.D. student in the Department of [Statistics & Data Science at Carnegie Mellon University](http://stat.cmu.edu). I am very fortunate to be advised by professor [Jing Lei](http://www.stat.cmu.edu/~jinglei/) and professor [Kathryn Roeder](http://www.stat.cmu.edu/~roeder/). We work on developing statistical and machine learning methodology and theory for high dimensional, non-parametric data analysis with special focus on feature dependency. I have also extensively worked with professor [Aaditya Ramdas](http://www.stat.cmu.edu/~aramdas/) on high-dimensional testing. Before coming to CMU, I obtained a Bacholor degree in statistics from [University of Science and Technology of China](http://en.ustc.edu.cn/) in 2018, where I worked with professor [Zemin Zheng](http://bs.ustc.edu.cn/english/Profile-302.html) in high-dimensional statistical inference.
+I am a Ph.D. student in the Department of [Statistics & Data Science at Carnegie Mellon University](http://stat.cmu.edu). I am very fortunate to be advised by professor [Jing Lei](http://www.stat.cmu.edu/~jinglei/) and professor [Kathryn Roeder](http://www.stat.cmu.edu/~roeder/). We work on developing methodology and theory for high dimensional, non-parametric data analysis with special focus on feature interaction and local structure. I have also extensively worked with professor [Aaditya Ramdas](http://www.stat.cmu.edu/~aramdas/) on online testing. Before coming to CMU, I obtained a Bacholor degree in statistics from [University of Science and Technology of China](http://en.ustc.edu.cn/) in 2018, where I worked with professor [Zemin Zheng](http://bs.ustc.edu.cn/english/Profile-302.html) in high-dimensional statistical inference.
 
 Here is my [Curriculum Vitae](https://jinjint.github.io/files/cv.pdf).
 
@@ -21,46 +21,48 @@ Education
 * B.S. in Statistics, 2018
 : University of Science and Technology of China, Hefei
 
+Work Experience
+=======
 * Applied Scientist Intern, 2020
 : AWS, Amazon
 
-
-Research Interests
+<!--Research Interests
 ======
-My research interests take root in methods and theory for high dimensional, nonparametric data analysis with special focus on data structure/representation learning, specifically includes
+My research interests take root in methods and theory for high dimensional, nonparametric data analysis with special focus on feature interaction and local structure, specifically includes
 
 * High-dimensional Nonparametric inference
 * Statistical genetics
-* Self-supervised learning, reprensentational learning
+* Self-supervised learning, reprensentation learning
+-->
 
-
-Ongoing Research Projects
+<!-- Ongoing Research Projects
 =======
 
 * Signals recovery in noisy high-dim mixture via local structure learning. 
 : **Jinjin Tian, Jing Lei, Kathryn Roeder**
-: In this project we work on the problem of recovering signals in a high dimensional mixture model when the noises are enormous and signals are weak and sparse. <!-- We propose a statistics to capture local structure between a pair of features, which will only dominate iff the corresponding sample comes from a non-noise mixture component, in which the feature pairs are both relevant features.  
+: In this project we work on the problem of recovering signals in a high dimensional mixture model when the noises are enormous and signals are weak and sparse. We propose a statistics to capture local structure between a pair of features, which will only dominate iff the corresponding sample comes from a non-noise mixture component, in which the feature pairs are both relevant features.  
 We have proved exact recovery of signals in a single non-noise mixture setting using a non-parametric estimation, under even impossible scenarios for canonical methods like sparse PCA. We are working on proofs for multiple non-noise mixture cases. -->
 
 
 Publications and preprints
 =======
 
-* Large-scale simultaneous inference under dependence. <small>[Paper](https://arxiv.org/abs/2102.11253) </small>
-: **Jinjin Tian, Xu Chen, Eugene Katsevich, Jelle Goeman, Aaditya Ramdas**
-: Simultaneous, post-hoc inference is desirable in large scale hypotheses testing as it allows people to explore the data while deciding on criteria for proclaiming discoveries. It was recently proved that all admissible post-hoc inference methods must be based on closed testing. In this paper we investigate closed testing with local tests that have a special property called separability, that is the test thresholds a function of a sum of test scores for the individual hypotheses. With separable local tests, we derive a class of novel, fast algorithms forvarious types of simultaneous inference. Paired with recent advances in separable global null tests, our work immediately instantiates a series of simultaneous inference methods that are sufficient to handle many complex dependence structures and signal compositions. This work is close to be submitted.
-
 * ESCO: single cell expression simulation incorporating gene co-expression. <small> (Bioinformatics 2021) [Paper](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btab116/6149079?guestAccessKey=64c91aa4-1d5e-42da-92df-678b1b08af79)  [package](https://github.com/JINJINT/ESCO)</small>
 : **Jinjin Tian, Jiebiao Wang, Kathryn Roeder**
-: Gene-gene co-expression networks (GCN) are of biological interest for the useful information they provide for understanding gene-gene interactions. In this project, we constructed a new semiparametric scRNA-seq data simulation tool named ESCO, which ensembles current state of art in the first moment characterization, and fills in the gap of depicting higher order gene-gene interaction using a copula model.
+: Gene-gene co-expression networks (GCN) are of biological interest for the useful information they provide for understanding gene-gene interactions. In this project, we constructe a new semiparametric scRNA-seq data simulation tool named ESCO, which ensembles current state of art in the first moment characterization, and fills in the gap of depicting higher order gene-gene interaction using a copula model.
 
 
-* Online experimentations in E-Commerce with revenue and time regulations. <small> (Amazon Machine Learning Conference, RL workshop 2020) [package](https://github.com/JINJINT/) </small>
+* Online experimentations in E-Commerce with revenue and time regulations. <small> (Amazon Machine Learning Conference, RL workshop 2020) [paper](https://jinjint.github.io/files/MABpaper.pdf) [code](https://github.com/JINJINT/MABtest)</small>
 : **Jinjin Tian, Lenon Minorics, Guido Imbens**
-: Experimentation in E-commerce often have extra consideration of revenue constrain and time constrain. In this project we utilized recent advances in reinforcement learning and any-time valid inference to construct an online experimentation platform that allows efficient trading off between revenue constrain and time constrain in E-commerce. We also proposed new algorithm to deal with unknown abrupt changes over time, which only cost O(1) for each updates, and has much lower regret comparing with other state-of-arts.  
+: Experimentation in E-commerce often has extra consideration of revenue constrain and time constrain. In this project we utilize recent advances in reinforcement learning and any-time valid inference to construct an online experimentation platform that allows efficient trading off between revenue constrain and time constrain. We also proposed new algorithm to deal with unknown abrupt changes over time, which only cost O(1) for each updates, and has much lower regret comparing with other state-of-arts. This project happens during my internship with Amazon AWS.
 
 
-* Online control of the familywise error rate.                                                         <small>(Statistical Methods in Medical Research 2021) [Paper](https://journals.sagepub.com/eprint/AYRRKZX7XMTVHKCFYBJY/full) [code](https://github.com/JINJINT/onlineFWER) </small>
+* Large-scale simultaneous inference under dependence. <small>[Paper](https://arxiv.org/abs/2102.11253) </small>
+: **Jinjin Tian, Xu Chen, Eugene Katsevich, Jelle Goeman, Aaditya Ramdas**
+: Simultaneous, post-hoc inference is desirable in large scale hypotheses testing as it allows people to explore the data while deciding on criteria for proclaiming discoveries. It was recently proved that all admissible post-hoc inference methods must be based on closed testing. In this paper we investigate closed testing with local tests that have a special property called separability, that is the test thresholds a function of a sum of test scores for the individual hypotheses. With separable local tests, we derive a class of novel, fast algorithms forvarious types of simultaneous inference. Paired with recent advances in separable global null tests, our work immediately instantiates a series of simultaneous inference methods that are sufficient to handle many complex dependence structures and signal compositions. 
+
+
+* Online control of the familywise error rate. <small>(Statistical Methods in Medical Research 2021) [Paper](https://journals.sagepub.com/eprint/AYRRKZX7XMTVHKCFYBJY/full) [code](https://github.com/JINJINT/onlineFWER) </small>
 : **Jinjin Tian, Aaditya Ramdas**
 : Biological research often involves testing a growing number of null hypotheses as new data is accumulated over time. We study the problem of online control of the familywise error rate (FWER), that is testing an apriori unbounded sequence of hypotheses (p-values) one by one over time without knowing the future, such that with high probability there are no false discoveries in the entire sequence. In this project we unified algorithmic concepts developed for offline FWER control and online FDR control to develop new powerful, adaptive online FWER control method. We also formally proved the substantial gains of power of the new methods, and derived closed form of effective hyper-parameters for optimizing the power in a Gaussian sequence model.
 
