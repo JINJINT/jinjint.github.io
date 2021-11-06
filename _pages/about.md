@@ -10,9 +10,6 @@ redirect_from:
 
 I am a Ph.D. student in the Department of [Statistics & Data Science at Carnegie Mellon University](http://stat.cmu.edu). I am very fortunate to be advised by professor [Jing Lei](http://www.stat.cmu.edu/~jinglei/) and professor [Kathryn Roeder](http://www.stat.cmu.edu/~roeder/). We work on developing methodology and theory for high dimensional, non-parametric data analysis with special focus on feature interaction and local structure. I have also extensively worked with professor [Aaditya Ramdas](http://www.stat.cmu.edu/~aramdas/) on online testing. Before coming to CMU, I obtained a Bacholor degree in statistics from [University of Science and Technology of China](http://en.ustc.edu.cn/) in 2018, where I worked with professor [Zemin Zheng](http://bs.ustc.edu.cn/english/Profile-302.html) in high-dimensional statistical inference.
 
-%Here is my [Curriculum Vitae](https://jinjint.github.io/files/cv.pdf).
-
-
 Education
 =======
 * Ph.D. in Statistics, 2023 (expected)
