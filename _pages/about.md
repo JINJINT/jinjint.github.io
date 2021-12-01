@@ -55,7 +55,7 @@ Publications and preprints
 : Gene-gene co-expression networks (GCN) are of biological interest for the useful information they provide for understanding gene-gene interactions. In this project, we construct a new semiparametric scRNA-seq data simulation tool named ESCO, which ensembles current state of art in the first moment characterization, and fills in the gap of depicting higher order gene-gene interaction using a copula model.
 
 
-* Online experimentations in E-Commerce with revenue and time regulations. <small> (Amazon Machine Learning Conference, RL workshop 2020) [paper](https://jinjint.github.io/files/MABpaper.pdf) [code](https://github.com/JINJINT/MABtest)</small>
+* Online experimentations in E-Commerce with revenue and time regulations. <small> (Amazon Machine Learning Conference, RL workshop 2020) </small>
 : **Jinjin Tian, Lenon Minorics, Guido Imbens**
 : Experimentation in E-commerce often has extra consideration of revenue constrain and time constrain. In this project we utilize recent advances in reinforcement learning and any-time valid inference to construct an online experimentation platform that allows efficient trading off between revenue constrain and time constrain. We also propose new algorithm to deal with unknown abrupt changes over time, which only cost O(1) for each updates, and has much lower regret comparing with other state-of-arts. This project happened during my internship with Amazon AWS.
 
