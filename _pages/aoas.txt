@@ -1,0 +1,1603 @@
+\documentclass[aoas]{imsart}
+
+%% Packages
+\RequirePackage{amsthm,amsmath,amsfonts,amssymb}
+\RequirePackage[authoryear]{natbib}
+\RequirePackage[colorlinks,citecolor=blue,urlcolor=blue]{hyperref}
+\RequirePackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{cases} %%case equation with number
+\usepackage{tabularx}
+\usepackage{bbm}
+\usepackage{enumitem}
+\let\hat\widehat
+\let\tilde\widetilde
+\usepackage{xspace}
+\usepackage{bm}
+\usepackage[font=small,labelfont=bf,tableposition=top]{caption}
+\startlocaldefs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% Uncomment next line to change            %%
+%% the type of equation numbering           %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% For Axiom, Claim, Corollary, Hypothesis, %%
+%% Lemma, Theorem, Proposition              %%
+%% use \theoremstyle{plain}                 %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{axiom}{Axiom}
+\newtheorem{claim}[axiom]{Claim}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% For Assumption, Definition, Example,     %%
+%% Notation, Property, Remark, Fact         %%
+%% use \theoremstyle{remark}                %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{fact}{Fact}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Please put your definitions here:        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \newcommand{\rmkref}[1]{Remark~\ref{rmk:#1}}
+\newcommand{\condref}[1]{Condition~\ref{cond:#1}}
+\newcommand{\condsref}[1]{Conditions~\ref{conds:#1}}
+\newcommand{\assumpref}[1]{Assumption~\ref{assump:#1}}
+\newcommand{\assumpsref}[1]{Assumptions~\ref{assump:#1}}
+\newcommand{\assumpssref}[1]{\ref{assump:#1}}
+\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\figsref}[1]{Figures~\ref{fig:#1}}
+\newcommand{\figssref}[1]{\ref{fig:#1}}
+\newcommand{\chapref}[1]{Chapter~\ref{chap:#1}}
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\appref}[1]{Appendix~\ref{app:#1}}
+\newcommand{\eqssref}[1]{\ref{eqn:#1}}
+\newcommand{\defref}[1]{Definition~\ref{def:#1}}
+\newcommand{\exref}[1]{Example~\ref{ex:#1}}
+\newcommand{\clmref}[1]{Claim~\ref{clm:#1}}
+\newcommand{\lemref}[1]{Lemma~\ref{lem:#1}}
+\newcommand{\lemsref}[1]{Lemmas~\ref{lem:#1}}
+\newcommand{\lemssref}[1]{\ref{lem:#1}}
+\newcommand{\propref}[1]{Proposition~\ref{prop:#1}}
+\newcommand{\propsref}[1]{Propositions~\ref{prop:#1}}
+\newcommand{\propssref}[1]{\ref{prop:#1}}
+\newcommand{\thmref}[1]{Theorem~\ref{thm:#1}}
+\newcommand{\thmwref}[1]{Theorem~#1}
+\newcommand{\thmsref}[1]{Theorems~\ref{thm:#1}}
+\newcommand{\thmssref}[1]{\ref{thm:#1}}
+\newcommand{\tabref}[1]{Table~\ref{tab:#1}}
+\newcommand{\tabsref}[1]{Tables~\ref{tab:#1}}
+\newcommand{\tabssref}[1]{\ref{tab:#1}}
+\newcommand{\pwref}[1]{p.~{#1}}
+\newcommand{\ppwref}[1]{pp.~{#1}}
+\newcommand{\eqnref}[1]{equation~\eqref{#1}}
+\newcommand{\Eqnref}[1]{Equation~\eqref{#1}}
+\newcommand{\sign}[1]{\textnormal{sign}(#1)}
+\newcommand{\supfigref}[1]{(Figure S\ref{fig:#1})}
+\newtheorem{condition}{Condition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{question}{Question}
+\newtheorem{setting}{Setting}
+\newtheorem{assumption}{Assumption}
+\newtheorem{remark}{Remark}
+\newtheorem{property}{Property}
+\theoremstyle{definition}
+\theoremstyle{remark}
+\makeatletter
+
+\newtheorem*{rep@theorem}{\rep@title}
+\newcommand{\newreptheorem}[2]
+{\newenvironment{rep#1}[1]
+	{\def\rep@title{#2 \ref{##1}} \begin{rep@theorem}}%
+		{\end{rep@theorem}}}
+\makeatother
+\newreptheorem{theorem}{Theorem}
+\newreptheorem{lemma}{Lemma}
+\newreptheorem{corollary}{Corollary}
+\newreptheorem{proposition}{Proposition}
+\providecommand{\definitionname}{Definition}
+\providecommand{\theoremname}{Theorem}
+
+
+\def\hetergcn{gene co-expression across heterogeneous cell groups}
+\def\homogcn{gene co-expression within homogeneous cell groups}
+\def\Hetergcn{Gene co-expression across heterogeneous cell groups}
+\def\Homogcn{Gene co-expression within homogeneous cell groups}
+
+\newcommand{\unif}{\textnormal{Unif}[0,1]}
+\def\S{\mathcal{S}}
+\def\C{\mathcal{C}}
+\def\R{\mathcal{R}}
+\def\F{\mathcal{F}}
+\def\G{\mathcal{G}}
+\def\M{\mathcal{M}}
+\def\H{\mathcal{H}}
+\def\N{\mathbb{N}}
+\def\V{\mathcal{V}}
+\def\Xa{\mathcal{X}_{\alpha}}
+\def\Ua{\mathcal{U}_{\alpha}}
+\def\bx{\mathbf{x}}
+\def\by{\mathbf{y}}
+\def\bz{\mathbf{z}}
+\def\bc{\mathbf{c}}
+\def\bX{\mathbf{X}}
+\def\bY{\mathbf{Y}}
+\def\bZ{\mathbf{Z}}
+\def\bC{\mathbf{C}}
+
+\newcommand{\gap}{\Delta^{\textnormal{gap}}}
+\newcommand{\seq}[1]{\{{#1}\}_{i=1}^{\infty}}
+\newcommand{\xp}{\mathbf{x(\mathbf{p})}}
+\usepackage{setspace}
+\newcommand{\com}[1]{\marginpar{{\begin{minipage}{0.12\textwidth}{\setstretch{1.1} \begin{flushleft} \footnotesize \color{red}{#1} \end{flushleft} }\end{minipage}}}}
+\newcommand{\norms}[2]{\parallel{#1}\parallel_{#2}}
+
+\newcommand{\iid}[0]{i.i.d.\xspace}
+\newcommand{\dist}[2]{\mathrm{dist}\!\left({#1},{#2}\right)} % distance
+\newcommand{\one}[1]{{\mathbbm{1}}_{{#1}}}
+\newcommand{\inner}[2]{\langle{#1},{#2}\rangle} % Inner product
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+%\newcommand{\PP}[1]{\mathbb{P}\left\{{#1}\right\}} % Probability
+\newcommand{\PP}[1]{\textnormal{Pr}\!\left\{{#1}\right\}} % Probability
+%\newcommand{\Pp}[2]{\mathbb{P}_{#1}\left\{{#2}\right\}} % Probability
+\newcommand{\EE}[1]{\mathbb{E}\left[{#1}\right]} % Expectation
+\newcommand{\Var}[1]{\textnormal{Var}\left[{#1}\right]}
+\newcommand{\Varst}[2]{\textnormal{Var}\left[{#1}\ \middle| \ {#2}\right]}
+\newcommand{\Ep}[2]{\mathbb{E}_{#1}\left[{#2}\right]}
+\newcommand{\EEN}[1]{\mathbb{E}_{N}\left[{#1}\right]}
+\newcommand{\EEst}[2]{\mathbb{E}\left[{#1}\ \middle| \ {#2}\right]} % Conditional expectation
+%\newcommand{\PPst}[2]{\mathbb{P}\left\{{#1}\ \middle| \ {#2}\right\}} % Conditional probability
+\newcommand{\PPst}[2]{\text{Pr}\!\left\{{#1}\ \middle| \ {#2}\right\}} % Conditional probability
+\newcommand{\TV}[1]{\var\left({#1}\right)} % Variance
+\newcommand{\Tp}[2]{\mathbb{V}_{#1}\left[{#2}\right]}
+\newcommand{\TVst}[2]{\var\left({#1}\ \middle|\ {#2}\right)}
+\renewcommand{\O}[1]{\mathcal{O}\left({#1}\right)}
+\def\R{\mathbb{R}}
+\def\Z{\mathbb{Z}}
+\newcommand{\ee}[1]{\mathbf{e}_{{#1}}}
+\newcommand{\ident}{\mathbf{I}}
+\newcommand{\ones}{\mathbf{1}}
+\newcommand{\zeros}{\mathbf{0}}
+
+\newcommand\overmat[2]{%
+  \makebox[0pt][l]{$\smash{\color{black}\overbrace{\phantom{%
+    \begin{matrix}#2\end{matrix}}}^{\text{\color{black}#1}}}$}#2}
+
+
+\endlocaldefs
+
+\begin{document}
+
+\begin{frontmatter}
+\title{From local to global gene co-expression estimation using single-cell RNA-seq data}
+%\title{A sample article title with some additional note\thanksref{t1}}
+\runtitle{A sample running head title}
+%\thankstext{T1}{A sample additional note to the title.}
+
+\begin{aug}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Only one address is permitted per author. %%
+%% Only division, organization and e-mail is %%
+%% included in the address.                  %%
+%% Additional information can be included in %%
+%% the Acknowledgments section if necessary. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author[A]{\fnms{Jinjin} \snm{Tian}},
+\author[A]{\fnms{Jing} \snm{Lei}}
+\and
+\author[A]{\fnms{Kathryn} \snm{Roeder}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Addresses                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\address[A]{Carnegie Mellon University}
+\end{aug}
+
+\begin{abstract}
+In genomics studies, the investigation of gene-gene relationship often brings important biological insights. Nowadays the large heterogeneous dataset imposes new challenges for statistician: it is likely that gene relationships may change or only exist in a subset of the samples, and they can be non-linear or even non-monotone. Most of the previous dependence measures do not specifically target dependence relationships that can be local in nature, and the ones that do are computationally costly. In this paper, we explore a state of the art in genetics networks which characterizes gene-gene association at a single cell level, under the name of  \emph{cell-specific gene network}. We first show that averaging the \emph{cell-specific gene association} over a population directly gives a novel univariate dependence measure that can detect any non-linear, non-monotone relationship. Together with a consistent nonparametric estimator, we establish its robustness on both the population level and empirical level. Simulations and real data analysis show that this measure outperforms existing independence measures like Pearson, Kendall's $\tau$, $\tau^\star$, distance correlation, HSIC, Hoeffding's D, HHG and MIC, respect to various tasks. 
+\end{abstract}
+
+\begin{keyword}
+\kwd{Gene network}
+\kwd{Single-cell RNA-seq} 
+\end{keyword}
+
+\end{frontmatter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Please use \tableofcontents for articles %%
+%% with 50 pages and more                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\tableofcontents
+
+
+\section{Introduction}
+Experimental biologists and clinicians seek a deeper understanding of biological processes and their link with disease phenotypes through characterization of cell behaviour. Gene expression offers a fruitful avenue for insights into cellular traits and changes in cellular state.  Recent advances in technology that enable the measurement of RNA levels for individual cells via Single-cell RNA sequencing (scRNA-seq) greatly increases the potential to advance our understanding of the biology of disease by capturing the heterogeneity of expression at the cellular level.  Gene differential expression analysis, which contrasts the mean expression between groups of cells, is the most commonly used mode of analysis to interrogate cellular heterogeneity. % To understand cellular heterogeneity a widely used
+%technique is , which focuses on the marginal distribution of  expression; however, 
+By contrast, the relational patterns of gene expression have received far less attention. The most intuitive relational effect is gene co-expression, a synchronization between gene expression, which can vary dramatically among cells. Converging evidence has revealed the importance of co-expression among genes.  When looking at collection of highly heterogeneous cells, such as cells from multiple cell types, significant gene co-expression may indicate rich cell-level structure. Alternatively, when looking at a batch of highly homogeneous cells, gene co-expression could imply gene cooperation through gene co-regulation\footnote{Indeed, early statistical models argued that genes within homogeneous cell groups were independent \citep{quinn2018understanding}. However, they overlooked the investigations from the biological end, which reveal that dependency arises due to the stochastic nature of gene expression and gene regulation dynamics \citep{raj2006stochastic}.}. %On the other hand,
+Biochemistry offers a complementary motivation for the advantages of studying co-expression in addition to marginal expression levels of genes. The biological system of a cell is generally described by a non-linear dynamical system in which gene expression is variable \citep{raj2006stochastic}. Therefore, the observed gene expression level varies by time and condition, even within the same cell, while the cooperation between genes is more stable over time and condition. For this reason it can be argued that co-expression may provide a more reliably characterize the biological system or state of the cell \cite{dai2019cell}.  scRNA-seq,
+allows us to investigate gene co-expression at different resolutions, to understand how genes interact with each other within different cells, and how the interactions relate to cell heterogeneity.
+
+Recent work by \cite{dai2019cell} attempts an ambitious task: characterizing the gene co-expression at a single cell level (termed  ``cell-specific network'' CSN). Specifically, for a pair of genes and a target cell, \citet{dai2019cell} construct a 2-way $2\times2$ contingency table test by binning all the cells based on whether they are in the marginal neighbourhoods of the target cell, and assign the test results as a binary indicator of gene association in the target cell. Viewed over all gene pairs, the result is a cell-specific gene network.  %Emphasising less on the interpretation of detected associations, they use this concept more as a data transformation method: the aggregated detected associations for a gene in a cell is treated as a new measure of single-cell gene activeness level.
+Forgoing interpretation of the detected associations, they utilize the CSN to obtain a data transformation.  Specifically, they replace the transcript counts in the gene x cell matrix with the degree. %, considering this as a new measure of single-cell gene activeness level.
+Although this data transformation shows encouraging success in various downstream tasks, such as cell clustering, it remains unclear what the detected ``cell-specific'' gene association network really represents. %, or what is the statistical mechanism behind this data transformation. 
+The implementation details and interpretation of the results are presented at a heuristic level making   
+%Most interpretation in the paper remains on a highly heuristic level as well as the parameter choices. All these aspects make 
+it difficult for others to appreciate and utilize this line of work. 
+
+%A follow-up work, avgCSN \citep{wang2021constructing},  takes a first step in decipher this approach \citep{dai2019cell}. 
+In a follow-up paper, \cite{wang2021constructing}  take the first steps to capitalize on the CSN approach by redirecting the concept to obtain an estimator of co-expression.   Specifically,
+they propose averaging the ``cell specific" gene association indicators over cells in a class to recover a global measure of gene association (avgCSN). The resulting measure performs remarkably well in limited simulations and detailed empirical investigations of brain cell data. Compared to Pearson's correlation, the avgCSN gene co-expression appears less noisy and provides more accurate edge estimation in simulations. It is also more powerful in a test to uncover differential gene networks differences between diseased and control brain cells. Finally it provides biologically meaningful gene networks in developing cells. 
+%global gene association does have more interpretability and better performance compared to Pearson: it outputs less noisy gene co-expression, and performs much better in terms of accurate edge estimation in simulation, as well as better uncovering of biological meaningful differential gene networks differences between diseased and healthy cases in real data analysis. 
+
+The empirical success of avgCSN likely lies in the nature of gene expression data: often noisy, sparse and heterogeneous, meaning not all cells exhibit correlation at all times due to cellular state and specific cellular conditions.  For this reason a successful method must be robust and sensitive to local patterns of dependencies. As avgCSN is essentially an average of a series of local contingency table tests, the testing nature limits the occurrence of error, while the aggregating nature ensures that local patterns are detected. 
+%%
+To make the method more stable, some heuristic and practical techniques were proposed by \cite{wang2021constructing} to compute avgCSN, for which we would like to  have more principled insights. For example, the choice of window size in defining neighbourhoods in local contingency table test; the choice of thresholding in calling an edge; and the range of cells to aggregate over. %Meanwhile, avgCSN only compares to one of its competitor, the Pearson correlation, which is known to be fragile in non-linear and noisy cases. 
+%%%%%
+Many natural questions emerge: how does avgCSN relate to other gene association measures and the full range of general univariate dependence measures and why does it perform well in practice?  Here we address these questions, revealing that avgCSN is in fact an empirical estimator of a new dependency measure, which enjoys various advantages over the existing measures, through both theoretical analysis and extensive experimental evaluations. 
+
+For comparison we briefly review the related work in gene association measures as well as general bivariate dependence.
+Since the work by \citet{eisen1998cluster}, the Pearson correlation has been the most popular gene co-expression measure for its simple conceptual interpretation and fast computation. However, Pearson correlation fails to detect non-linear relationships and yet is sensitive to outliers. Another class of co-expression methods is based on mutual information (MI) \citep{bell1962mutual,steuer2002mutual,daub2004estimating}. The computation of MI involves discretizating the data and tuning parameters, and it does not have an interpretive scale.  \citet{reshef2011detecting} proposed the maximal information coefficient (MIC) as an extension of MI, but MIC was shown to be over-sensitive in practice. More comparisons of different co-expression measures and the co-expression networks constructed can be found in \cite{song2012comparison,allen2012comparing}.
+
+In the broader statistical literature, the problem of finding gene co-expression is closely related to that of detecting bivariate dependence between two random variables. Specifically, for a pair of univariate random variables $X, Y$, how to measure the dependence between them has been a long standing problem. The problem is often described as finding a function $\delta$, which measures the discrepancy between the joint distribution $F_{XY}$ and product of marginal distribution $F_{X}F_{Y}$. Numerous solutions to this problem have been provided: include the Renyi correlation \citep{renyi1959measures} measuring the correlation between two variables after suitable transformations; various regression-based techniques; Hoeffding’s D \citep{hoeffding1948non}, distance correlation (dCor) \citep{szekely2007measuring}, kernel based measure like HSIC \citep{gretton2005measuring} and rank based measure like kendall's $\tau$ and later the refinement $\tau^\star$ \citep{bergsma2014consistent}. Most of these methods have not yet been widely adopted in genetics applications. 
+Yet another approach based on sample space partition from \cite {heller2013consistent} is similar in philosophy to CSN, but it is computationally prohibitive for this setting and hence we do not investigate it further.
+
+ Aside from avgCSN, the methods mentioned so far, do not specifically target dependence relationships that are local in nature and often assume the data are random samples from a common distribution in the theoretical analysis. However, real gene interactions may change as the intrinsic cellular state varies and may only exist under a specific cellular condition. Furthermore, with data integration now being a routine approach to combat the curse of dimensionality, samples from different experimental conditions or tissue types are likely to possess different gene relationships and thus create more complex situations for detecting gene interactions.  In this setting, much like avgCNS, an ideal measure accumulates subtle local dependencies, possibly only observed in a subset of the cells. 
+A co-expression measures that aims to detect local patterns, developed by \cite{wang2014gene}, counts the  proportion of matching patterns of local expression ranks as the measure of gene co-expression. Specifically they aggregate the gene interactions across all subsamples of size $k$. However, despite its promising motivation, it has low power to detect non-monotone relationships and it is sensitive to noise.  MIC \citep{reshef2011detecting} and HHG \citet{heller2016consistent} are also measures that attempt to account for local patterns of dependencies.
+ 
+In this paper, we first give a detailed review of the related methods in \secref{aLDGintr}. Then in \secref{pop}, we show that avgCSN is indeed an empirical estimate of a valid dependence measure, which we define as averaged Local Density Gap (aLDG). In \secref{emp}, we formally establish its statistical properties, including estimation consistency and robustness. We also investigate data-adaptive hyperparameter selection to justify and refine the heuristic choices in application in \secref{chooset}. Finally, we provide a systematic comparison of aLDG and its competitors via both simulation and real data examples in \secref{aLDGcompare}.
+
+
+\section{A brief review of dependence and association measures}\label{sec:aLDGintr}
+Before starting on the description of the various dependence measures, let us remark that \citet{renyi1959measures} proposed that a measure of dependence between two stochastic variables $X$ and $Y$, $\delta(X,Y)$, should ideally have the following properties:
+\begin{enumerate}
+    \item[(i)] $\delta(X,Y)$ is defined for any $X,Y$ neither of which is constant with probability $1$.
+    
+    \item[(ii)] $\delta(X,Y)$=$\delta(Y,X)$.
+    
+    \item[(iii)] $0\leq \delta(X,Y) \leq 1$.
+    
+    \item[(iv)] $\delta(X,Y)=0$ if and only if $X$ and $Y$ are independent\footnote{A measure satisfying (iv) is called a strong dependence measure.}.
+    
+    \item[(v)] $\delta(X,Y)=1$ if either $X=g(Y)$ or $Y=f(X)$, where $f$ anf $g$ are measurable functions.
+    
+    \item[(vi)] If the Borel-measurable functions $f$ and $g$ map the real axis in a one-to-one way to itself, then $\delta(f(X),g(Y))=\delta(X,Y)$.
+\end{enumerate}
+Apart from the above properties, there are two more properties that are particularly useful in single cell data analysis. As the single cell data often contains huge amount of noise, among which outliers account for a large part. Therefore the \emph{robustness} of a dependence measure is desirable. Specifically, the robustness we refer to is that the value of the measure does not change much when a small contamination point mass far away from the main population is added. This consideration follows the previous literature \citep{dhar2016study}, and the formal description and corresponding evaluation metric will be described later. 
+
+Another often overlooked property is \emph{locality}, which is a rather novel concept and has not been properly defined to the best of our knowledge. Still, it is catching attention over the recent decade \citep{reshef2011detecting,heller2013consistent,heller2016consistent,wang2014gene}, many of which was motivated by genetic data analysis. \emph{Locality} targets at a special kind of dependence relationships that can be local in nature. For example, interactions that change as the hidden condition varies or only exist under a specific hidden condition. With data integration now being a routine approach to combat the curse of dimensionality, samples from different sources are likely to prescribe different relationships and thus create more complex situations for detecting interactions. A dependence measure that is \emph{local} should be able to accumulate dependence in local region, like dependence in each component of a finite mixture; dependence within moving time window in time series.  
+
+As far as we know, there is no measure that has all of above mentioned properties. Our new measure, possess all but --- property (v) and (vi). 
+
+
+%\subsection{General univariate dependence measure}
+\subsection{Moment based measures}
+The first class of methods is based on various moment calculation. The main advantage is fast computation and minimum tuning, while the main drawback is nonrobustness to outliers from their moment based nature.
+
+\paragraph*{Pearson's correlation} The simplest one is the classical Pearson’s correlation:
+\begin{equation}
+    \text{Pearson's}\ \rho(X,Y):= \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}.
+\end{equation}
+Plug in the sample estimation of $Cov$ and $Var$, consistency and asymptotic normality can be proved using an
+appropriate law of large numbers and a central limit theorem, respectively. Pearson's $\rho$ has been, and probably still is, the most extensively employed measure in statistics, machine learning, and real-world applications due to its speed (only require O(n) time of computation) and simplicity. However, it is known to detect only linear relationship. Also, as is the case for regression, it is well known that the product moment estimator is sensitive to outliers: even just one single outlier may be very damaging.
+
+\paragraph*{Maximal correlation} 
+The maximal correlation (MC) is based on the Pearson's $\rho$. It is constructed to avoid the problem that Pearson's $\rho$ can easily be zero even if there is strong dependence. \citet{gebelein1941statistische} first propose MC as
+\begin{equation}
+    MC(X,Y) := \sup_{f,g} \rho(f(X),g(X)).
+\end{equation}
+Here the supremum is taken over all Borel-measurable functions $f,g$ with finite and positive variance for $f(X)$ and $g(Y)$. The measure MC can detect non-linear relationship, and in fact it is a strong dependence measure. However, often MC cannot be evaluated explicitly except in special cases, because there does not always exist functions $f_0$ and $g_0$ such that $MC = \rho(f_0(X), g_0(Y))$. Also, in practice, it has been found to be overly ``sensitive", i.e. gives high value for distributions arbitrarily ``close" to independence.
+
+
+\paragraph*{Distance correlation} A recent surge of interests has been placed on using distance metrics to achieve consistent independence testing against all dependencies. A notable example is the distance correlation (dCor) proposed by \citet{szekely2007measuring}:  
+\begin{align}
+    dCor (X,Y)& := \frac{V(X,Y)}{\sqrt{V(X,X)V(Y,Y)}}, \\
+    & \quad \text{where } V(X,Y)=\mathbb{E}{|X-X'||Y -Y'|}
++ \mathbb{E}{|X - X'|}\mathbb{E}{|Y - Y'|}\\
+& \quad \quad \quad \quad \quad \quad \quad \quad \quad 
+- 2\mathbb{E}_{X,Y}\left[{\mathbb{E}_{X'}|X-X'| \mathbb{E}_{Y'}|Y - Y'|}\right], \nonumber
+\end{align}
+with $(X,Y), (X',Y')$ as i.i.d copies of $(X,Y)$. dCor enjoys universal consistency against any joint distribution of finite second moments, however, in practice, it does not work well for non-monotone relationship \citep{shen2020distance}. Also, it is not robust from its moment based nature, as proved in \citep{dhar2016study}. 
+
+
+\paragraph*{HSIC} Recall the definition and formula for the maximal correlation, about which we mentioned it is difficult to compute since it requires the supremum of the correlation $\rho(f(X),g(Y))$ taken over Borel-measurable $f$ and $g$. In the framework of reproducing kernel Hilbert spaces (RKHS), it is possible to pose this problem, or an analogous one, much more generally, and one can compute an analogue of MC quite easily. One of the state-of-the-art in this direction is the so-called Hilbert-Schmidt Independence Criterion (HSIC) \citep{gretton2005measuring}. Denote the support of $X$ and $Y$ as $\mathcal{X}$ and $\mathcal{Y}$ respectively, HSIC consider $f,g$ to be in RKHS $\mathcal{F}$ and $\mathcal{G}$ of functionals on set $\mathcal{X}$ and $\mathcal{Y}$ respectively. Then HSIC is defined to be the Hilbert-Schmidt (HS) norm of a Hilbert-Schmidt operator. We refer the reader to paper \citep{gretton2005measuring} for detailed description. What might be of interst is a striking similarity of HSIC with dCor. Let $k(\cdot,\cdot), l(\cdot,\cdot)$ be the kernel function\footnote{From Riesz representation theorem, for every $x \in \mathcal{X}$, there exists $k_x \in \mathcal{F}$, such that $f(x) = \langle f, k_x \rangle$. Apply this to $f=k_x$ and another point $x' \in \mathcal{X}$, we have $k_x(x') = \langle k_x, k_x'\rangle := k(x,x')$. The function $(x,x') \mapsto k(x,x')$ from $\mathcal{X} \times \mathcal{X}$ to $\mathbb{R}$ is the kernel of RKHS $\mathcal{F}$. Similarly we define the kernel $l(y,y')$ for RKHS $\mathcal{G}$.} on $\mathcal{F}$ and $\mathcal{G}$. Then we can write HSIC as
+\begin{align}
+    HSIC(X,Y) & = \mathbb{E}\left[k(X,X')l(Y,Y')\right]
++ \mathbb{E}\left[k(X, X')\right]\mathbb{E}\left[l(Y,Y') \right]\nonumber\\
+& \quad \quad \quad \quad \quad \quad \quad \quad \quad 
+- 2\mathbb{E}_{X,Y}\left[{\mathbb{E}_{X'}k(X,X') \mathbb{E}_{Y'}l(Y, Y')}\right],
+\end{align}
+with normalization, it is just distance correlation with Euclidean distance replaced by kernel function. One has that if the kernels $k$ and $l$ are universal (universal kernel is a mild continuity requirement on the kernel) on compact domains $\mathcal{X}$ and $\mathcal{Y}$, then HSIC is a strong dependence measure.
+
+\subsection{Ordinal based measure}
+Another line of work based on ordinal statistics are developed in parallel to the moment based methods. Random variable $X$ is called ordinal if its possible values have an ordering, but no distance is assigned to pairs of outcomes. Ordinal data methods are often applied to real-valued (interval level) data in order to achieve robustness. 
+
+\paragraph*{Spearman's $\rho_S$, Kendall's $\tau$ and $\tau^\star$} The two most popular measures of association for ordinal random variables $X$ and $Y$ are Kendall’s $\tau$ and Spearman’s $\rho_S$. Both Kendall and Spearman are proportional to sign versions of the ordinary covariance, which can be seen from the following expressions for the covariance:
+\begin{align*}
+    \text{Cov}(X,Y) &= \frac12\EE{(X - X')(Y - Y')} \propto \text{Kendall} \\
+       & =\EE{(X' -X'')(Y' -Y''')} \propto \text{Spearman},
+\end{align*}
+where $(X',Y'), (X'',Y''), (X''', Y''')$ are i.i.d replications of $(X,Y)$. Note that Kendall is simpler than Spearman in the sense that it can be defined using only two rather than three independent replications of $(X, Y)$, so often Kendall is preferred. A concern from certain applications is that Kendall and Spearman are not \emph{strong} dependence measure (i.e. they may be zero even if there is dependence between $X$ and $Y$), so tests based on them are inconsistent for the alternative of a general association. In fact, they can only detect monotone relationship. Later , an extension $\tau^\star$ \citep{bergsma2014consistent} mitigates such deficiency by modifying Kendall to a strong measure. 
+
+\paragraph*{Hoeffding's D and BKR}
+Related to the ordinal statistics based methods, the other class of methods start from the cumulative distribution function (CDF), some of which are equivalent to ordinal methods due to the relationship between CDF and ranks. The oldest examples are Hoeffing's D proposed by \citet{hoeffding1948non}:
+\[
+\text{Hoeffing's D} := \mathbb{E}_{X,Y} \Big[(F_{X,Y} - F_{X}F_{Y})^2\Big],
+\]
+where $F_X$, $F_Y$, $F_{X,Y}$ are the CDF of $X$, $Y$, $(X,Y)$ respectively. Still, Hoeffing's D is not a strong measure, while later its modified version BKR \citep{blum1961distribution}:
+\[
+\text{BKR} := \mathbb{E}_{X}\mathbb{E}_{Y} \Big[(F_{X,Y} - F_{X}F_{Y})^2\Big]
+\]
+is. It turns out Hoeffding's D belongs to a more general family of coefficients, which can be formulated as
+\[
+\text{C}_{gh} := \int g(F_{X,Y} - F_{X}F_{Y}) d h(F_{XY})
+\]
+for some $g$ and $h$. 
+
+
+\subsection{Dependence measures aware of local patterns}
+
+Most of the methods mentioned so far, do not specifically target dependence relationships that can be local in nature and often assume the data are random samples from a common distribution in the theoretical analysis. In the following we described a few measures that was designed to capture complex relationship, whether local or not. 
+
+\paragraph*{MIC} The next paper in this category is MIC (Maximal Information Coefficient)  \citep{reshef2011detecting}. The idea behind the MIC statistic consists in computing the mutual information locally over a grid in the data set and then take as statistic the maximum value of these local information measures as obtained by maximizing over a suitable choice of grid. However, several examples were given in \citet{simon2014comment} and \citet{gorfine2012comment} where MIC is clearly inferior to dCor.
+
+\paragraph*{HHG}
+\citet{heller2016consistent} pointed out a way to account local patterns: that is looking at dependence locally and then aggregate the dependence by integrating or by other means over the local regions. A family of sample space partition based measures follow this idea: they all involve partition the sample space into bins first, and define the bins to be the local regions. The Hoeffding's D we introduced in previous section turns out to be one member of the family:  \citet{blum1961distribution} showed that the Hoeffding's D statistic is asymptotically equivalent to the observed count of cell $(u, v)$ in the $2 \times 2$ contingency table defined by the $i$th observation. \citet{thas2004nonparametric} noted that by appropriately normalizing each term in the sum, the test statistic becomes the average of all Pearson Chi-square statistics for independence applied to the contingency tables induced by $2 \times 2$ sample space partitions centered about observation $i \in \{1,\dots, n \}$. Partitioning the sample space into finer partitions than the $2 \times 2$ quadrants of the classical tests, based on the observations, was also considered in \cite{thas2004nonparametric,reshef2011detecting,jiang2015nonparametric}, which was empirically found to improve power. Specifically, \citet{heller2016consistent} empirically show that typically finer partitions have a clearer advantage for complex non-monotone relationships. On the other hand, for simpler relationships, there is an advantage for rougher partitions.
+Therefore, \citet{heller2016consistent} considers aggregation of scores over all partitions of size $m \times m$, and takes the minimum of the corresponding $p$-values among all possible choices of $m$ as final scores to approximate performance of the unknown best $m$. The corresponding permutation tests are consistent, including those presented in \citet{thas2004nonparametric}, and has a connection with mutual information \citep{steuer2002mutual}. Though the computational complexity of the naive algorithm is exponential in $m$, they are able to construct shortcut algorithms that takes $O(n^4)$. However, the computation time is still too high comparing to its competitors, which normally take at most $O(n^2)$. Therefore we omit this method in the comparison.
+
+\paragraph*{Matching ranks} Another methods that developed specifically for accounting local pattern 
+is proposed by \citep{wang2014gene}. Given $n$ pair of observations of $(X,Y)$, $\{(x_i,y_i)\}_{i=1}^n$, they propose to count the number of size $k$ subsequences $(x_{i_1}, x_{i_2}, \dots x_{i_k})$ and $(y_{i_1}, y_{i_2}, \dots y_{i_k})$ such that their rank is matched. We refer to this measure as MR (Matching Ranks).  Specifically, we write the scaled version of Loco such that it is in range [0,1]:
+\begin{align*}
+    \text{MR} =   \frac{1}{{n\choose k}}\sum_{1\leq i_1<i_2\dots<i_k \leq n} & \ident\{ rank(x_{i_1}, x_{i_2}, \dots x_{i_k}) = rank(y_{i_1}, y_{i_2}, \dots y_{i_k})\} \\
+    & + \ident\{ rank(x_{i_1}, x_{i_2}, \dots x_{i_k}) = rank(-y_{i_1}, -y_{i_2}, \dots -y_{i_k})\},
+\end{align*}
+where $rank(a_1,\dots,a_k) = (r(a_1),\dots,r(a_k))$ where $r(a_i)$ is the rank of element $a_i$ within the sequences $(a_1,\dots,a_k)$, and the equality inside the indicator function applies element-wisely. Though claimed to be able to detect complex relationship, this measure is inferior than other in some non-monotone dependence case like quadratic relationship. Also we found it to be overly sensitive to noise: for a significant linear relationship  $Y=X+\epsilon$ with $\epsilon \sim N(0,\sigma_0^2)$ and $X \sim N(0,1)$, $\sigma_0 \ll 1$, it produces near zero value. 
+
+%In the yeast gene expression data set, they discover interesting non-linear relationships in this data set that could not have been detected by the classical tests, contrary to the conclusion in \citet{steuer2002mutual} that there are no non-monotone associations.
+
+
+%They suggested that the average of all Pearson statistics on finer partitions of fixed size $m \times m$ may improve the power, but did not provide a proof that the resulting tests are consistent. They examined in simulations only $3 \times 3$ and $4 \times 4$ partitions. \citet{reshef2011detecting} suggested the maximal information coefficient, which is a test statistic based on the maximum over dependence scores taken for partitions of various sizes, after normalization by the partition size, where the purpose of the normalization is equitability rather than power. Since computing the statistic exactly is often infeasible, they resort to a heuristic for selecting which partitions to include. Thus, in practice, their algorithm goes over only a small fraction of the partitions they set out , but the power of this test is typically low.
+%For testing equality of distributions, i.e., for a categorical $X$, one of the earliest and still very popular distribution-free consistent tests is the Kolmogorov–Smirnov test \citep{darling1957kolmogorov}, which is based on the maximum score of all $N$ partitions of the sample space based on an observed data point. Aggregation by summation over all $N$ partitions has been considered by Cramer and von Mises \citep{darling1957kolmogorov}, Pettitt \citep{pettitt1976two} who constructed a test-statistic of the Anderson and Darling family (\citep{anderson1952asymptotic}), and \citet{scholz1987k}. \citet{thas2004extension} suggested the following extension of the Anderson–Darling type test. For random samples of size $N_1$ and $N - N_1$, respectively, from two continuous densities, for a fixed $m$, they consider all possible partitions into $m$ intervals of the sample space of the univariate continuous random variable. They compute Pearson’s chi-square score for the observed versus expected (under the null hypothesis that the two samples come from the same distribution) counts, then aggregate by summation to get their test statistics. A permutation test is applied on the resulting test statistic, since under the null all $N$ assignments of the group labels are equally likely. They show that the $N_1$ suggested statistic for $m = 2$ is the Anderson–Darling test. They examined in simulations only partitions into $m \leq 4$ intervals. \citet{jiang2015nonparametric} suggested a penalized score that aggregates by maximization the penalized log likelihood ratio statistic for testing equality of distributions, with a penalty for fine partitions. They developed an efficient dynamic programming algorithm to determine the optimal partition, and suggested a distribution-free permutation test to compute the $p$-value.
+
+
+\section{Our method: averaged Local Density Gap}\label{sec:aLDGdef}
+
+%In the remainder of the paper, we consider only a pair of random variables $X,Y$ whose joint and marginal densities exist and have the same support, and denote $f_{XY}, f_{X}, f_{Y}$ as their joint and marginal densities. Also, let $\widehat{f}_{XY}, \widehat{f}_{X}, \widehat{f}_{Y}$ be the estimated densities given observations of $(X,Y)$, and $\widehat{p}_{X,Y}(x,y)$ be the proportion of samples points in a square of side length $h$ centered at $(x, y)$, and $\widehat{p}_{X}$ and $\widehat{p}_{Y}$ be defined similarly for the marginal distribution. Denote the sample size as $n$, and the $i$-th observation of $(X,Y)$ as $(X_i, Y_j)$.
+
+First we elaborate on the origin of our work, which was inspired by gene co-expression analysis using single cell data. In the context of gene co-expression analysis, the pair of random variables $X,Y$ represents the expression level of a pair of genes, and the goal is to find the relationship between them. Pearson correlation is one commonly used metric for this task. In light of the many shortcomings of this global measure of dependence, \citet{dai2019cell} proposed an ambitious alternative approach. The proposed a method to characterize the gene-gene relationship for every cell. Their method takes the following approach: for the gene pair $(X,Y)$, and a target cell $j$, partition the $n$ samples based on whether $|X_{\cdot} - X_j| < h_x$ and $|Y_{\cdot} - Y_j| < h_y$, where $h_x$ and $h_y$ are predefined window sizes. This partition can be summarized as a  $2 \times 2$ contingency table (\tabref{contingency}). Then evidence against independence can be quantified by general contingency table test statistics. Specifically, \citet{dai2019cell} uses the square root of the Pearson Chi-square test statistics $\chi^2$:
+\begin{equation}
+    T_{X,Y}^{(j)} := \frac{ \sqrt{n} \left(n_{x,y}^{(j)}n  - n_{x}^{(j)} n_{y}^{(j)}\right)}{\sqrt{n_{x}^{(j)} n_{y}^{(j)} (n-n_{x}^{(j)}) (n-n_{y}^{(j)})}} = \sqrt{\chi^2},
+\end{equation}
+and conducts the test based on its asymptotic normality, that is
+\begin{equation}
+    I_{XY}^{(j)}:= \mathbb{I}\{T_{X,Y}^{(j)} > \Phi^{-1}
+(\alpha)\}
+\end{equation}
+indicates whether or not gene pairs $X$ and $Y$ are dependent in cell $j$.
+
+\begin{table}[H]
+    \begin{tabular}{c|c|c|c}
+                   &  $|Y_{\cdot} - Y_j| \leq h_y$ &  $|Y_{\cdot} - Y_j| > h_y$ &   \\  \hline
+     $|X_{\cdot} - X_j| \leq h_x$   &      $n_{x,y}^{(j)} $     &   & $n_{x,\cdot}^{(j)}$   \\  \hline
+       $|X_{\cdot} - X_j| > h_x$   &            &  &    \\  \hline
+      &  $n_{\cdot,y}^{(j)}$  &   & $n$
+    \end{tabular}
+    \caption{The $2\times 2$ contingency table based on distance from $j$-th sample.}
+    \label{tab:contingency}
+\end{table}
+Though interesting as a novel concept, it is hard to justify the estimated cell-specific relationships. One simple counter intuitive case is that, when $X,Y$ follows two component Gaussian mixture distribution, e.g. their joint density 
+\[f_{X,Y} \propto 0.5 N_2([0,0]^\top,\mathbf{I}) + 0.5 N_2([1,1]^\top,\mathbf{I}),\]
+where $N_2$ represents the bivariate normal density. Then $X\not\perp Y$, but inside each component $X\perp Y$. From the conceptual level, one would expect $I_{XY}^{(j)}=0$ for most of $j$, as it is a measure of \emph{local} dependence. However simulation shows $I_{XY}^{(j)}=1$ instead for majority of $j$, which contradicts with its meaning. It turns out that, $I_{XY}^{(j)}$ is not essentially a valid local dependence, but it could be a valid contributor to global dependence. Following this intuition, \citet{wang2021constructing} proposed averaging the cell specific gene-gene relationship indicator across cells to represent a overall dependence level:
+\begin{equation}
+    \text{avgCSN} := \frac{1}{n} \sum_{i=1}^n I_{XY} ^{(j)}
+\end{equation}
+
+A heuristic justification of avgCSN as a sensible dependence measure goes as follows: if $X$ and $Y$ are dependent and have a continuous joint density, then there exists at least one point $(x_0, y_0)$ in the sample space of $(X, Y)$, with radii $h_x$ and $h_y$ around $x_0$ and $y_0$, respectively, such that the joint distribution of $X$ and $Y$ is different than the product of the marginal distributions in the cartesian product of balls around $(x_0,y_0)$. Because it is impossible to chose the oracle position, we simply  aggregate over all the possible locations, i.e. all the given sample points to discover any points of dependence. 
+
+A more rigorous justification requires further notation. Assume the variables $X,Y$ have joint density $f_{XY}$, and marginal densities, $f_{X}$ and $f_{Y}$, that have common support.  Let $\widehat{f}_{XY}, \widehat{f}_{X}, \widehat{f}_{Y}$ be the estimated densities given observations of $(X,Y)$. 
+Under the assumption that the bandwidth $h_x, h_y\to 0$ and $ \sqrt{h_x h_y n}\to\infty$, with some simple algebra (see \appref{derive} for detailed derivation), we see that
+\begin{align}
+    \text{avgCSN} &\approx \frac{1}{n} \sum_{i=1}^n \ones\left\{ \frac{\widehat{f}_{X,Y}(x_{i}, y_{i}) - \widehat{f}_{X}(x_{i}) \widehat{f}_{Y}(y_{i}) }{\sqrt{ \widehat{f}_{X}(x_{i})\widehat{f}_{Y}(y_{i})}} \geq t_n \right\},\quad \text{where } t_n = \frac{\Phi^{-1}(\alpha)}{\sqrt{n h_x h_y}},
+\end{align}
+where $\alpha\in[0,1]$ is some hyperparameter related to the confidence level of the local contingency test (usually $\alpha$ is set to 0.95 or 0.99). Since $t_n \downarrow 0$ as $n$ goes to infinity, therefore naturally we think of the following population dependence measure:
+\begin{equation*}
+  \text{Pr}_{X,Y}\left\{ \frac{f_{X,Y} - f_X f_{Y}}{\sqrt{f_{X}f_{Y}}} > 0\right\}.
+\end{equation*}
+
+In the remainder of this section, we formally define a generalized version of this measure in \secref{pop}, along with its properties on the population level; then we discuss consistent and robust estimation in \secref{emp}, and provide guidance on hyper-parameter selection in \secref{chooset}. Finally we comment on the relationship between our measure and some of the previous work in \secref{relation}. 
+
+
+% \begin{table}[H]
+% {\scriptsize
+% \begin{tabular}{c|c|c|c|c|c}
+% \hline
+%  Method  &  Expression (population level) & Computation & Robust & Strong & No-linearity \\ [10pt] 
+%  \hline 
+% Pearson & $\EE{XY}-\EE{X}\EE{Y}$ & $O(n)$ & No & No & No \\ [10pt] 
+% Spearman & $ \EE{\delta\Big((X_1-X_2)(Y_1-Y_2)\Big)}$  & $O(n\log{n})$ & $\checkmark$ & No & $\checkmark$ (monotone) \\ [10pt] 
+% $\tau^{*}$  & $\EE{\delta\Big(a(X_1,X_2,X_3,X_4)\Big)\delta\Big(a(Y_1,Y_2,Y_3,Y_4)\Big)}$ & $O(n^2\log{n})$ & $\checkmark$ & $\checkmark$ & $\checkmark$\\ [10pt] 
+% dCor
+% & $ \EE{a(X_1,X_2,X_3,X_4)a(Y_1,Y_2,Y_3,Y_4)}^{\frac{1}{2}}$  & $O(n\log{n})$ & No & $\checkmark$ & $\checkmark$ (monotone)\\ [10pt] 
+% $\textnormal{HSIC}$  & $ ||\EE{K(X) L(Y)} - \EE{K(X)}\EE{L(Y) }||_{HS}$ & $O(n^2)$ & $\checkmark$ & $\checkmark$ & $\checkmark$\\ [10pt] 
+% $\textnormal{Hoeffdings'D}$ & $ \EE{F_{XY}-F_{X}F_{Y}}$ & $O(n^2)$ & $\checkmark$ & $\checkmark$ & $\checkmark$\\ [10pt] 
+% \textbf{aLDG (new)} & $\EE{\delta(f_{XY} - f_X f_Y)}$ &  $O(n\log{n})$ & $\checkmark$ & $\checkmark$ & $\checkmark$\\
+% \hline
+% \end{tabular}
+% }
+% \caption{\label{tab:summary} Summary of popular dependency measure of a pair of random variables X and Y\footnote{For the expression we omit the constant factors and normalization. And the functions $\delta := \ones\{z > 0\}$ and $a(z_1, z_2, z_3, z_4) := \{|z_1-z_2|+|z_3-z_4|-|z_1-z_3|-|z_2-z_4|\}$, each $\{\cdot_{i}\}$ are i.i.d copies; and $K,L$ are kernel transformation.}.
+% }
+% \end{table}
+
+
+
+\subsection{Definition and basic properties}\label{sec:pop}
+\begin{definition}(averaged Local Density Gap)
+Consider a pair of random variables $X,Y$ whose joint and marginal densities both exist, and denote $f_{XY}, f_{X}, f_{Y}$ as their joint and marginal densities. The averaged Local Density Gap (aLDG) measure is then defined as 
+\begin{equation}
+    \text{aLDG}_t := \text{Pr}_{X,Y}\left\{ \frac{f_{X,Y} - f_X f_{Y}}{\sqrt{f_{X}f_{Y}}} > t\right\},
+\end{equation}
+where $t\geq 0$ is a tunable hyper-parameter.
+\end{definition}
+
+\noindent
+From the definition, one can immediately realize the following lemma.
+\begin{lemma}\label{lem:simpleprop}
+For a pair of random variables $X,Y$ whose joint and marginal densities both exist, we have
+\begin{enumerate}
+    \item $X \perp Y  \Longleftrightarrow \text{aLDG}_0 =0 $;
+    
+    \item  if $t>0$, then  $X \perp Y \Longrightarrow \text{aLDG}_t =0$;
+
+    \item $\text{aLDG}_t \text{ is non-increasing with regard  } t$ for all $t \geq 0$;
+    
+    \item $\text{aLDG}_t \in [0,1]$;
+    
+    \item $\text{aLDG}_t(X,Y) = \text{aLDG}_t(Y,X)$;
+\end{enumerate}
+\end{lemma}
+As for a concrete example of the $\text{aLDG}$ measure, the left plot of \figref{aLDGpop} shows the $\text{aLDG}$ value given different $t$ under bivariate Gaussian of different correlation. We can see that (a) $\text{aLDG}_t$ is non-increasing with regard $t$ as our \lemref{simpleprop} suggests; (b) $\text{aLDG}_t$ equals zero at independence for all $t\geq 0$, while $\text{aLDG}_0$ equals zero if and only if the correlation is zero, as our \lemref{simpleprop} suggests; (c) $\text{aLDG}_t$ increases with the dependency level, indicating that it is a sensible dependence measure.
+
+
+Note that, from \lemref{simpleprop}, $\text{aLDG}_0$ is a \emph{strong}\footnote{Recall that a measure of dependence between a pair of random variable $X,Y$ is \emph{strong} if it equals zero if and only if $X$ and $Y$ are independent.} measure of dependence. While being strong is a desirable feature of a dependence measure, for $\text{aLDG}$ type of measure we find that it comes with the sacrifice of robustness under independence (\propref{indeprob}). On the other hand, setting $t>0$ could results insensitivity under weak dependence, but meanwhile we can provably guarantee robustness (\thmref{aLDGrobpop}). In short words, the hyper-parameter $t$ serves like a trade-off between robustness and sensitivity. In \secref{chooset} we will discuss the practical choice $t$ in more detail. For now, we treat it as a predefined non-negative constant.
+
+
+In the following we present formal robustness analysis. An important tool to measure robustness of a statistical measure is the influence function (IF). It measures the influence of an infinitesimal amount of contamination at a given value on the statistical measure. The Gross Error Sensitivity (GES) summarizes IF in a single index by measuring the maximal influence an observation could have. 
+\begin{definition}[Influence function (IF) and Gross Error Sensitivity (GES)] Assume that the bivariate random variable $(X,Y)$ follows a distribution $F$, the influence function of a statistical functional $R$ at $F$ is defined as
+\begin{align}\label{if}
+    \text{IF}\big((x,y), R, F\big) := \lim_{\epsilon \to 0} \frac{R\big((1-\epsilon) F + \epsilon \delta_{(x,y)}\big) - R(F)}{\epsilon}
+\end{align}
+where $\delta_{(x,y)}$ is a Dirac measure putting all its mass at $(x,y)$. The Gross Error Sensitivity (GES) summarizes IF in a single index by measuring the maximal influence over all possible contamination locations, which is defined as
+\begin{equation}
+    \text{GES}(R, F) := \sup_{(x,y)} \mid \text{IF}\big((x,y), R, F\big)\mid.
+\end{equation}
+An estimator is called $B$-robust if its GES is bounded. 
+\end{definition}
+
+Among the related work we have mentioned, only the robustness of $\tau$, $\tau^\star$ and $\text{dCor}$ have been theoretically investigated to the best of our knowledge. \citet{dhar2016study} proved that $\text{dCor}$ is not robust while $\tau$ and $\tau^\star$ are. Their evaluation criteria is a bit different from ours, as we investigate the limitation of the ratio when the contamination mass goes to zero, and they investigate the limitation of the ratio when the contamination position goes far away given the contamination mass fixed. We argue that our analysis aligns better with the main statistical world. In the following, we show that $\text{aLDG}_t$ with $t>0$ is $B$-robust, under some reasonable conditions for regularity.
+
+\begin{theorem}\label{thm:aLDGrobpop}
+Consider $t>0$, and a bivariate distribution $F$ of variable $(X,Y)$ whose joint and marginal densities exist as $f_{XY}$, $f_{X}$, $f_{Y}$, and satisfy
+\begin{equation}
+    f_{\text{max}}:=||\sqrt{f_{X}f_{Y}}||_{\infty} <\infty; \quad \quad  |\text{aLDG}_{t - \epsilon} - \text{aLDG}_{t}| \leq L\epsilon,\ \forall \ \epsilon >0;
+\end{equation}
+then we have
+\begin{equation}
+    \text{GES}(R_{\text{aLDG}_t}, F) \leq L f_{\text{max}} +1 < \infty.
+\end{equation}
+\end{theorem}
+
+The first assumption about the boundness of density is common in density based statistical analysis. The second assumption about the $\text{aLDG}_{t}$ smoothness may look less familiar, however after a transformation, it is no more than a CDF-smoothness assumption: Denote $T := \frac{f_{XY}-f_{X}f_{Y}}{\sqrt{f_{X}f_{Y}}}$, then $|\text{aLDG}_{t-\epsilon} - \text{aLDG}_{t}|< L\epsilon$ can be written as
+\begin{align}
+     \mathbb{P}\{|T-t|\leq \epsilon\} \leq L\epsilon,
+\end{align}
+that is, the CDF of random variable $T$ is L-lipschitz around $t$ for $t>0$. In \figref{smooth} we show the empirical density of $T$ for bivariate Gaussian of different correlation, which is generally bounded by some constant $L$ at positive values.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{plots/densityT.png}
+    \caption{The empirical density of statistics $T$. The underlying bivariate distribution is Gaussian, and the value of $T$ is calculated using the true Gaussian density. We can see that, as the correlation increases, density of $T$ is more and more small near zero.}
+    \label{fig:smooth}
+\end{figure}
+In the following we show that, $\text{aLDG}_0$ is not robust under independence. 
+\begin{proposition}\label{prop:indeprob}
+For any distribution $F$ over a pair of independent random variables $(X,Y)$ whose marginal density exists and is a.e. smooth, we have
+\begin{equation}
+    \text{GES}(R_{\text{aLDG}_0}, F) = \infty.
+\end{equation}
+\end{proposition}
+
+The right plot in \figref{aLDGpop} provide some empirical evidence of the non-robustness of $\textnormal{aLDG}_0$ under independence. Specifically, we plot the population value of the ratio inside limitation \eqref{if}, under bivariate Gaussian with small enough contamination proportion $\epsilon$, to approximately show that, the IF value of $\textnormal{aLDG}_t$ at independence indeed goes to infinity as $t$ goes to zero. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{plots/popvalue.pdf}
+    \caption{\textbf{(Left)} The true $\textnormal{aLDG}_t$ value for bivariate Gaussian with different level of correlation under different choices of $t$. \textbf{(Right)} The influence function value approximated by setting contamination proportion very small ($\epsilon = 10^{-6}$).}
+    \label{fig:aLDGpop}
+\end{figure}
+
+
+% \begin{definition}
+% For any $t>0$, a function $g: \mathcal{X}\to \mathbb{R}$ is said to be \textbf{smooth at level $t$ with respect to measure $P$}, if there exists constants $L>0$, $\epsilon_0>0$ such that for all $0< \epsilon < \epsilon_0$, 
+% \begin{equation}
+%     P \{ \bm{x}\in \mathcal{X}:  |g(x)-t|\leq \epsilon\} \leq L \epsilon.
+% \end{equation}
+% \end{definition}
+
+
+\subsection{Consistent and robust estimation}\label{sec:emp}
+In this section we investigate estimation of $\text{aLDG}_t$ given finite samples. One natural way to estimate $\text{aLDG}_t$ is the following plug-in estimator: recall that $\widehat{f}_{XY}, \widehat{f}_{X}, \widehat{f}_{Y}$ are the estimated joint and marginal densities, then given $n$ observations $\{(x_1,y_1),\dots,(x_n,y_n)\}$ of $(X,Y)$, $\text{aLDG}_t$ can be estimated by 
+\begin{align}
+\label{eq:aLDGemp}
+    \widehat{\text{aLDG}}_t & := \frac{1}{n}\sum_{i=1}^n \ones\left\{ \frac{\widehat{f}_{X,Y}(x_{i}, y_{i}) - \widehat{f}_{X}(x_{i}) \widehat{f}_{Y}(y_{i}) }{\sqrt{ \widehat{f}_{X}(x_{i})\widehat{f}_{Y}(y_{i})}} \geq t \right\}.
+\end{align}
+In the following, we establish the non-asymptotic high probability bound of the estimation error using the above simple plug-in estimator $\widehat{\text{aLDG}}_t$. The error rate is determined by the density estimation error for variable $X,Y$, as well as the probability estimation error. 
+\begin{theorem}\label{thm:aLDGconsist}
+Consider $t>0$, and a bivariate distribution $F$ of variable $(X,Y)$ whose joint and marginal densities exist as $f_{XY}$, $f_{X}$, $f_{Y}$, and satisfy
+\begin{align*}
+&\inf_{x,y}f_{XY}(x,y),\  \inf_{x}f_X(x) \inf_{y}f_Y(y) \geq c_{\min},\\
+& \sup_{x,y}f_{XY}(x,y),\  \sup_{x}f_X(x) \sup_{y}f_Y(y) \leq c_{\max},
+\end{align*}
+and for some $\eta_n$ with $\lim_{n\to\infty}\eta_n \to 0$, with high probability 
+\begin{equation}
+  ||\widehat{f}_{XY}-f_{XY}||_{\infty}, ||\widehat{f}_{X}-f_{X}||_{\infty}, ||\widehat{f}_{Y}-f_{Y}||_{\infty} \leq \eta_n; 
+\end{equation} 
+and for some constant $0<L<\infty$, 
+\begin{equation}
+    |\text{aLDG}_{t-\epsilon}-\text{aLDG}_t| \leq L\epsilon\quad  \text{for all} \ \epsilon>0,
+\end{equation}
+Then we have, 
+\begin{equation}
+    \left|\widehat{\text{aLDG}}_t - \text{aLDG}_t\right| \leq  LC\eta_n + 2\sqrt{\frac{\log{n}}{n}}
+\end{equation}
+with high probability, where $C$ depends only on $c_{\min}, c_{\max}$.
+\end{theorem}
+\thmref{aLDGconsist} is flexible in the sense that one can plug-in any kind of density estimator and its error rate to obtain the error rate of the corresponding $\widehat{\text{aLDG}}$ estimator. The proof of \thmref{aLDGconsist} is in \appref{pfconsist}.
+
+As for a concrete example, we provide explicit results for the following kernel product density estimator:
+\begin{align}\label{densest}
+    &\widehat{f}_{X}(\cdot) = \frac{1}{n} \sum_{j=1}^n K_{h_n}(\cdot, x_j) , \quad \widehat{f}_{Y}(\cdot) = \frac{1}{n} \sum_{j=1}^n K_{h_n}(\cdot, y_j), \nonumber\\
+    & \quad \widehat{f}_{XY}(\cdot, \cdot) = \frac{1}{n} \sum_{j=1}^n K_{h_n}(\cdot, x_j)K_{h_n}(\cdot, y_j),
+\end{align}
+where $K_{h_n}(\cdot,u):=\ones\{|\cdot-u|\leq h_n\}/(2 h_n)$ is  one-dimensional boxcar kernel smoothing function with bandwidth $h_n$. From \propref{densest} in \appref{densest}, the uniform estimation error rate $\eta_n$ for boxcar kernel is $O(n^{-1/6}\sqrt{\log{n}})$, given the optimal bandwidth $h = O(n^{-1/6})$. Therefore, applying \thmref{aLDGconsist} gives us estimation error rate of $O(n^{-1/6}\sqrt{\log{n}})$ for $\textnormal{aLDG}_t$. 
+
+\figref{consist} demonstrate empirical evidence of the proved consistency of $\widehat{\text{aLDG}}_t$ using the above simple boxcar kernel product density estimator. Particularly, we simulate $X,Y$ as correlated Gaussian variables, and compute $|\widehat{\text{aLDG}}_t - \text{aLDG}_t|$ given different number of samples. 
+
+We also include robustness analysis of $\widehat{\text{aLDG}}_t$ in \appref{emprob}. Specifically, we consider an empirical contamination model that is commonly encounter in single cell data analysis: a small proportion of the sample points are replaced by ``outliers'' far away from the rest samples. We show that, $\widehat{\text{aLDG}}_t$ with and without outliers is close to each other as long as the outlier proportion is small. This suggests that the empirical estimation of $\text{aLDG}_t$ can still preserve its robust nature.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{plots/consist.pdf}
+    \caption{The empirical estimation error of $\text{aLDG}_t$ using boxcar kernel. The data samples are generated from bivariate Gaussian of different correlation $\rho$, and the value is averaged over 100 trials. {\color{red} Remove adaptive bandwidth to avoid confusion. In fact we did not use it anywhere in this paper.}}
+    \label{fig:consist}
+\end{figure}
+
+
+% \begin{figure}[H]
+% \centering
+%     \includegraphics[width=0.5\linewidth]{plots/consist.pdf}
+%     \caption{The original aLDG estimation value (using $r_n:= \frac{\Phi^{-1}(0.95)}{\sqrt{n-1}}$) under independent Gaussian versus different sample size. The value is averaged over 100 trials. The aLDG estimation value is biased: converge to 0.05. Correcting the aLDG estimation value using $r_n:= \frac{\Phi^{-1}(1-\frac{1}{\sqrt{n}})}{\sqrt{n-1}}$ remove the bias: see ``aLDG debiased".}
+%     \label{fig:aLDGconsist}
+% \end{figure}
+
+
+
+
+%In the following we show that, if the number of outliers $d_n\equiv d$ for all $n$, then the corresponding modified influence function is unbounded. Now that the number of outliers is fixed, it is much easier to just consider the following modified contamination model, where the outliers are appended in addition to the original $n$ samples:
+% \begin{definition}\label{def:empmodel2}
+% Given $n$ bivariate samples $(x_1,y_1),\dots,(x_n,y_n)$, we consider the contaminated samples $\{(x_i', y_i')\}_{i=1}^{n+d}$ satisfy
+% \begin{equation}
+%     (x_i', y_i') = (x_i, y_i)\ \text{for} \ 1 \leq i \leq n;\quad \quad (x_i', y_i') = (x', y')\ \text{for}\ n+1 \leq i \leq n+d,
+% \end{equation}
+% where constant $d\geq 1$ is the number of outliers.  
+% \end{definition}
+% In the asymptotic sense, the model in \defref{empmodel2} should be equivalent to defining the outliers within the original $n$ samples.
+
+% \begin{theorem}\label{thm:aLDGrobemp2}
+% Consider the contamination model in \defref{empmodel2} with $d$ outliers, and the empirical $\widehat{aLDG}_t$ in \eqref{empaLDGt} with boxcar kernel density estimator with bandwidth $h_n$ as described in \eqref{densest}. Assume the point mass $(x', y')$ is far away from all the $n$ uncontaminated samples:
+% \begin{equation}
+%     (x', y'): \quad \min_{j\in [n]}|x_j-x'| > h,\ \min_{j\in [n]}|y_j-y'| > h_n.
+% \end{equation}
+% Under the same conditions on the true data distribution as in \thmref{aLDGconsist}, with high probability, we have
+% \begin{equation*}
+%     MIF((x',y'), \widehat{\text{aLDG}}, F) := \lim_{n\to\infty}\frac{1}{d/n}\Big|\widehat{\text{aLDG}}'_t - \widehat{\text{aLDG}}_t\Big| = \infty,
+% \end{equation*}
+% where $F$ denote the true distribution of the uncontaminated data.
+% \end{theorem}
+
+
+% % \begin{align}
+% %     R_{\text{aLDG}}(\Phi_{\rho}) & := \mathbb{P}_{(X,Y)\sim \Phi_\rho} \Big[  \phi_{\rho}(X,Y)-\phi(X) \phi(Y) >0 \Big]\nonumber\\
+% %     & = \mathbb{P}_{(X,Y)\sim \Phi_\rho} \Big[ \rho^2 (X^2+Y^2)-2\rho X Y + (1-\rho^2)\log{(1-\rho^2)} < 0\Big]
+% % \end{align}
+% % therefore
+
+
+
+% % \subsection{Based on Maximum bias}
+% % In the paper of $\tau^{*}$, they investigate the robustness via a concept of maximum bias, which is based on a contamination neighborhood. The maximum bias they proposed of a dependency measure $T(\cdot)$ is defined as
+% % \begin{equation}\label{maxbias}
+% %     b(\beta; T) : = \lim_{x,y \to \infty} |T\Big((1-\beta)F_{X,Y} + \beta \delta_{X,Y}(x',y')\Big) - T(F_{X,Y})|,
+% % \end{equation}
+% %  where $\delta(\cdot,\cdot)$ be the dirac measure, i.e., $\delta_{X,Y}(x',y') = 1$ iff $(X,Y)=(x',y')$ and $0$ otherwise. and $F_{X,Y}$ is the joint distribution function of $(X, Y)$; that is the contamination is a point mass far away from zero with mass $\beta \in [0,1]$, which is also independent with $F_{X,Y}$.  
+
+% % Under this definition, authors of $\tau^{*}$ proved that, kendall's $\tau$ and $\tau^{*}$ are both robust measures in the sense that, for $\beta < \frac{1}{2}$, under pairwise independence, 
+% % \begin{equation}
+% %     b(\beta; \tau) = b(\beta; \tau^{*}) = 4\beta^2(1-\beta)^2 < \frac{1}{4}; 
+% % \end{equation}
+% % while (distance covariance) dCov is not robust measure, \begin{equation}
+% %       b(\beta; dCov) = \infty.
+% % \end{equation}
+
+% % From the definition of \text{aLDG} dependency measure,
+% % \begin{equation}
+% %     \text{\text{aLDG}}_t := \PP{f_{X,Y} - f_{X}f_{Y} > t}, 
+% % \end{equation}
+% % we modify the definition of maximum bias as the following, in order to avoid singularity of the density of point mass:
+% % \begin{equation}
+% %     b'(\beta; T) := \lim_{r \to 0} |T\Big((1-\beta)f_{X,Y} + \beta \Lambda_{X,Y; r}(x',y')\Big) - T(f_{X,Y})|, 
+% % \end{equation}
+% % where $\Lambda_{X,Y; r}(x',y') := \frac{1}{r^2}\ones\{|x-x'|<r; |x-y'|<r \}$ defines a small high density region instead of point mass.
+
+% % This definition conveniently coincide with our earlier spike-in-flat model. So recalling our previous results, we have that, under the contamination model, assuming $r\to 0$ and $\beta/r^2 \to 0$,
+% % \begin{align}
+% %     f_{X,Y}(x,y) - f_X(x) f_Y(y)  \begin{cases}
+% %     \stackrel{>}{\sim} \frac{\beta}{r^2} \quad & \text{ if } (x,y) \text{ satisfy } |x-x'|<r;\ |y-y'|<r;\\
+% %     \ll \frac{\beta}{r^2} \quad & \text{otherwise};
+% %      \end{cases}
+% % \end{align}
+% % while under the null model (i.e. independence) we have
+% % \begin{align}
+% %     f_{X,Y}(x,y) - f_X(x) f_Y(y) \equiv 0.
+% % \end{align}
+
+% % So as long as we set $t = O(\frac{1}{r^2}) >0 $, we have 
+% % \begin{equation}
+% %     \text{aLDG}_t | \mathcal{H}_1 = \beta; \quad  \text{aLDG}_t | \mathcal{H}_0 = 0,
+% % \end{equation}
+% % where $\mathcal{H}_1$ means the contaminated model, and $\mathcal{H}_0$ means the null model (i.e. independence), and hence
+% % \begin{equation}
+% %     b'(\beta; T) = \beta.
+% % \end{equation}
+
+
+% \begin{proof}
+% Denote the density estimator under the contaminated model as $\widehat{f}_{X}', \widehat{f}_{Y}', \widehat{f}_{XY}'$, we have 
+% \begin{align}\label{fhatcon}
+%     & \widehat{f}_{X}'(x_i) = \frac{n}{n+d}\widehat{f}_{X}(x_i) +  \frac{d}{n+d} K_h(x_i,x'),\quad \widehat{f}_{Y}'(y_i) = \frac{n}{n+d}\widehat{f}_{Y}(y_i)+  \frac{d}{n+d} K_h(y_i,y')\nonumber\\
+%     & \widehat{f}_{XY}'(x_i,y_i) = \frac{n}{n+d}\widehat{f}_{XY}(x_i,y_i) +  \frac{d}{n+d} K_h(x_i,x')K_h(y_i,y').
+% \end{align}
+% The expression can be further simplified to:
+% \begin{align}\label{fhatcon}
+%     & \widehat{f}_{X}'(x_i) = \frac{n}{n+d}\widehat{f}_{X}(x_i),\quad \widehat{f}_{Y}'(y_i) = \frac{n}{n+d}\widehat{f}_{Y}(y_i) \quad \widehat{f}_{XY}'(x_i,y_i) = \frac{n}{n+d}\widehat{f}_{XY}(x_i,y_i),
+% \end{align}
+% and hence
+% \begin{equation}
+%     \widehat{T}_i'=  \widehat{T}_i + \frac{d}{n+d} \sqrt{ \widehat{f}_{X}(x_{i})\widehat{f}_{Y}(y_{i})}.
+% \end{equation}
+% Recall that we assume that the true marginal density $f_x$ and $f_Y$ is bounded by some constant $c_{\max}$ and with high probability the corresponding density estimation error is uniformly bounded by some small constant $\eta_n>0$, consequently, with high probability
+% \begin{equation}
+%     \sqrt{ \widehat{f}_{X}(x_{i})\widehat{f}_{Y}(y_{i})} \leq c_{\max} + \eta_n < C_0,
+% \end{equation}
+% and
+% \begin{equation}
+%     0 < \widehat{T}_i' - \widehat{T}_i \leq C_0\frac{d}{n+d},
+% \end{equation}
+% with high probability.
+
+% Therefore, if $\widehat{T}_i \geq t $, or $\widehat{T}_i < t - C\frac{d}{n+d}$, the corresponding indicator cannot be flipped, which implies
+% \begin{align*}
+%     0\leq  \widehat{\text{aLDG}}'_t - \widehat{\text{aLDG}}_t\ & \leq
+%     \frac{1}{n}\sum_{i=1}^n \ones\{ t  - C_0\frac{d}{n+d} < \widehat{T}_i \leq  t \} = \widehat{P}(\widehat{S}_{t-C_0\frac{d}{d+n}}\setminus \widehat{S}_t)\\
+%     & \leq \widehat{P}(S_{t-C_0\frac{d}{d+n}-C\eta_n})  - \widehat{P}(S_{t + C\eta_n}) \\
+%     & \leq  P(S_{t-C_0\frac{d}{d+n}-C\eta_n} \setminus S_{t + C\eta_n}) +  |\widehat{P}(S_{t-C_0\frac{d}{d+n}-C\eta_n} \setminus S_{t + C\eta_n})-P(S_{t-C_0\frac{d}{d+n}-C\eta_n} \setminus S_{t + C\eta_n})|\\
+%     & := \mu_n + err
+% \end{align*} 
+% where $\widehat{S}_t:=\{(x,y): \widehat{T}> t\}$, $S_t:=\{(x,y): T> t\}$. 
+
+% Note that
+% \begin{align*}
+%     \mu_n =  \text{aLDG}_{t -C'\frac{d}{d+n}-C\eta_n} - \text{aLDG}_{t + C\eta_n} \leq L(2C\eta_n + C'\frac{d}{d+n})  \asymp O(\eta_n) \to 0
+% \end{align*}
+% since the minimax rate of the density estimation error $\eta_n \gg \frac{1}{n})$. 
+% Then using the Bernstein inequality for Bernoulli variable with mean $\mu_n \ll 1$, we have
+% \begin{equation}
+%     err \leq \sqrt{ \frac{\mu_n\log{n}}{n}},
+% \end{equation}
+% with high probability. Therefore, 
+% \begin{equation}
+%       0\leq \widehat{\text{aLDG}}'_t - \widehat{\text{aLDG}}_t \leq \mu_n + \sqrt{ \frac{\mu_n\log{n}}{n}} \asymp O(\eta_n + \sqrt{ \frac{\eta_n\log{n}}{n}}) \gg \frac{1}{n}
+% \end{equation}
+% with high probability. 
+
+% Finally, with high probability, we have
+% \begin{equation*}
+%     MIF((x',y'), \widehat{aLDG}, F_n) := \lim_{n\to\infty}\frac{1}{d/n}\Big|\widehat{\text{aLDG}}'_t - \widehat{\text{aLDG}}_t\Big| \to \infty, \quad \text{as}\  n \to \infty.
+% \end{equation*}
+% \end{proof}
+
+
+
+
+
+
+% \begin{align}
+%     R_{\text{aLDG}}(\Phi_{\rho}) & := \mathbb{P}_{(X,Y)\sim \Phi_\rho} \Big[  \phi_{\rho}(X,Y)-\phi(X) \phi(Y) >0 \Big]\nonumber\\
+%     & = \mathbb{P}_{(X,Y)\sim \Phi_\rho} \Big[ \rho^2 (X^2+Y^2)-2\rho X Y + (1-\rho^2)\log{(1-\rho^2)} < 0\Big]
+% \end{align}
+% therefore
+
+
+
+% \subsection{Based on Maximum bias}
+% In the paper of $\tau^{*}$, they investigate the robustness via a concept of maximum bias, which is based on a contamination neighborhood. The maximum bias they proposed of a dependency measure $T(\cdot)$ is defined as
+% \begin{equation}\label{maxbias}
+%     b(\beta; T) : = \lim_{x,y \to \infty} |T\Big((1-\beta)F_{X,Y} + \beta \delta_{X,Y}(x',y')\Big) - T(F_{X,Y})|,
+% \end{equation}
+%  where $\delta(\cdot,\cdot)$ be the dirac measure, i.e., $\delta_{X,Y}(x',y') = 1$ iff $(X,Y)=(x',y')$ and $0$ otherwise. and $F_{X,Y}$ is the joint distribution function of $(X, Y)$; that is the contamination is a point mass far away from zero with mass $\beta \in [0,1]$, which is also independent with $F_{X,Y}$.  
+
+% Under this definition, authors of $\tau^{*}$ proved that, kendall's $\tau$ and $\tau^{*}$ are both robust measures in the sense that, for $\beta < \frac{1}{2}$, under pairwise independence, 
+% \begin{equation}
+%     b(\beta; \tau) = b(\beta; \tau^{*}) = 4\beta^2(1-\beta)^2 < \frac{1}{4}; 
+% \end{equation}
+% while (distance covariance) dCov is not robust measure, \begin{equation}
+%       b(\beta; dCov) = \infty.
+% \end{equation}
+
+% From the definition of \text{aLDG} dependency measure,
+% \begin{equation}
+%     \text{\text{aLDG}}_t := \PP{f_{X,Y} - f_{X}f_{Y} > t}, 
+% \end{equation}
+% we modify the definition of maximum bias as the following, in order to avoid singularity of the density of point mass:
+% \begin{equation}
+%     b'(\beta; T) := \lim_{r \to 0} |T\Big((1-\beta)f_{X,Y} + \beta \Lambda_{X,Y; r}(x',y')\Big) - T(f_{X,Y})|, 
+% \end{equation}
+% where $\Lambda_{X,Y; r}(x',y') := \frac{1}{r^2}\ones\{|x-x'|<r; |x-y'|<r \}$ defines a small high density region instead of point mass.
+
+% This definition conveniently coincide with our earlier spike-in-flat model. So recalling our previous results, we have that, under the contamination model, assuming $r\to 0$ and $\beta/r^2 \to 0$,
+% \begin{align}
+%     f_{X,Y}(x,y) - f_X(x) f_Y(y)  \begin{cases}
+%     \stackrel{>}{\sim} \frac{\beta}{r^2} \quad & \text{ if } (x,y) \text{ satisfy } |x-x'|<r;\ |y-y'|<r;\\
+%     \ll \frac{\beta}{r^2} \quad & \text{otherwise};
+%      \end{cases}
+% \end{align}
+% while under the null model (i.e. independence) we have
+% \begin{align}
+%     f_{X,Y}(x,y) - f_X(x) f_Y(y) \equiv 0.
+% \end{align}
+
+% So as long as we set $t = O(\frac{1}{r^2}) >0 $, we have 
+% \begin{equation}
+%     \text{aLDG}_t | \mathcal{H}_1 = \beta; \quad  \text{aLDG}_t | \mathcal{H}_0 = 0,
+% \end{equation}
+% where $\mathcal{H}_1$ means the contaminated model, and $\mathcal{H}_0$ means the null model (i.e. independence), and hence
+% \begin{equation}
+%     b'(\beta; T) = \beta.
+% \end{equation}
+
+
+\subsection{Selection of hyper-parameter}\label{sec:chooset}
+In this section we discuss data dependent method of setting $t$. From the results in previous section, $\text{aLDG}_0$ is not robust at independence, in order to prevent $\widehat{\text{aLDG}}_t$ to not near $\text{aLDG}_0$ with high probability, it is sufficient to make sure that the high-probability error bound $\eta_n$ of $\widehat{T}$ is dominated by $t$.
+
+We consider using the Mean Integrated Square Error (MISE) to approximate the infinity error $L_\infty^{(X,Y)}$,$L_\infty^{(X)}$and $L_\infty^{(Y)}$ for the joint and marginal density estimation. Then by definition $\eta_n$ can be estimated as the maximum of those three infinity error terms. 
+
+Recall that, for a density function $f$ and a corresponding estimator $\widehat{f}$ generally, MISE is defined as
+\begin{equation}
+    \text{MISE} :=  \mathbb{E}\left[ \int (\widehat{f}(x)-f(x))^2 dx\right].
+\end{equation}
+As MISE depends on unknown population level density, we use a fully data dependent alternative
+\begin{equation}
+    \widetilde{\text{MISE}} := 2 \int \widehat{f}(x)^2dx - \frac{2}{n} \sum_{i=1}^n \widehat{f}_{-i}(X_i)
+\end{equation}
+to approximate it, where $\widehat{f}_{-i}$ is the density estimator obtained after removing the $i$th observation. We leave the derivation and a simplified form using some explicit density estimators to \appref{mise} for interested readers.
+
+\figref{mise} shows that $\widetilde{\text{MISE}}$ do approximate the infinity error well, under the setting of bivariate Gaussian of different correlation with limited sample size. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{plots/mise.pdf}
+    \caption{The true $l_2$, $L_\infty$ and  $\widetilde{\text{MISE}}$. (Here $l_2$ denotes the MSE, but not MISE.) The underlying distribution is bivariate Gaussian. We use 300 samples, and averaged over 20 trials.}
+    \label{fig:mise}
+\end{figure}
+
+When use $\textnormal{aLDG}_t$ in large-scale data analysis, choosing $t$ using the above data-dependent way may be unwanted as its requires ineligible time computation. In extensive simulations we observe a simple alternative $t =\frac{\Phi^{-1}(1-\frac{1}{n})}{n^{1/3}}$ performs very well in terms of maintaining consistency, power as well as robustness, which is motivated from the heuristic that $(\sqrt{n}ht)^2$ serves like the critical value a $2\times 2$ contingency table using a Pearson $\chi^2$ statistics. \figref{aLDGt} provides empirical evidence of the similarities between the data-dependent choice and the fast heuristic choice. We recommend practitioners with computation time concern to use this fast alternative. 
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{plots/thred.pdf}    \caption{The empirical $\textnormal{aLDG}_t$ value with $t$ set as 1,2,3,4 times square root of estimated $\widetilde{\text{MISE}}$, and also heuristic choices $\Phi^{-1}(1-\frac{1}{n})n^{-\frac13}$, $\Phi^{-1}(1-\frac{1}{n^2})n^{-\frac13}$, calculated for  sample size $n=300$, and averaged over 20 trials. We can see that, $\textnormal{aLDG}_t$ value with $t$ set as $2\sqrt{\widetilde{\text{MISE}}}$ has almost perfect match with $t$ set as $\Phi^{-1}(1-\frac{1}{n})n^{-\frac13}$; while $3\sqrt{\widetilde{\text{MISE}}}$ has almost perfect match with $t$ set as $\Phi^{-1}(1-\frac{1}{n^2})n^{-\frac13}$. }
+    \label{fig:aLDGt}
+\end{figure}
+
+
+
+\subsection{Relationships to HHG}\label{sec:relation}
+The method that is most similar to aLDG is HHG (\cite{heller2013consistent}).
+%: it is consistent by using the rank information and the Pearson’s chi-square test, but has better finite-sample testing powers over dCor in a collection of common non-linear dependencies. 
+Like aLDG, HHG \citep{heller2013consistent} is based on a contrast between the joint and marginal distributions:
+\begin{align*}
+    HHG & := \sum_{i\neq j} S(i,j)\\
+    & \text{where } S(i,j) := (n-2) \frac{\Big(p_{XY}(B_{XY}^{i,j})-p_{X}(B_{X}^{i,j})p_{Y}(B_Y^{ij})\Big)^2}{p_{X}(B_{X}^{i,j})\Big(1-p_{X}(B_{X}^{i,j})\Big)p_{Y}(B_Y^{ij})\Big(1-p_{Y}(B_Y^{ij})\Big)},
+\end{align*}
+with $B_{X}^{i,j} = \{x: |x-x_i|\leq |x_i - x_j|\}$, $B_{Y}^{i,j} = \{y: |y-y_i|\leq |y_i - y_j|\}$ and $B_{XY}^{i,j} = B_{X}^{i,j}  \otimes B_{Y}^{i,j} $, $p_{XY}, p_X, p_Y$ are joint probability function for $(X,Y)$ and marginal probability function for $X$ and $Y$ respectively. While the two measures appear quite similar, they differ in two critical aspects.
+
+\paragraph*{The efficiency of single scale bandwidth}  One notable difference between HHG and aLDG is that, the former relies on a data driven choice of bandwidth for each sample point.  Specifically it takes a multi-scale approach, utilizing multiple bandwidths for each data point. This results in a provably consistent permutation test; however, the cost of implementation is significantly longer computation time as compared to its competitors. aLDG takes a single-scale approach, which considerably improves the computation efficiency.  Moreover the aLDG formulation provides a direct analogy to a density functional, which allows us to exploit existing work in density estimation to determine an appropriate bandwidth. This single-scale approach, though not optimal, achieves comparable power to HHG, as shown in the upcoming simulation studies.
+
+\paragraph*{The merit of thresholding} Another difference is that empirically aLDG aggregates over thresholded summands, $S(i,j)$, see \eqref{eq:aLDGemp}. It turns out thresholding brings implicit robustness to noise. By contrast, consider the non-thresholded version of aLDG:
+\begin{equation}
+    \text{aLDG}_{non}:= \EE{ \frac{f_{XY}-f_{X}f_{Y}}{\sqrt{f_{X}f_{Y}}}}.
+\end{equation}
+Even with slight departures from independence, $\text{aLDG}_{non}$ goes to infinity.  For example, consider the following kernel product density mixture:
+\begin{equation}
+    f_{XY}(x,y) = \alpha k_{0,r}(x)k_{0,r}(y) + (1-\alpha)k_{0,1}k_{0,1},\quad f_{X} = f_{Y} = \alpha k_{0,r} + (1-\alpha)k_{0,1},
+\end{equation}
+where $\alpha \in (0,1)$, $0<r\ll1$ and  $k_{\mu,r}(\cdot):=\frac{1}{r}k(\frac{\cdot-\mu}{r})$, with $k$ as a 1-dim uniform distribution supported on $[-1,1]$. 
+
+Then with $\alpha/r \to \infty$, $\alpha \to 0$ and $r \to 0$, we can show that (see \appref{thred} for details)
+\begin{equation}
+   \EE{\frac{f_{XY}-f_{X}f_{Y}}{\sqrt{f_{X}f_{Y}}}} \approx \frac{\alpha}{r} \to \infty.
+\end{equation}
+
+Note that as $\alpha\to0$ and $r\to 0$, the model is essentially an independence case contaminated with a small point mass. The non-thresholded version of $\text{aLDG}$ is large in this case, which is problematic.  With thresholding, however, $\text{aLDG}$ is guaranteed to be approximately $\alpha$, which goes to zero for small perturbations, as one would desire.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Empirical evaluation}\label{sec:aLDGcompare}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Single-cell data application}\label{sec:real}
+In this section we evaluated the performance of aLDG among the other measures using scRNA-seq data from two studies. 
+
+
+\paragraph*{Chu dataset}  Chu et al. includes 1018 cells and seven cell-types. This dataset contained the cells
+of human embryonic stem cell-derived lineage-specific progenitors. The cell-types including H1 embryonic stem cells (H1), H9 embryonic stem cells (H9), human foreskin fibroblasts (HFF), neuronal progenitor cells (NPC), definitive endoderm cells (DEC), endothelial cells (EC) and trophoblast-like cells (TB) were identified by fluorescence-activated cell sorting (FACS) with their respective markers. 9600 genes are obtained per cell on
+average. In the following we show some special gene pairs that illustrate strong, weak or no relational pattern visually, and the corresponding dependence values produced by different measures. We find that, only aLDG gives a high value for strong relational pattern no matter how complex the pattern composition is; maintains near zero value for known independent cases; and avoid spurious relationship skewed by technical noise and sparsity.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1
+    \linewidth]{plots/realpair.pdf}
+    \caption{Example of gene pair scatter plot from the Chu  dataset, which has 1018 cells from 7 cell types. In each plot, we show the scatter plot of log2(CPM+1) transformed gene expression for a pair of genes, and provide the corresponding estimated dependence values using different methods to the right of the plots.  \textbf{(a)} aLDG gives much higher value than the others for the strong mixture dependence pattern, even when the signal is predominantly in one cell type. \textbf{(b)} aLDG produces a high value for the obvious three mixture relationship in the first subplot, while in the second subplot, the cell type labels are randomly shuffled for one of each gene pairs, resulting in a constructed independence case. Most measures, including aLDG give near zero values in this setting except MIC, which gives a misleadingly high value.  \textbf{(c)} MIC and the moment based methods like Pearson, dCor and HSIC can be ill-suited for gene expression data as the high level of sparsity greatly skews the estimation, while aLDG, TauStar and Hoeffding's D are not influenced by this phenomenon.   \textbf{(d)} This gene pair combines the challenge of sparsity with considerable noise, but aLDG is still able to capture the less noisy and local cluster pattern in the upper right corner. }
+    \label{fig:realbi}
+\end{figure}
+
+
+
+\paragraph*{Autism Spectrum Disorder (ASD) Brain dataset}
+Velmeshev et al. (37) includes scRNA-seq data
+from an ASD study that collected 105 thousand nuclei from cortical samples taken from 22 ASD and 19 control samples from subjects. Samples were matched for age, sex, RNA integrity number, and postmortem interval. In the following we compare the differences in gene networks between control and ASD groups by testing for differences in their co-expression using the sparse-Leading-Eigenvalue-Driven (sLED) test \citep{zhu2017testing}, which is designed to detect signal attributable to a small fractions of the genes.   To emphasize the contrast with differentially expressed genes, \cite{wang2021constructing} call these differential network genes. sLED takes an input a gene-gene relationship matrix for each sample.  Here we compare the power of the test for various co-expression measures. We omit HHG for this task as it requires too much computation time. Among the remaining measures, we find that HSIC, $\tau^\star$, Hoeffding's D, MIC and aLDG perform well compared to Pearson, Spearman, Kendall and dCor. A visualization of the corresponding control versus ASD co-expression differences is displayed in \figref{vel23}, showing that the winners produce difference matrices with a few dominating entries, which is  favored by the sLED test, while the others produce a relatively flat and noisy patterns. 
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{plots/matpower.pdf}
+    \caption{The estimated $p$-values obtained using sLED permutation tests for different dependency measures. We manually add noise by randomly swapping 10\% of the control and ASD labels in the original data to see which measures detect the signal in the presence of greater noise. Boxplots show the results from 10 independent iterations.}\\
+    \textcolor{red}{If you swap TauStar with dCor then all of the good ones are in order for Fig 7 and all are in the 2nd line of the diplay in Fig 8.}
+    \label{fig:vel23power}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{plots/realcormat.pdf}
+    \caption{Estimated co-expression differences matrices (i.e. the absolute differences of the dependency matrices for control samples and ASD samples) obtained for different dependency measures. Results are shown for cells classified as L2/3 excitatory neurons and a set of 50 genes chosen randomly among the top 500 genes deferentially expressed between ASD and control samples. }
+    \label{fig:vel23}
+\end{figure}
+
+
+\subsection{Simulation results}\label{sec:simu}
+To gain insights into the performance of aLDG relative to the other methods on the real data
+we utilize simulations that highlight scenarios relevant to single-cell analysis. Specifically, we investigate scenarios where the bivariate relationship are (1) finite mixture; (2) linear or nonlinear; (3) monotone or non-monotone. And we evaluate each dependence measure from the following perspective: (1) ability to capture  complex relationship; (2) ability to accumulate subtle local dependence; (3) interpretation of degree of dependence in common sense; (4) power as an independence test; and (5) computation time. In the following sections, we focus on one perspective in each section, showing selective examples that inform our conclusions, relegating other examples to supplementary materials.
+
+% {\color{blue} Summarize the data simulation process and show corresponding scatter plot? Motivate those choices? (Maybe put in appendix though)\\ KR:I think these details go to appendix.
+% \begin{itemize}
+%     \item Mixture relationship
+%     \item Independent relationship
+%     \item Linear relationship
+%     \item non-linear relationship
+%     \item non-monotone relationship
+% \end{itemize}
+% } 
+
+\paragraph*%{aLDG detects non-linear, non-monotone relationships}
+{Detecting non-linear, non-monotone relationships} By definition, aLDG is expected to detect any non-negligible deviation from independence. Though many existing measures, such as HSIC, Hoeffding's D, dCor, taustar, claim to be sensitive to non-linear, non-monotone relationships, some approaches are known to perform poorly in practice.  By contrast, aLDG outperforms most of its competitors in the following standard evaluation experiment.  \figref{non-linear} illustrates three points: (1) at independence, except for dCor, HHG and MIC, most measures produce negligible values, as desired; (2) for linear and monotone relationship, all measures produce high values as expected; and (3) for non-linear non-monotone relationship only aLDG, dCor, HHG and MIC produce high values consistently. In conclusion, only aLDG can effectively detect various types of dependency relationship, while maintaining near-zero value at independence. dCor, HHG and MIC are also sensitive to deviations from independence, but these simulations reveal that they are indeed too sensitive as they often produce high values at independence.  A big portion of scRNA-seq data are collected over time, therefore non-linear, non-monotone and specifically oscillatory relationship are expected to happen. Therefore it is desirable to have a measure that is sensitive to dependence while remain near zero of true independence is crucial.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\linewidth]{plots/value.pdf}
+    \caption{Empirical dependency estimates obtained for different data distributions for a variety of relationships between a pair of variables.  The upper two rows show the scatter plot for 200 samples, while the lower two rows show the corresponding dependence level given by different measures (averaged over 10 trials).}
+    \label{fig:non-linear}
+\end{figure}
+
+
+\paragraph*%{aLDG accumulates subtle local dependencies} 
+{Accumulating subtle local dependencies} aLDG detects the subspace of the measure space that shows a pattern of dependence. In \figref{mix}, we simulated data as a bivariate Gaussian mixture consisting of three components with a varying proportion of highly dependent components, and estimated the corresponding dependence level.  We find that aLDG, together with other dependence measure designed to capture local dependence (HHG and MIC)  increase with the proportion of highly correlated components, indicates that these global dependence measures, they can also detect subtle local dependence structure. Similar results are obtained for Negative Binomial mixtures \supfigref{nbmix}. As the finite mixture relationship is a common choice of model for scRNA-seq data, this suggests that measures able to accumulate dependencies across individual components could considerably benefit scRNA-seq data analysis, which will be shown later in \secref{real}. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{plots/gaussmixvalue.pdf}
+    \caption{Empirical aLDG value for Gaussian mixture. The upper row show the scatter plot for 500 samples, while the lower row show the corresponding dependence level given by different measures (averaged over 10 trials). The data are generated as three component Gaussian mixture. From left to right there are 0,1,2,3 out of 3 components has correlation 0.8, while the rest has correlation 0, i.e. the dependence level increases from left to right.
+    % {\color{red} I think the independence panel you show in Fig 8 is needed to understand Fig 6.  The issue is that dCor, HHG and MIC give pretty big measures, even under independence. When you compare them without any scaling, it is confusing that dCor looks so strong.  Alternatively, I suggest that you move the section going with Fig 8 to the first display of simulations.  The appeal is that those experiments are familiar and shows dLDG works well in the expected setting.  Then you can refer back to the independence panel in the upcoming sections.  }
+    }
+    \label{fig:mix}
+\end{figure}
+
+
+\paragraph*%{aLDG interprets degree of dependencies} 
+{Degree of dependencies} While it is hard to assess the relative dependence level in general, we argue that, when one random variable is a function of the other,  $Y=h(X)$, then the pair should be regarded as having the perfect dependence (and be assigned of dependence level $1$). Moreover, the dependence level should decrease as independent noise is added. That is, for $Y_\epsilon = h(X) + \epsilon$, where $\epsilon \perp X$, one should expect the dependence measure $\delta$ to satisfy  $\delta(Y_{\epsilon},X) < \delta(Y,X)$.  We checked this monotonicity property by simulating data with several bivariate relationships and varying levels of noise (\figref{mono}).   Specifically, we simulate the noise $\epsilon$ to be standard normal, and $Y = h(X) + c\epsilon$ where $c\in[0,1]$ indicates the noise level. We find that aLDG, HSIC, MIC, dCor, and HHG all show a clear decreasing pattern as the noise level increased; however, aLDG shows the most consistent monotonic drop from perfect dependence as the noise level increased. 
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{plots/mono.pdf}
+    \caption{Empirical dependence measure of different bivariate relationships under different noise level. The upper row show the dependence level versus noise level given by different measures (averaged over 10 trials), while the lower panel show the corresponding bivariate scatter plot under different noise level. We arguably claim that the higher the noise level is, the lower the degree of  dependence is. Compare with other measures, aLDG decreases most significantly as the noise level increases, i.e. correctly infer the relative degree of dependence.}
+    \label{fig:mono}
+\end{figure}
+
+
+\paragraph*%{aLDG is powerful as an independence test} 
+{Power as an independence test} Dependence measures are natural candidates for tests of independence. In this context, most existing dependence measures rely on bootstrapping to determine significance, hence we adopt this practice for all the dependence measure under comparison. \figref{non-linearpower} shows the empirical power under test level 0.05 for various type of data distribution and sample size, where we do 200 repetitions of permutations to estimate the null distribution. We observe the following outcomes: (1) almost all tests have controlled type-I error at independence; (2) Pearson, Spearman and Kendall are powerless for testing non-linear and non-monotone relationship; (3) aLDG, HHG and HSIC are consistently among the top three most powerful approaches for testing both linear and non-linear, monotone and non-monotone relationships. Similar observations can be made for tests based on Gaussian mixtures \supfigref{gaussmixpower} and Negative Binomial mixtures \supfigref{nbmixpower}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\linewidth]{plots/power.pdf}
+    \caption{The empirical power of permutation test at level 0.05, based on different dependency measures under different data distributions and sample sizes. The power is estimated using 20 independent trials.}
+    \label{fig:non-linearpower}
+\end{figure}
+
+
+
+
+\paragraph*%{aLDG computes fast} 
+{Computational comparisons}
+%We also compare the computation time of aLDG with all its competitors. 
+Theoretically speaking, aLDG requires $O(n^2)$ in time of computation (where $n$ is the number of samples), which is comparable to reported  requirements for most dependence measures that can detect complex relationships. In a comparison of the computation time of aLDG with all its competitors we find this holds empirically: in \figref{time} we plot the time of computation versus sample size $n$ for different dependence measures\footnote{The time include some constant wrapper function loading time therefore might be longer than direct function call, however the relative scale is still correct.}. In previous evaluations, we saw that HHG as a method motivated from capturing local dependence structure, was indeed a strong competitor to aLDG: it has high power as an independence test across almost all the data distribution we considered; however, it requires $O(n^3)$ time of computation, and \figref{time} shows this large discrepancy with all the other methods, which normally takes $O(n^2)$ time. 
+% {\color{blue}Would table be better?\\ NO, the figure is great!}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{plots/time.pdf}
+    \caption{Computation time ($\log_{10}$ scaled) versus sample size for different methods. We can see that HHG is much slower than the others as sample size grows, while aLDG is roughly as fast as dCor, HSIC, MIC etc.}
+    \label{fig:time}
+\end{figure}
+
+
+\section{Discussion}
+
+
+In this paper,  we introduce the new idea of 
+averaging the \emph{cell-specific gene association} \citep{dai2019cell,wang2021constructing} into a general statistical framework. We show that this approach produces a novel univariate dependence measure, called aLDG, that can detect non-linear, non-monotone relationships between a pair of variables. We then develop the corresponding theoretical properties of this estimator, including robustness and consistent properties.  We also, justify some  hyper-parameter choices. Extensive simulations, motivated by expected scRNA-seq gene co-expression relationships and real data applications, show that this measure outperforms existing independence measures in various aspects: (1) it accumulates subtle local dependence over finite mixtures; (2) it successfully interprets the relative strength of a monotonic function of dependence in the presence of noise better than many other measures that arose from independence test; (3) it is sensitive to complex relationships while maintaining near-zero value at true independence, while several other measures are often overly sensitive to slight perturbations from independence and noise; (4) it computes comparatively rapidly compared to other dependence measures  designed to capture complex relationships.  Other measures perform well in some setting, but fail in others that are highly relevant to single cell setting. For instance, MIC performed well as part of the SLED test for differences in co-expression matrices, but this measure tends to produce a high estimate of dependence even when the variables are independent, or nearly so (Figure \ref{fig:non-linear} and Figure \ref{fig:mono}). The moment based methods like Pearson, dCor and HSIC perform poorly when the expression values are sparse, producing false indications of correlation (Figure \ref{fig:realbi}), and yet sparsity is the norm in most single cell data.  
+
+
+
+The aLDG method does have some practical challenges: as a measure based on density estimation, the hyperparameter choices such as bandwidth can affect the performance of the measure. Though we provide some asymptotically optimal choices of those hyperparameters, in practice they can fail due to small sample size. Similarly, due to the reliance on density estimation, it is hard to extend this measure to a multivariate setting. The sample size required for accurate estimation grows exponentially with the dimension. In practice, this limitation has little practical importance because gene co-expression studies focus on bivariate relationships. For any given setting, the hyperparameters can be adjusted based on realistic simulations based on the actual data and a solid understanding of the scRNA-seq data distribution.  
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Support information, if any,             %%
+%% should be provided in the                %%
+%% Acknowledgements section.                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{acks}[Acknowledgments]
+The authors would like to thank Xuran Wang and XXXX for helpful comments. 
+\end{acks}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Funding information, if any,             %%
+%% should be provided in the                %%
+%% funding section.                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{funding}
+This project is founded by National Institute of Mental Health (NIMH) grant R01MH123184 and XXXXX JING's NSF XXXXXXXXX.
+\end{funding}
+
+\begin{supplement}
+Supplement to “.” (DOI: 10.1214/17-AOAS1110SUPP; .pdf). This supplement provides additional empirical results and proofs.
+\end{supplement}
+
+\bibliographystyle{imsart-nameyear} % Style BST file
+\bibliography{ref}       % Bibliography file (usually '*.bib')
+
+
+
+\begin{appendix}
+\section{From avgCSN to aLDG}\label{app:derive}
+Recall that we consider only a pair of random variables $X,Y$ whose joint and marginal densities exist and have the same support, and denote $f_{XY}, f_{X}, f_{Y}$ as their joint and marginal densities. Also, let $\widehat{f}_{XY}, \widehat{f}_{X}, \widehat{f}_{Y}$ be the estimated densities given observations of $(X,Y)$, and $\widehat{p}_{X,Y}(x,y)$ be the proportion of samples points in a square of side length $h$ centering at $(x, y)$, and $\widehat{p}_{X}$ and $\widehat{p}_{Y}$ be defined similarly for the marginal distribution.
+
+First we point out that a reformulation of avgCSN statistics reveals its link to the population dependence measure we are going to introduce. Under our notation, the original avgCSN \citet{wang2021constructing} can be written as
+\begin{align}
+    \text{avgCSN} & := \frac{1}{n} \sum_{i=1}^n \ones\left\{ \frac{\widehat{p}_{X,Y}(x_{i}, y_{i})  - \widehat{p}_{X}(x_{i}) \widehat{p}_{Y}(y_{i}) }{\sqrt{ \widehat{p}_{X}(x_{i})(1-\widehat{p}_{X}(x_{i}))\widehat{p}_{Y}(y_{i})(1-\widehat{p}_{Y}(y_{i}))}} \geq \frac{\Phi^{-1}(\alpha)}{\sqrt{n}}\right\},
+\end{align}
+where $\Phi^{-1}$ is the quantile function of standard normal. When using a particular choice $\widehat{f}_{XY} = \widehat{p}_{X,Y}/h^2, \widehat{f}_{X} = \widehat{p}_{X}/h, \widehat{f}_{Y} = \widehat{p}_{Y}/h$, we have
+\begin{align*}
+    \text{avgCSN} = \frac{1}{n} \sum_{i=1}^n \ones\left\{ \frac{\widehat{f}_{X,Y}(x_{i}, y_{i}) h^2 - \widehat{f}_{X}(x_{i})h \widehat{f}_{Y}(y_{i})h }{\sqrt{ \widehat{f}_{X}(x_{i})h(1-\widehat{f}_{X}(x_{i})h)\widehat{f}_{Y}(y_{i})h(1-\widehat{f}_{Y}(y_{i})h)}} \geq \frac{\Phi^{-1}(\alpha)}{\sqrt{n}}\right\}. 
+\end{align*}
+Assuming the bandwidth $h\to 0$ and $ h\sqrt{n}\to\infty$, the expression can be approximated by the following
+\begin{align}
+    \text{avgCSN} &\approx \frac{1}{n} \sum_{i=1}^n \ones\left\{ \frac{\widehat{f}_{X,Y}(x_{i}, y_{i}) - \widehat{f}_{X}(x_{i}) \widehat{f}_{Y}(y_{i}) }{\sqrt{ \widehat{f}_{X}(x_{i})\widehat{f}_{Y}(y_{i})}} \geq t_n \right\},\quad \text{where } t_n = \frac{\Phi^{-1}(\alpha)}{h\sqrt{n}}.
+\end{align}
+
+
+
+
+\section{Proof for \thmref{aLDGrobpop}}
+ \begin{proof}
+ Denote the joint and marginal density of $F$ as $f_{X,Y}, f_{X}, f_{Y}$. Consider a fixed contamination position $(x',y')$, then we have the corresponding contaminated joint and marginal density as
+ \begin{align}
+     & f^{(x')}_{X}(x):= 
+     \begin{cases}
+     (1-\epsilon)f_{X} (x), & if \ x \neq x',
+     \\
+     \infty , & if\ x = x';
+     \end{cases},
+     \quad 
+      f^{(y')}_{Y}(y):= 
+     \begin{cases}
+     (1-\epsilon)f_{Y} (y), & if \ y \neq y',
+     \\
+     \infty , & if\ y = y';
+     \end{cases}\\
+      & \quad 
+      f^{(x',y')}_{X,Y}(x,y):= 
+     \begin{cases}
+     (1-\epsilon)f_{X,Y} (x,y), & if \ (x,y) \neq (x',y'),
+     \\
+     \infty, & if\ (x,y) = (x',y').
+     \end{cases}.
+ \end{align}
+ 
+% Denote the set 
+% $A'(t):=\{(x,y): f_{12}' - f_1' f_2' > t\}$, and $A(t):=\{(x,y): f_{12} - f_1 f_2 > t\}$, then we have 
+% \begin{equation}
+%     A(\frac{t}{1-\epsilon}) \subseteq A'(t) \subseteq  A(t-\epsilon f_{\text{max}}),
+% \end{equation}
+%  where $f_{\text{max}}:= ||f_1||_{\infty}\vee ||f_2||_{\infty}$. 
+ 
+%  Then we have
+%  \begin{align}
+%      aLDG_{t}' & = \mathbb{P}_{f_{12}'}(A'(t)) = (1-\epsilon) \mathbb{P}_{f_{12}}(A'(t)) \\
+%      & \in [(1-\epsilon)\mathbb{P}_{f_{12}}(A(\frac{t}{1-\epsilon})),\  (1-\epsilon)\mathbb{P}_{f_{12}}(A(t - \epsilon f_{\text{max}}))]\\
+%      & \subseteq [(1-\epsilon)\text{aLDG}_{t}(\frac{t}{1-\epsilon}),\  (1-\epsilon)\text{aLDG}_{t}(t - \epsilon f_{\text{max}})]
+%  \end{align}
+ 
+Denote the density gap under original distribution $F$ as $\gap:= f_{X,Y} - f_{X} f_{Y}$, and the corresponding density gap under contaminated distribution as $\Delta_{\text{gap}}^{(x',y')}:= f_{X,Y}^{(x',y')} - f_{X}^{(x')} f_{Y}^{(y')}$, then
+ \begin{align}
+     \Delta_{\text{gap}}^{(x',y')}(x,y)=
+     (1-\epsilon)\Big(\Delta_{\text{gap}}(x,y) + \epsilon f_{X}(x)f_{Y}(y)\Big)  \quad \text{if}\ x \neq x'\ \text{and}\ y \neq y',  
+ \end{align}
+ and the contaminated $\text{aLDG}_t$ statistics
+ 
+ \begin{align*}\label{aLDG1}
+     & \text{aLDG}_t^{(x',y')}  = \text{Pr}_{F'}\left\{\Delta_{\text{gap}}^{(x',y')} > t \sqrt{f^{(x')}_{X}(x) f^{(y')}_{Y}(y)}\right\} \nonumber\\
+     \leq &  \ \text{Pr}_{F'}\left\{(1-\epsilon)\Big(\Delta_{\text{gap}}(x,y) + \epsilon f_{X}(x)f_{Y}(y)\Big) > t(1-\epsilon)\sqrt{f_{X}(x) f_{Y}(y)},\ (x,y)\neq (x',y')\right\} \\ 
+     &+  \text{Pr}_{F'}\left\{(x,y)\neq (x',y')\right\} \nonumber\\
+    = &\ (1-\epsilon) \text{Pr}_{F}\{\frac{\Delta_{\text{gap}}(x,y)}{\sqrt{f_{X}(x) f_{Y}(y)}}  + \epsilon \sqrt{f_{X}(x) f_{Y}(y)} > t\} +  \epsilon \nonumber\\
+    \stackrel{(a)}{\leq}  & (1-\epsilon) \text{Pr}_{F}\{\frac{\Delta_{\text{gap}}(x,y)}{\sqrt{f_{X}(x) f_{Y}(y)}} + \epsilon f_{\text{max}} > t\} +  \epsilon
+    =  (1-\epsilon) \text{aLDG}_{t-\epsilon f_{\text{max}}} + \epsilon
+    \nonumber\\ \leq & (1-\epsilon)\big(\text{aLDG}_t + |\text{aLDG}_{t-\epsilon f_{\text{max}}} - \text{aLDG}_t|\big) + \epsilon  \nonumber\\  \stackrel{(b)}{\leq} & (1-\epsilon)\big(\text{aLDG}_t + L f_{\text{max}} \epsilon\big) + \epsilon,
+\end{align*}
+where (a) comes from the assumption that $f_{\max}:=||\sqrt{f_{X}f_{Y}}||_\infty < \infty$, and (b) comes from the assumption that $|\text{aLDG}_{t-\epsilon} - \text{aLDG}_{t}| \leq L \epsilon$ for all $\epsilon >0$. 
+ Therefore,
+ \begin{align*}
+     \text{IF}\left((x',y'), R_{\text{aLDG}_t}, F\right)&:=\lim_{\epsilon\to 0}\frac{|\text{aLDG}_t^{(x',y')}-\text{aLDG}_t|}{\epsilon} \\&
+     \leq \lim_{\epsilon \to 0} \Big|-\text{aLDG}_t + L f_{\text{max}} (1-\epsilon) + 1\Big| \leq  L f_{\text{max}} +1
+ \end{align*}
+ Since the upper bound of IF does not depend on location of $(x',y')$, therefore,
+ \begin{align*}
+    \text{GES}(R_{\text{aLDG}_t}, F) \leq L f_{\text{max}} +1 < \infty.
+\end{align*}
+ \end{proof}
+
+\section{Proof for \propref{indeprob}}
+ \begin{proof}
+ Denote the joint and marginal density of $F$ as $f_{X,Y}, f_{X}, f_{Y}$. Consider a fixed contamination point $(x',y')$ with mass $\epsilon$, then we have the corresponding contaminated joint and marginal density as
+ \begin{align}
+     & f^{(x')}_{X}(x):= 
+     \begin{cases}
+     (1-\epsilon)f_{X} (x), & if \ x \neq x',
+     \\
+     \infty , & if\ x = x';
+     \end{cases},
+     \quad 
+      f^{(y')}_{Y}(y):= 
+     \begin{cases}
+     (1-\epsilon)f_{Y} (y), & if \ y \neq y',
+     \\
+     \infty , & if\ y = y';
+     \end{cases}\\
+      & \quad 
+      f^{(x',y')}_{X,Y}(x,y):= 
+     \begin{cases}
+     (1-\epsilon)f_{X,Y} (x,y), & if \ (x,y) \neq (x',y'),
+     \\
+     \infty, & if\ (x,y) = (x',y').
+     \end{cases}.
+ \end{align}
+Recall that the density gap $\gap:= f_{X,Y} - f_{X} f_{Y}$, and hence the  contaminated gap,
+ \begin{align}
+     \Delta_{\text{gap}}^{(x',y')}(x,y) =
+     (1-\epsilon)\Big(\Delta_{\text{gap}}(x,y) + \epsilon f_{X}(x)f_{Y}(y)\Big), & \quad \text{if}\ (x,y)\neq (x',y')
+ \end{align}
+ and the contaminated aLDG statistics
+ \begin{align}\label{aLDG1}
+     & \text{aLDG}_0^{(x',y')}  = \text{Pr}_{F'}\{\Delta_{\text{gap}}^{(x',y')} > 0\} \nonumber\\
+     \leq &  \ \text{Pr}_{F'}\left\{(1-\epsilon)\Big(\Delta_{\text{gap}}(x,y) + \epsilon f_{X}(x)f_{Y}(y)\Big) > 0, (x,y)\neq (x',y')\right\} +  \text{Pr}_{F'}\left\{(x,y)\neq (x',y')\right\} \nonumber\\
+    = &\ (1-\epsilon) \text{Pr}_{F}\left\{\Delta_{\text{gap}}(x,y) + \epsilon f_{X}(x)f_{Y}(y) > 0\right\} +  \epsilon. \nonumber
+    \end{align}
+Note that
+    \begin{align}\label{aLDG2}
+   & \text{Pr}_{F}\left\{\Delta_{\text{gap}}(x,y) + \epsilon f_{X}(x)f_{Y}(y) > 0\right\}\nonumber\\
+   = & \text{Pr}_{F}\left\{\Delta_{\text{gap}}(x,y)  > 0 \right\} + \text{Pr}\left\{- \epsilon f_{X}(x)f_{Y}(y) < \gap(x,y) \leq 0\right\} \nonumber\\
+   = &  \text{aLDG}_0 + \text{Pr}_{F}\left\{ 1- \epsilon  < \frac{f_{X,Y}(x,y)}{f_{X}(x)f_{Y}(y)} \leq 1\right\} \nonumber\\
+   = &\text{aLDG}_0 + \text{Pr}_{F}\{ 1- \epsilon  < c_F(u,v) \leq 1\},
+ \end{align}
+ where $c_F(u,v)$ is the joint density of $u := F_{X}^{-1}(x), v:= F_{Y}^{-1}(x)$, i.e. the corresponding copula representation of distribution $F$. Then, denoting the volume of set $\Gamma_t: \{(u,v,t): c_F(u,v) \leq t\}$ as $\text{Vol}(t)$, and the area of sublevel set $\gamma_t: \{(u,v): c_F(u,v) \leq t\}$ as $\text{A}(t)$, and the contour line $\mathcal{C}(t) : = \{(u,v): c_F(u,v) = t\}$, we have
+ \begin{align}\label{IF1}
+     & \lim_{\epsilon \to 0} \frac{1}{\epsilon}\PP{ 1- \epsilon  < c_F(u,v) \leq 1} = \lim_{\epsilon \to 0} \frac{1}{\epsilon}\int_{1-\epsilon < c_F(u,v) \leq 1} c_F(u,v) du dv \nonumber\\
+     = & \lim_{\epsilon \to 0} \frac{\textnormal{Vol}(1) -\textnormal{Vol}(1-\epsilon)}{\epsilon} =\frac{d\textnormal{Vol}}{d t}\mid_{t=1} \nonumber\\ & \stackrel{(a)}{=} \frac{A(1)}{||\nabla c_F(u_0,v_0)||} \stackrel{(b)}{\leq} \frac{1}{||\nabla c_F(u_0,v_0)||}
+\end{align}
+where $(u_0,v_0)$ is some point on $\mathcal{C}_t$ and $\nabla c_F(u_0,v_0)$ is the gradient of $c_F$ at $(u_0,v_0)$, and (a) comes from Theorem 1 in \cite{trinh2019volume}, (b) uses the trivial bound $A(1) \leq 1$ since we are working on $[0,1]^2$ space.
+
+Plug the above calculation back to IF function, we get
+\begin{align*}
+    IF\Big((x',y'), R_{\text{aLDG}_0}, F\Big) & = \frac{(1-\epsilon) \Big(\text{aLDG}_0 + Vol(1)-Vol(1-\epsilon)\Big) + \epsilon}{\epsilon} \\
+    &= 1- \text{aLDG}_0 - Vol(1) + \lim_{\epsilon \to 0} Vol(1-\epsilon) + \lim_{\epsilon \to 0} \frac{1}{\epsilon} (Vol(1)-Vol(1-\epsilon)) \\
+    & \leq 1- \text{aLDG}_0 + \frac{1}{\nabla c_F(u_0,v_0)},
+\end{align*}
+where $(u_0,v_0)$ is some point on the contour line $\mathcal{C}_t:=\{(u,v): c_F(u,v) = t\}$, and $\nabla c_F(u_0,v_0)$ is the gradient of $c_F$ at $(u_0,v_0)$.
+
+Note that this upper bound is irrelevant with $(x',y')$, therefore we have
+\begin{equation}
+    \text{GES}(R_{\text{aLDG}}, F) \leq 1- \text{aLDG}_0(F) + \frac{1}{\nabla c_F(u_0,v_0)} < \infty,
+\end{equation}
+as long as $X,Y$ is not independent.
+\\
+\\
+However, when $X,Y$ are indeed independent, we have $c_F(u,v)\equiv1$ for all $(u,v)\in[0,1]^2$, and $\text{aLDG}_0=0$, then we have 
+\begin{align}
+    \text{aLDG}_0^{(x',y')} &\geq \text{Pr}_{F'}\{\Delta_{\text{gap}}(x,y) + \epsilon f_{X}(x)f_{Y}(y) > 0, (x,y)\neq (x',y')\} \nonumber\\
+    &= (1-\epsilon)\Big(\text{aLDG}_0 + \PP{1-\epsilon < c_F(u,v)\leq 1}\Big) \nonumber\\
+    & =  (1-\epsilon)( 0 + 1) = 1-\epsilon,
+\end{align}
+and hence
+\begin{equation}
+    IF\Big((x',y'), R_{\text{aLDG}_0}, F\Big) \geq \lim_{\epsilon\to 0} \frac{1-\epsilon}{\epsilon} = \infty.
+\end{equation}
+Again this lower bound is irrelevant with $(x',y')$, therefore we have $\text{GES}(R_{\text{aLDG}_0}, F)=\infty$.
+\end{proof}
+
+
+\section{Proof for \thmref{aLDGconsist}}\label{app:pfconsist}
+\begin{proof}
+Denote the set
+\begin{equation}
+    S_t :=\left \{(x,y): \frac{f_{XY}(x,y)-f_X(x) f_Y(y)}{\sqrt{f_{X}(x)f_{Y}(y)}} > t\right\}, \quad \widehat{S}_t := \left\{(x,y): \frac{\widehat{f}_{XY}(x,y) -\widehat{f}_{X}(x)\widehat{f}_{Y}(y) }{\sqrt{\widehat{f}_{X}(x)\widehat{f}_{Y}(y)}} > t\right\}.
+\end{equation}
+From the assumption that $||\widehat{f}_{XY}-f_{XY}||_{\infty}, ||\widehat{f}_{X}-f_{X}||_{\infty}, ||\widehat{f}_{Y}-f_{Y}||_{\infty} \leq \eta_n$, we have the following holds for some constant $c > 0$ with high probability:
+\begin{equation}
+    \sup_{x,y} \left| \frac{f_{XY}-f_X f_Y}{\sqrt{f_{X}f_{Y}}} - \frac{\widehat{f}_{XY} -\widehat{f}_{X}\widehat{f}_{Y} }{\sqrt{\widehat{f}_{X}\widehat{f}_{Y}}}\right| \leq  \frac{  (3c_{\max}+1)\eta_n}{c_{\min}^{\frac12}} + \frac{(3c_{\max}+1)\eta_n^2 + 2c_{\max}\eta_n}{c_{\min}^{\frac32}}< C \eta_n,
+\end{equation}
+where $C := \frac{  (3c_{\max}+1)}{c_{\min}^{\frac12}} + \frac{(3c_{\max}+1) + 2c_{\max}}{c_{\min}^{\frac32}}$
+and correspondingly
+\begin{equation}
+    S_{t + c\eta_n} \subseteq \widehat{S}_{t} \subseteq S_{t - c\eta_n}.
+\end{equation}
+As a result, applying the empirical measure $\widehat{P}$ on these three sets, we get 
+\begin{equation}
+    \widehat{P}(S_{t + c\eta_n}) \leq \widehat{P}(\widehat{S}_{t}) = \widehat{\text{aLDG}}(t) \leq  \widehat{P}(S_{t - c\eta_n}).
+\end{equation}
+Using the concentration inequality on binomials, we get 
+\begin{equation}
+  |\widehat{P}(S) -  P(S)| < 2\sqrt{\frac{\log{n}}{n}}
+\end{equation}
+with high probability for any deterministic set $S$. Hence, we get
+\begin{equation}
+    P(S_{t + C\eta_n}) - 2\sqrt{\frac{\log{n}}{n}}\leq \widehat{P}(\widehat{S}_{t}) \leq  P(S_{t - C\eta_n}) + 2\sqrt{\frac{\log{n}}{n}}
+\end{equation}
+with high probability, which further implies that
+\begin{equation}
+    \text{aLDG}_{t + C\eta_n} - 2\sqrt{\frac{\log{n}}{n}} \leq \widehat{\text{aLDG}}(t) \leq \text{aLDG}_{t - C \eta_n} + 2\sqrt{\frac{\log{n}}{n}}.
+\end{equation}
+With the condition that $|\text{aLDG}_{t-\epsilon}-\text{aLDG}_t| \leq L\epsilon\quad  \text{for all} \ \epsilon>0$, we have 
+\begin{equation}
+    \text{aLDG}_t -  LC\eta_n - 2\sqrt{\frac{\log{n}}{n}} \leq \widehat{\text{aLDG}}_t \leq \text{aLDG}_t +  LC\eta_n + 2\sqrt{\frac{\log{n}}{n}},
+\end{equation}
+that is 
+\begin{equation}
+    \left| \widehat{\text{aLDG}}_t -  \text{aLDG}_t \right| \leq LC\eta_n + 2\sqrt{\frac{\log{n}}{n}}.
+\end{equation}
+
+\end{proof}
+
+
+
+
+\section{Uniform estimation error of product kernel density estimator }\label{app:densest}
+\begin{definition}
+$G(\beta)$ is the class of one-dimensional kernel smoothing function $K$, in which $K$ has support on $[-1,1]$, and $\int K = 1$, $\int |K|^p < \infty$ for any $p\geq 1$, $\int |t|^\beta K(t) d  t < \infty$ and $\int t^s K(t) d t = 0$ for $s \leq \beta$. 
+\end{definition}
+
+\begin{proposition}\label{prop:densest}
+Consider 1-dimensional kernel smoothing function $K \in G(\beta)$, and 1-dimensional kernel density $k \in H(\beta, L)$. Denote $K_h(\cdot) = \frac{1}{h}K(\frac{\cdot}{h})$,  $\mathbf{K}_h = \otimes ^d K_h$, $\widehat{\bm{K}}_h(\cdot) = \frac{1}{n}\sum_{i=1}^n \bm{K}_h(X_i-\cdot)$; $k_{\alpha, \mu,r}(\cdot) = (1-\alpha) k\left(\cdot \right)+ \alpha\frac{1}{r}k\left(\frac{\cdot-\mu}{r}\right)$, and $\mathbf{k}_{\alpha,\mu,r} = \otimes^d k_{\alpha,\mu,r}(\cdot)$, where $\alpha\in [0,1]$ and $r >0$. Then for any $\delta > 0$, we have
+\begin{align}
+    \PP{\sup_{\bm{x}\in \mathbb{R}^d}|\widehat{\bm{K}}_h(\bm{x}) - \bm{k}_{\alpha, \mu, r}(\bm{x})|> \sqrt{\frac{C \log{(1/\delta)} (1-\alpha + \frac{\alpha}{r})^d}{n h^d}} + c \left(1-\alpha + \frac{\alpha}{r^{\beta+1}}\right)^d h^{d\beta} } < \delta,
+\end{align}
+where $C$ and $c$ are positive constants which do not depend on $h,\alpha,\mu,r$. Particularly,
+choosing adaptively 
+\begin{equation}
+    h = \left(\frac{C\log{\frac{1}{\delta}}(1-\alpha+\frac{\alpha}{r})^{d}}{c^2 n(1-\alpha+\frac{\alpha}{r^{\beta+1}})^{2d}}\right)^{\frac{1}{(2\beta +1) d}},
+\end{equation}
+ we have
+\begin{align}
+     \PP{\sup_{\bm{x}\in \mathbb{R}^d}|\widehat{\mathbf{K}}_h(\bm{x}) - \mathbf{k}_{\mu,r}(\bm{x})| > 2c\left(\frac{C\log{\frac{1}{\delta}}}{c^2 n} \right)^{\frac{\beta}{2\beta+1}} \left(1-\alpha + \frac{\alpha}{r^{\beta+1}}\right)^{\frac{\beta+1}{2\beta+1}d}}  < \delta.
+\end{align}
+\end{proposition}
+
+% \begin{proposition}(\citet{rinaldo2010generalized} Proposition 9 )\label{prop:biasest}
+% Assume that the kernel satisfies condition (VC) and that
+% \begin{equation}\label{varcond}
+%     \sup_{t \in \mathcal{R}^d} \sup_{h>0} \int_{\mathcal{R}^d} K^2_h(t-x)d P(x) < D < \infty.
+% \end{equation}
+% \begin{itemize}
+%     \item[(a)] Let $h$ be fixed. Then, there exist constants $L > 0$ and $C >0$, which depend only on the VC characteristics of $K$, such that, for any $c_1 \geq C$ and   $0 < \epsilon \leq \frac{c_1 D}{\norm{K}_\infty}$, there exists an $n_0 > 0$, which depends on $\epsilon, D, \mathcal{K}_{\infty}$ and the $VC$ characteristics of $K$, such that, for all $n>n_0$, 
+%     \begin{equation}\label{densbound}
+%         \PP{\sup_{x\in\mathbb{R}^d} |\widehat{p}_h(x) - p_h(x)| > 2 \epsilon} \leq L \exp \left\{-\frac{1}{L}\frac{\log\{1 + \frac{c_1}{4L}\}}{c_1}\frac{n h^d \epsilon^2}{D} \right\}.
+%     \end{equation}
+    
+%     \item[(b)] Let $h_n \to 0$ as $n \to \infty$ in such a way that $\frac{n h_n^d}{\log{h_n^d}} \to \infty$. if $\{\epsilon_n\}$ is a sequence such that 
+%     \begin{equation}
+%         \epsilon = \Omega\left( \frac{\log{r_n}}{n h_n^d} \right)
+%     \end{equation}
+%     where $r_n = \Omega(h_n^{\frac{d}{2}})$, then, for all $n$ large enough, \eqref{densbound} holds with $h$ and $\epsilon$ replaced by $h_n$ and $\epsilon_n$, respectively. In particularly, the term on the right hand side of \eqref{densbound} vanishes at the rate $O(r_n^{-1})$. 
+% \end{itemize}
+% \end{proposition}
+\begin{proof}
+Denote $\bm{K}_h : = \EE{\widehat{\bm{K}}_h}$, we can decompose the deviation as the following:
+\begin{align}\label{infdecomp}
+    \norm{\widehat{\bm{K}}_h - \bm{k}_{\alpha,\mu,r}}_{\infty} \leq \norm{\widehat{\bm{K}}_h - \bm{K}_{h}}_{\infty} + \norm{\bm{K}_h - \bm{k}_{\alpha,\mu,r}}_{\infty}.
+\end{align}
+In the following we bound each term separately, throughout which we denote expression that do not depend on $h,\alpha,r,\mu$ as constants terms.
+
+\begin{itemize}
+    \item[Step 1.]
+   
+   To bound the first term in \eqref{infdecomp}, we use  Corollary 2.2 in  \citet{gine2002rates}. Firstly we introduce the required condition. 
+% $\bm{K}_h$, that is $\bm{K}_h$ belongs to VC class \defref{vc}. This requirement is satisfied for a large class of kernel smoothing functions, including, for example, any compact supported polynomial kernel and the Gaussian kernel. Therefore the kernel we considered satisfy this condition. 
+\begin{definition}\label{def:vc}(VC class)
+Let $\mathcal{F}$ be a uniformly bounded collection of measurable functions on $\mathbb{R}^d$. We say that $\mathcal{F}$ is a bounded measurable VC class of functions if the class $\mathcal{F}$ is separable and if there exist positive numbers $A$ and $v$ such that, for every probability measure $P$ on $\mathbb{R}^d$ and every $0 < \epsilon < 1$, 
+\begin{equation}\label{vccond}
+    \sup_{P} N(\mathcal{F}, L_2(P), \epsilon \norm{F}_{L_2(P)}) \leq \left(\frac{A}{\epsilon}\right)^{v},
+\end{equation}
+where $N(T,d,\epsilon)$ denote the $\epsilon$-covering number of the metric space $(T,d)$, $F$ is the envelope function of $\mathcal{F}$ and the supremum is taken over the set of all probability measure on $\mathbb{R}^d$. The quantities $A$ and  $v$ are called the $VC$ characteristics of $\mathcal{F}$.
+\end{definition}
+
+\begin{lemma}\label{lem:2002}(\citet{gine2002rates}Corollary 2.2)
+Consider $\mathcal{F}$ be a
+measurable uniformly bounded VC class of functions on $\mathbb{R}^d$ whose VC characters are $A, v$, and 
+\begin{equation}\label{varcond}
+    \sup_{f \in \F} \text{Var}_P[f] \leq \sigma^2; \quad \sup_{f\in \F} ||f||_{\infty} \leq U,
+\end{equation}
+with $0 < \sigma^2 < \frac{U}{2}$, and $\sqrt{n}\sigma \geq U \sqrt{\log{(\frac{U}{\sigma})}}$.
+Then there exist positive constants $C$ and $C_0$ depending only on $A$ and $v$ such that for all $\lambda \geq C_0$ and $t$ satisfying
+\begin{equation}\label{tbound}    C_0\sqrt{n}\sigma \sqrt{\log{\frac{U}{\sigma}}} \leq t \leq \lambda \frac{n\sigma^2}{U},
+\end{equation}
+we have
+\begin{equation}
+    \PP{\sup_{f\in \F} |\sum_{i=1}^n f(X_i) - f(X_1)| \geq t} \leq C \exp \left\{ -\frac{\log{(1+\frac{\lambda}{4C})}}{\lambda C} \frac{t^2}{n\sigma^2}\right\},
+\end{equation}
+where $X_1,\dots,X_n \stackrel{iid}{\sim} P$. 
+\end{lemma}
+Denote the class of functions 
+\begin{equation}
+    \mathcal{F}_h := \left \{ \bm{K}_h\left( \cdot-\bm{x}\right),\ \bm{x}\in \mathbb{R}^d\right\}.
+\end{equation}
+Then we can write
+\begin{equation}
+   \norm{\widehat{\bm{K}}_h - \bm{K}_h}_{\infty} = \sup_{\bm{x}\in \mathbb{R}^d}|\widehat{\bm{K}}_h(\bm{x}) - \bm{K}_h(\bm{x})| = \frac{1}{n}\sup_{f \in \mathcal{F}_h} \left|\sum_{i=1}^n \Big(f(\bm{X}_i) - f(\bm{X}_1)\Big)\right|,
+\end{equation}
+where $\bm{X}_1, \dots, \bm{X}_n \stackrel{iid}{\sim} \bm{k}_{\alpha,\mu,r}$. 
+
+First we examine that $\mathcal{F}_h$ is VC class for $K \in G(\beta)$. Since $K$ is compact supported and polynomial, therefore $\mathcal{F}_h$ is a VC class with $v = {d+\beta \choose d}$, and some constant $A$.
+
+Then we examine the variance and infinity norm condition in \eqref{varcond}: note
+\begin{align*}
+    \sup_{f\in \F} \text{Var}_P[f] & = \sup_{\bm{x} \in \mathbb{R}^d} \text{Var}_{\bm{u}\sim P}[\bm{K}_h(\bm{u}-\bm{x})] \leq \sup_{\bm{x} \in \mathbb{R}^d} \int_{\bm{u}\in \mathbb{R}^d} \bm{K}^2_h (\bm{u}-\bm{x})\bm{k}_{\alpha,\mu,r}(\bm{u})d\bm{u} \\
+    & =\sup_{\bm{x} \in \mathbb{R}^d} \frac{1}{h^{2d}}\prod_{i=1}^d \int_{\mathbb{R}} K^2 (\frac{u_i-x_i}{h})k_{\alpha,\mu,r}(u_i)d u_i 
+    \stackrel{\bm{u}=\bm{\bm{x}+h\bm{v}}}{=} \sup_{\bm{x} \in \mathbb{R}^d} \frac{1}{h^{d}}\prod_{i=1}^d \int_{\mathbb{R}} K^2 (v_i)k_{\alpha,\mu,r}(x_i+hv_i)d v_i 
+    \\
+    & \leq  \sup_{\bm{x} \in \mathbb{R}^d} \frac{1}{h^{d}}\prod_{i=1}^d \left(||k_{\alpha,\mu,r}||_{\infty}\int_{\mathbb{R}} K^2 (v_i)d v_i\right)  = \left(\frac{ (1-\alpha + \frac{\alpha}{r})}{h}\right)^d \left(||k||_{\infty}\int_{\mathbb{R}} K^2 (x) d x\right)^d := C_1 \sigma^2,
+\end{align*}
+where $C_1 = \left(||k||_{\infty}\int_{\mathbb{R}} K^2 (x) d x\right)^d$ is constant only depends on $k$ and $K$. Also note
+\begin{align*}
+    \sup_{f\in\F} ||f||_{\infty} = \sup_{\bm{x},\bm{u}\in\mathbb{R}^d} ||\bm{K}_h(\bm{u}-\bm{x})||_{\infty} =  ||\bm{K}_h||_{\infty} = ||K_h||_{\infty}^d = \frac{||K||_{\infty}^d}{h^d}.
+\end{align*}
+Let $U = 2 C_2 (1-\alpha + \frac{\alpha}{r})^d  \frac{1}{h^d}$, with $C_2 = \norm{k}_{\infty}\norm{K}_{\infty}$, then it is easy to verify that
+\begin{equation}
+    \sup_{f \in \F} ||f||_{\infty} < U, \quad 0 < \sigma^2 < U/2,
+\end{equation}
+since $\int K^2 \leq \norm{K}_{\infty} \int K = \norm{K}_{\infty}$, and $1-\alpha + \frac{\alpha}{r} >  1  > \frac12\norm{k}_{\infty}$.
+
+Since both $\sigma^2$ and $U$ do not depend on $n$, therefore condition $\sqrt{n}\sigma \geq U \sqrt{\log{(\frac{U}{\sigma})}}$ is satisfied for all $n$ bigger than finite $n_0:=\frac{U^2}{\sigma^2}\log{\frac{U}{\sigma}}$. Consider $0< \epsilon < C_0\frac{\sigma^2}{U}$, $\lambda = C_0$, and $n> (C_0^2\vee 1) n_0$, we can finally apply  in  \lemref{2002} and get
+\begin{align*}
+    \PP{\sup_{\bm{x}\in \mathbb{R}^d}|\widehat{\bm{K}}_h - \bm{K}_h|> \epsilon } & = \PP{\sup_{f \in \F}|\sum_{i=1}^n \left( f(X_i)-f(X_1)\right)|> \epsilon n } \\
+    & \leq C \exp \left\{ -\frac{C_1\log{(1+\frac{C_0}{4C})}}{C_0 C} \frac{\epsilon^2 n h^d}{ (1-\alpha + \frac{\alpha}{r})^d}\right\}.
+\end{align*}
+Let the right hand side equals $\delta$, in turn we have, for $\delta$ small enough (solve the upper bound on $\epsilon$ to get the lower bound on $\delta$),
+\begin{align*}
+    \PP{\sup_{\bm{x}\in \mathbb{R}^d}|\widehat{\bm{K}}_h - \bm{K}_h|> \sqrt{\frac{C_3 \log{(C/\delta)} (1-\alpha + \frac{\alpha}{r})^d}{n h^d}} } \leq \delta,
+\end{align*}
+where $C_3:= \sqrt{\frac{C_0 C}{C_1 \log{(1+\frac{C_0}{4C})}}}$.
+
+\item[Step 2.]
+For the second term in \eqref{infdecomp},
+first we prove that if $k \in H(\beta,L)$, then $k_{\alpha,\mu,r} \in H(\beta, (1-\alpha + \frac{\alpha}{r^{\beta + 1}}) L )$. Note that for this argument, we are only considering the one-dimensional case, therefore
+\begin{equation}\label{hbeta}
+ k \in H(\beta, L) \Longleftrightarrow \sup_{x}\left|\frac{d^{\beta} k(x)}{d x^{\beta}} \right| \leq L. 
+\end{equation}
+Using the chain rule, we have
+\begin{equation}
+  \frac{d^{\beta} k_{\alpha,\mu,r}(x)}{d x^{\beta}} = (1-\alpha)\frac{d^{\beta}  k(x)}{d x^{\beta}} + \frac{\alpha}{r}\frac{d^{\beta} k\left(\frac{x-\mu}{r}\right)}{d x^{\beta}}  = (1-\alpha)\frac{d^{\beta}  k(u)}{d u^{\beta}}\mid_{u=x} + \frac{\alpha}{r^{1+\beta}}\frac{d^{\beta} k\left(u\right)}{d u^{\beta}}\mid_{u = \frac{x-\mu}{r}}.
+\end{equation}
+Therefore using \eqref{hbeta}, we have
+\begin{equation}
+\sup_{x}\left|\frac{d^{\beta} k_{\alpha,\mu,r}(x)}{d x^{\beta}} \right| \leq \Big((1-\alpha) +  \frac{\alpha}{r^{1+\beta}}\Big) L,
+\end{equation}
+that is $k_{\alpha, \mu, r} \in H\left(\beta, (1-\alpha + \frac{\alpha}{r^{\beta+1}}) L\right)$.
+
+ Then we have
+\begin{align*}
+  \norm{\bm{K}_h - \bm{k}_{\alpha,\mu,r}}_{\infty} & = \sup_{\bm{x}} |\int  \bm{K}_h\left(\norm{\bm{u}-\bm{x}}\right)\bm{k}_{\alpha,\mu,r}(\bm{u}) d \bm{u}  - \bm{k}_{\alpha,\mu,r}(\bm{x})|\\
+  & = \sup_{\bm{x}} \prod_{i=1}^{d} \int   K_h\left(\norm{u_i-x_i}\right)\left(k_{\alpha,\mu,r}(u_i)  - k_{\alpha,\mu,r}(x_i) \right) d u_i \\
+  & = \sup_{\bm{x}} \left| \prod_{i=1}^{d} \int K\left(|v_i|\right)\Big(k_{\alpha,\mu,r}(x_i + h v_i) - k_{\alpha,\mu,r}(x_i) \Big)  \right|\\
+  &
+  \leq \sup_{\bm{x}} \prod_{i=1}^{d} \Big\{\left| \int K\left(|v_i|\right)\Big(k_{\alpha,\mu,r}(x_i + h v_i) - k^{x_i,\beta}_{\alpha,\mu,r}(x_i+ h v_i) \Big) \right| \\&\quad \quad \quad \quad \quad \quad \quad + \left| \int K\left(|v_i|\right)\Big(k^{x_i,\beta}_{\alpha,\mu,r}(x_i + h v_i) - k_{\alpha,\mu,r}(x_i) \Big) \right|\Big\}\\
+  & \stackrel{(i)}{=} \sup_{\bm{x}} \prod_{i=1}^{d} \left| \int K\left(|v_i|\right)\Big(k_{\alpha,\mu,r}(x_i + h v_i) - k^{x_i,\beta}_{\alpha,\mu,r}(x_i+ h v_i) \Big) \right|
+  \\
+  & \stackrel{(ii)}{\leq}  \sup_{\bm{x}} \prod_{i=1}^{d} \left| \int K\left(|v_i|\right)\Big((1-\alpha + \frac{\alpha}{ r^\beta})L h^\beta |v_i|^\beta \Big) \right|\\
+   & = \left((1-\alpha + \frac{\alpha}{ r^{\beta+1}})L h^\beta \left| \int K\left(|v|\right) |v|^\beta\right|\right)^d : = (1-\alpha + \frac{\alpha}{ r^{\beta+1}})^d h^{d\beta} C_4,
+\end{align*}
+where $\cdot^{x,\beta}$ is the taylor expansion of $\cdot$ at $x$ to order $\beta-1$, and $C_4 := L^d\left| \int K\left(|v|\right) |v|^\beta\right|^d$.  Specifically, (i) is true since $k_{\alpha,\mu,r} \in H(\beta, (1-\alpha + \frac{\alpha}{r^{\beta}})L)$, and therefore $\Big(k^{x_i,\beta}_{\alpha,\mu,r}(x_i + h v_i) - k_{\alpha,\mu,r}(x_i) \Big)$ is a polynomial of degree $\beta-1$, then use the fact that $K \in G(\beta)$, we have the second term is zero; and (ii) is true from the fact that $k_{\alpha,\mu,r} \in H(\beta, (1-\alpha + \frac{\alpha}{r^{\beta+1}})L)$. 
+\end{itemize}
+
+Combined the above analysis, we have
+\begin{align*}
+    \PP{\sup_{\bm{x}\in \mathbb{R}^d}|\widehat{\bm{K}}_h - \bm{k}_{\alpha, \mu, r}|> \sqrt{\frac{C_3 \log{(1/\delta)} (1-\alpha + \frac{\alpha}{r})^d}{n h^d}} + C_4 \left(1-\alpha + \frac{\alpha}{r^{\beta+1}}\right)^d h^{d\beta} } \leq \delta,
+\end{align*}
+where $C_3, C_4$ are constants that do not depend on $h,\alpha,\mu,r$, but depend on $k, K, d, n, \beta, L$.
+\end{proof}
+
+
+\section{Robustness on the empirical level}\label{app:emprob}
+\begin{definition}\label{def:empmodel}
+(Empirical contamination model) Given $n$ bivariate samples $(x_1,y_1),\dots,(x_n,y_n)$, we consider the corresponding contaminated samples $\{(x_i', y_i')\}_{i=1}^n$ that satisfying
+\begin{equation}
+    (x_i', y_i') = (x_i, y_i)\ \text{for} \ 1 \leq i \leq d_n;\quad \quad (x_i', y_i') = (x', y')\ \text{for}\ d_n + 1 \leq i \leq n,
+\end{equation}
+where $1\leq d_n \ll n$ is the number of outliers.  
+\end{definition}
+
+Denote the empirical $\text{aLDG}_t$ under the contamination model \defref{empmodel} as $\widehat{\text{aLDG}}_t'$. We consider characterizing the following modified influence function (defined to adapt empirical setting)
+\begin{equation}\label{mif}
+    \text{MIF}((x',y'), \widehat{\text{aLDG}}, F_n):= |\widehat{\text{aLDG}}_t' - \widehat{\text{aLDG}}_t|.
+\end{equation}
+
+In \thmref{aLDGrobemp} we give an upper bound on MIF, which depends on the number of outliers $d_n$ and sample size $n$. 
+
+% Specifically, 
+% we need the contamination mass to decay with the sample size, at rate no faster than the estimation error rate $O(\eta_n \vee \frac{\log_n}{n})$, where the term $\eta_n$ arise from the density estimation error, and the term $\frac{\log{n}}{n}$ arose from the probability estimation error.
+ 
+%On the other hand, in \thmref{aLDGrobemp2} we show that, if the number of outliers $d_n\equiv d$ for all $n$, then the corresponding modified influence function is unbounded.
+
+\begin{theorem}\label{thm:aLDGrobemp}
+Consider the contamination model in \defref{empmodel} with $d_n$ outliers, and the empirical $\widehat{\text{aLDG}}_t$ in \eqref{eq:aLDGemp} using boxcar kernel density estimator \eqref{densest} with bandwidth $h_n$. Assume the point mass $(x', y')$ is far away from all the $n$ uncontaminated samples:
+\begin{equation}
+    (x', y'): \quad \min_{j\in [n]}|x_j-x'| > h_n,\ \min_{j\in [n]}|y_j-y'| > h_n.
+\end{equation}
+Under the same conditions on the true data distribution as in \thmref{aLDGconsist}, 
+then with high probability, we have
+\begin{equation*}
+    \text{MIF}((x',y'), \widehat{\text{aLDG}}, F_n) := \Big|\widehat{\text{aLDG}}'_t - \widehat{\text{aLDG}}_t\Big| < 2\epsilon_n + \eta_{n-d_n}+ 2\sqrt{\epsilon_n+\eta_{n-d_n}} \sqrt{\frac{\log{n}}{n}},
+\end{equation*}
+where $\epsilon_n:=\frac{d_n}{n}$ is the contamination mass, and $F_n$ denote the empirical distribution of the uncontaminated data.
+\end{theorem}
+
+\begin{proof}
+Given $n$ bivariate samples $(x_1,y_1),\dots,(x_n,y_n)$, denote
+\begin{align}
+    T(x,y)&:= \frac{f_{X,Y}(x, y) - f_{X}(x) f_{Y}(y) }{\sqrt{ f_{X}(x)f_{Y}(y)}},\quad T_i := T(x_i,y_i); \\
+    \widehat{T}(x,y)&:= \frac{\widehat{f}_{X,Y}(x, y) - \widehat{f}_{X}(x) \widehat{f}_{Y}(y) }{\sqrt{ \widehat{f}_{X}(x)\widehat{f}_{Y}(y)}},\quad \widehat{T}_i := \widehat{T}(x_i,y_i)
+ \end{align}
+where $\widehat{f}_{X,Y}, \widehat{f}_{X}, \widehat{f}_{Y}$ are some density estimator for $f_{X,Y}, f_X, f_Y$. Then the empirical aLDG can be written as
+\begin{align}\label{empaLDGt}
+    \widehat{\text{aLDG}}_t & =  \frac{1}{n}\sum_{i=1}^n\ones\left\{ \widehat{T}_i \geq t \right\}, 
+\end{align}
+
+Denote the density estimator under the contaminated model as $\widehat{f}_{X}', \widehat{f}_{Y}', \widehat{f}_{XY}'$, and the corresponding statistics as $\widehat{T}_i'$, and $\widehat{\text{aLDG}}_{t}'$. First we have 
+\begin{align*}\label{fhatcon}
+    & \widehat{f}_{X}'(\cdot) = \frac{1}{n} \sum_{j=d_n+1}^n K_{h_n}(\cdot, x_j)  +  \epsilon_n K_{h_n}(\cdot,x'),\quad \widehat{f}_{Y}'(\cdot) = \frac{1}{n} \sum_{j=d_n+1}^n K_{h_n}(\cdot, Y_j)+  \epsilon_n K_{h_n}(\cdot,y'),\nonumber\\
+    & \widehat{f}_{XY}'(\cdot,\cdot) = \frac{1}{n} \sum_{j=d_n+1}^n K_{h_n}(\cdot, x_j)K_{h_n}(\cdot, y_j) + \epsilon_n K_{h_n}(\cdot,x')K_{h_n}(\cdot,y').
+\end{align*}
+And consequently, 
+%for $1 \leq i \leq d_n$, 
+% \begin{align}\label{fhatcon}
+%     & \widehat{f}_{X}'(x_i') = 
+%       \epsilon_n / h_n  , \quad \widehat{f}_{Y}'(y_i) = \epsilon_n / h_n , \quad \widehat{f}_{XY}'(x_i,y_i) =  \epsilon_n / h_n^2;
+% \end{align}
+% while 
+for $d_n+1 \leq i \leq n$,
+\begin{align*}
+    & \widehat{f}_{X}'(x_i') = 
+      \widehat{f}_{X}(x_i) - \epsilon_n\frac{1}{d_n} \sum_{j=1}^{d_n} K_h(x_i,x_j),\quad \widehat{f}_{Y}'(y_i) = \widehat{f}_{Y}(y_i) - \epsilon_n\frac{1}{d_n} \sum_{j=1}^{d_n} K_h(y_i,y_j) \\
+    & \widehat{f}_{XY}'(x_i,y_i) = \widehat{f}_{X,Y}(x_i, y_i) - \epsilon_n\frac{1}{d_n} \sum_{j=1}^{d_n}K_h(x_i,x_j) K_h(y_i,y_j).
+\end{align*}
+We assume that the true marginal densities $f_X$ and $f_Y$ are bounded by some constant $c_{\max}$ and the corresponding density estimation error is uniformly bounded by  $\eta_n$ with high probability. Denote
+\begin{equation*}
+    \widehat{c}_{\max} := \max\Big\{\sup_x\frac{1}{d_n} \sum_{j=1}^{d_n} K_h(x,x_j),\quad \sup_y \frac{1}{d_n} \sum_{j=1}^{d_n} K_h(y,y_j),\quad \sup_{x,y}\frac{1}{d_n} \sum_{j=1}^{d_n}K_h(x,x_j) K_h(y,y_j)\Big\},
+\end{equation*}
+then we have 
+\begin{equation*}
+    c_{\max}- \eta_{d_n} \leq \widehat{c}_{\max}  \leq c_{\max}+ \eta_{d_n},
+\end{equation*}
+with high probability. Consequently we have
+\begin{equation*}
+\max_{d_n+1 \leq i\leq n} |\widehat{T}_i' - \widehat{T}_i| \leq \epsilon_n \widehat{c}_{\max} \leq \epsilon_n (c_{\max} + \eta_{d_n})
+\end{equation*}
+with high probability.
+
+Therefore, for all $i$, with high probability
+\begin{align*}
+     & \widehat{T}_i \geq t+\epsilon_n (c_{\max} + \eta_{d_n})\quad \text{or}\quad \widehat{T}_i < t - \epsilon_n (c_{\max} + \eta_{d_n}) \\  & \quad \quad \quad \Longrightarrow  \ones\{T_i > t\} = \ones\{T_i' > t\}.
+\end{align*}
+This implies, with high probability,
+\begin{align*}
+   |\widehat{\text{aLDG}}_{t}' - \widehat{\text{aLDG}}_t| \ & \leq \epsilon_n + 
+    \frac{1}{n}\sum_{i=d_n+1}^n \ones\{ t  - \epsilon_n (c_{\max}+ \eta_{d_n}) < \widehat{T}_i \leq  t + \epsilon_n (c_{\max}+ \eta_{d_n}) \}\\
+    & = \epsilon_n + (1-\epsilon_n)\Big(\widehat{P}_{n-d_n}(\widehat{S}_{t-\epsilon_n (c_{\max}+ \eta_{d_n})}) - \widehat{P}_{n-d_n}(\widehat{S}_{t+\epsilon_n (c_{\max}+ \eta_{d_n})})\Big)\\
+    & \leq \epsilon_n + (1-\epsilon_n)\Big(\widehat{P}_{n-d_n}(S_{t-\epsilon_n (c_{\max}+ \eta_{d_n})-c\eta_{n-d_n}})  - \widehat{P}_{n-d_n}(S_{t + \epsilon_n (c_{\max}+ \eta_{d_n})+ c\eta_{n-d_n}})\Big) \\
+    & \leq \epsilon_n + (1-\epsilon_n) \Big( P(D_t) + |\widehat{P}_{n-d_n}(D_t)-P(D_t)|\Big),
+\end{align*} 
+where 
+\begin{align*}
+    & \widehat{S}_t:=\{(x,y): \widehat{T}> t\},\quad S_t:=\{(x,y): T> t\}, \\
+    & D_t:= S_{t-\epsilon_n (c_{\max}+ \eta_n)-c\eta_{n-d_n}} \setminus S_{t+\epsilon_n (c_{\max}+ \eta_n)+c\eta_{n-d_n}}.
+\end{align*}
+
+Since we assume that $\text{aLDG}_t$ is L-lipschitz smooth, therefore
+\begin{align*}
+    P(D_t) \leq 2L(\epsilon_n (c_{\max}+ \eta_{d_n})+c\eta_{n-d_n})  \asymp O(\epsilon_n + \eta_{n-d_n})\to 0.
+\end{align*}
+Then using the Bernstein inequality for Bernoulli variable with mean $P(D_t) \ll 1$, with high probability we have
+\begin{align*}
+|\widehat{P}_{n-d_n}(D_t)-P(D_t)| & \leq \sqrt{ \frac{P(D_t)\log{(n-d_n)}}{n-d_n}}\\
+&\stackrel{<}{\sim} \sqrt{ \frac{(\epsilon_n + \eta_{n-d_n}) \log{n}}{n-d_n}} = \sqrt{\frac{\epsilon_n + \eta_{n-d_n}}{1-\epsilon_n}} \sqrt{\frac{\log{n}}{n}}.
+\end{align*}
+Combine the above results, with high probability we have,
+\begin{align*}
+   |\widehat{\text{aLDG}}'_t - \widehat{\text{aLDG}}_t| & \stackrel{<}{\sim} \epsilon_n + (1-\epsilon_n)\Big(\epsilon_n + \eta_{n-d_n}+ \sqrt{\frac{\epsilon_n+\eta_{n-d_n}}{1-\epsilon_n}} \sqrt{\frac{\log{n}}{ n}} \Big) \\
+   & < 2\epsilon_n + \eta_{n-d_n}+ 2\sqrt{\epsilon_n+\eta_{n-d_n}} \sqrt{\frac{\log{n}}{ n}}.
+\end{align*}
+ 
+
+Finally, we can conclude, if the contamination mass $\epsilon_n \to 0$ as $n\to\infty$, and  satisfy $\epsilon_n = O(\eta_n \vee \frac{\log{n}}{n})$,  then with high probability, we have
+\begin{equation*}
+    \text{MIF}((x',y'), \widehat{\text{aLDG}}, F_n) < 2\epsilon_n + \eta_{n-d_n}+ 2\sqrt{\epsilon_n+\eta_{n-d_n}} \sqrt{\frac{\log{n}}{n}} \ll 1,
+\end{equation*}
+which goes to zero as $n$ goes to infinity.
+\end{proof}
+
+
+
+
+\section{Approximation of MISE}\label{app:mise}
+Consider a $d$-dimensional density function $f$ and a corresponding estimator $\widehat{f}$ generally, then the Mean Integrated Square Error (MISE) is defined as
+\begin{equation}
+    \text{MISE} :=  \mathbb{E}\left[ \int (\widehat{f}(x)-f(x))^2 dx\right].
+\end{equation}
+A well-known unbiased estimation of MISE (up to a constant) is the following cross-validation score function:
+\begin{equation}
+    \widehat{J}:= \int \widehat{f}(x)^2 dx - \frac{2}{n} \sum_{i=1}^n \widehat{f}_{-i}(X_i),
+\end{equation}
+where $\widehat{f}_{-i}$ is the density estimator obtained after removing the $i$th observation. One can show that
+\begin{equation}
+   \text{MISE} =  \mathbb{E}[ \widehat{J}\ ]+ \int f(x)^2 dx.
+\end{equation}
+Further approximate $\int f(x)^2 dx$ by $\int \widehat{f}(x)^2 dx$, we get the approximation of MISE that only depends on data:
+\begin{equation}
+    \widetilde{\text{MISE}} := 2 \int \widehat{f}(x)^2dx - \frac{2}{n} \sum_{i=1}^n \widehat{f}_{-i}(X_i).
+\end{equation}
+
+Particularly, the expression can be further expanded using the product kernel density estimator with univariate kernel function $K$:
+\begin{equation}
+   \widetilde{\text{MISE}}  = \frac{2}{n^2 \prod_{i=1}^d h_i} \left(\sum_{i\neq j} g\left(\frac{X_{i1} - X_{{j1}}}{h_1},\dots ,\frac{X_{id} - X_{jd}}{h_d}\right) + n\mu_2^d\right)
+\end{equation}
+where $d$ is the dimension of the target random variable, and 
+\begin{align*}
+    g(x_1,\dots,x_d) := \prod_{i=1}^d \int K(z+x_i)K(z) dz  - \prod_{i=1}^d K(x_i), \quad \mu_2 = \int K(x)^2 dx.
+\end{align*} 
+
+\section{Detailed example for merits of thresholding}\label{app:thred}
+Consider the following product kernel density mixture:
+\begin{align*}
+    & f_{X}(x) = \alpha k_{0,r}(x) + (1-\alpha)k_{0,1}(x), \quad  f_{Y}(y) = k_{0,r}(y) + (1-\alpha)k_{0,1}(y), \\
+    & f_{XY}(x,y) = \alpha k_{0,r}(x)k_{0,r}(y) + (1-\alpha)k_{0,1}k_{0,1}, 
+\end{align*}
+where $\alpha \in (0,1)$, $0<r\leq 1$ and  $k_{\mu,r}(\cdot):=\frac{1}{r}k(\frac{\cdot-\mu}{r})$, with $k$ as a one dimensional uniform distribution supported on $[-1,1]$. 
+
+With $\alpha/r \to \infty$, $\alpha \to 0$ and $r \to 0$, we have
+\begin{equation}
+   \EEst{\frac{f_{XY}-f_{X}f_{Y}}{\sqrt{f_{X}f_{Y}}}}{|X|<r\ \&\ |Y|<r} \approx \frac{\alpha(1-\alpha)/r^2}{\alpha/r} = \frac{1-\alpha}{r}
+\end{equation}
+and
+\begin{equation}
+    \EEst{\frac{f_{XY}-f_{X}f_{Y}}{\sqrt{f_{X}f_{Y}}}}{|X|>r \text{ or } |Y|>r} \approx -\frac{\alpha(1-\alpha)/r}{\alpha/r} = \alpha-1,
+\end{equation}
+\begin{equation}
+    \EEst{\frac{f_{XY}-f_{X}f_{Y}}{\sqrt{f_{X}f_{Y}}}}{|X|>r\ \&\ |Y|>r} \approx -\frac{(1-\alpha)\alpha}{1-\alpha} = -\alpha,
+\end{equation}
+therefore using the law of total expectation, we finally have 
+\begin{equation}\label{nothred}
+   \EE{\frac{f_{XY}-f_{X}f_{Y}}{\sqrt{f_{X}f_{Y}}}} \approx p_1 \frac{1-\alpha}{r} +p_2 (\alpha-1) + p_3\alpha, 
+\end{equation}
+where
+\begin{align*}
+   & p_1:=\PP{|X|\leq r\ \&\  |Y|\leq r}=\alpha+(1-\alpha)r^2, \\ &
+    p_2:=\PP{(|X|>r \& |Y|\leq r) or (|X|\leq r \& |Y| > r)}= (1-\alpha)(2r-2r^2),\\ &
+    p_3:= \PP{|X|>r \ \&\  |Y|>r} = (1-\alpha)(1-2r+r^2).
+\end{align*}
+Simplifying \eqref{nothred} we have,
+\begin{equation}
+   \EE{\frac{f_{XY}-f_{X}f_{Y}}{\sqrt{f_{X}f_{Y}}}} \approx \frac{\alpha}{r} \to \infty.
+\end{equation}
+\section{Additional plots}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{plots/nbmixvalue.pdf}
+    \caption{Empirical aLDG value for Negative Binomial mixture. The upper row show the scatter plot for 1000 samples, while the lower row show the corresponding dependence level given by different measures. The data are generated as three component Negative Binomial mixture. From left to right there are 0,1,2,3 out of 3 components has correlation 0.8, while the rest has correlation 0, i.e. the dependence level increases from left to right.}
+    \label{fig:nbmix}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{plots/gaussmixpower.pdf}
+    \caption{The empirical power of permutation test at level 0.05, based on different dependency measures under different Gaussian mixture distributions and sample sizes. The power is estimated using 100 independent trials. The data are generated as a three component Gaussian mixture. From left to right the overall dependence level increases: specifically 0,1,2 and 3 of the 3 components have correlation of 0.8, while the remaining components have no correlation. }
+    \label{fig:gaussmixpower}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{plots/nbmixpower.pdf}
+    \caption{The empirical power of permutation test at level 0.05, based on different dependency measures under different negative binomial mixture distributions and sample sizes. The power is estimated using 100 independent trials. The data are generated as three component Negative Binomial mixture. From left to right the overall dependence level increases: specifically 0,1,2 and 3 of the 3 components have correlation of 0.8, while the remaining components have no correlation.}
+    \label{fig:nbmixpower}
+\end{figure}
+
+\end{appendix}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Supplementary Material, including data   %%
+%% sets and code, should be provided in     %%
+%% {supplement} environment with title      %%
+%% and short description. It cannot be      %%
+%% available exclusively as external link.  %%
+%% All Supplementary Material must be       %%
+%% available to the reader on Project       %%
+%% Euclid with the published article.       %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\end{document}

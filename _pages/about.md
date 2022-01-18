@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a Ph.D. student in the Department of [Statistics & Data Science at Carnegie Mellon University](http://stat.cmu.edu). I am very fortunate to be advised by professor [Jing Lei](http://www.stat.cmu.edu/~jinglei/) and professor [Kathryn Roeder](http://www.stat.cmu.edu/~roeder/). We work on developing methodology and theory for high dimensional, non-parametric data analysis with special focus on feature interaction and local structure. I have also extensively worked with professor [Aaditya Ramdas](http://www.stat.cmu.edu/~aramdas/) on online testing. Before coming to CMU, I obtained a Bacholor degree in statistics from [University of Science and Technology of China](http://en.ustc.edu.cn/) in 2018, where I worked with professor [Zemin Zheng](http://bs.ustc.edu.cn/english/Profile-302.html) in high-dimensional statistical inference.
+I am a Ph.D. student in the Department of [Statistics & Data Science at Carnegie Mellon University](http://stat.cmu.edu). I am very fortunate to be advised by professor [Jing Lei](http://www.stat.cmu.edu/~jinglei/) and professor [Kathryn Roeder](http://www.stat.cmu.edu/~roeder/). We work on developing methodology and theory for high dimensional, non-parametric data analysis with special focus on feature interaction and local structure. I have also extensively worked with professor [Aaditya Ramdas](http://www.stat.cmu.edu/~aramdas/) on online testing. Before coming to CMU, I obtained a Bacholor degree in statistics from [School of Gifted Young](https://en.scgy.ustc.edu.cn/)[University of Science and Technology of China](http://en.ustc.edu.cn/) in 2018, where I worked with professor [Zemin Zheng](http://bs.ustc.edu.cn/english/Profile-302.html) in high-dimensional statistical inference.
 
 Education
 =======
@@ -24,14 +24,14 @@ Work Experience
 : AWS, Amazon
 : Built an online experimentation platform that allows efficient trading off between revenue constrain and time constrain in E-commerce, while being able to deal with unknown abrupt changes over time.
 
-<!--Research Interests
+Research Interests
 ======
 My research interests take root in methods and theory for high dimensional, nonparametric data analysis with special focus on feature interaction and local structure, specifically includes
 
 * High-dimensional Nonparametric inference
 * Statistical genetics
-* Self-supervised learning, representation learning
--->
+* Self-supervised learning, representational learning
+
 
 <!--
 Ongoing Research Projects
@@ -42,13 +42,17 @@ Ongoing Research Projects
 : In this project we work on non-parametric methods of recovering signals using local structure in a high dimensional mixture model when the noises are enormous and signals are weak and sparse. We propose a statistics to capture local structure between a pair of features, which will only dominate iff the corresponding sample comes from a non-noise mixture component, in which the feature pairs are both relevant features.  
 We have proved exact recovery of signals in a single non-noise mixture setting using a non-parametric estimation, under even impossible scenarios for canonical methods like sparse PCA. We are working on proofs for multiple non-noise mixture cases. 
 
-* Self-supervised learning with and without contrastive pairs.
-: **Jinjin Tian, Jing Lei, Kathryn Roeder**
-: In this project we investigate the similarity and dissimilarity of the feature learning process of self-supervised learning with and without contrastive pairs, both empirically and theoretically.
 -->
 
 Publications and preprints
 =======
+* From local to global gene co-expression estimation using single-cell RNA-seq data. <small> (to be submitted) </small>
+: **Jinjin Tian, Jing Lei, Kathryn Roeder**
+: In genomics studies, the investigation of the gene-gene relationship often brings important biological insights. Currently, the large heterogeneous datasets impose new challenges for statisticians because gene relationships are often local. They change from one sample point to another, may only exist in a subset of the sample, and can be non-linear or even non-monotone. Most previous dependence measures do not specifically target local dependence relationships, and the ones that do are computationally costly. In this paper, we explore a state-of-the-art network estimation technique that characterizes gene-gene association at the single cell level, under the name of  \emph{cell-specific gene networks}. We first show that averaging the \emph{cell-specific gene association} over a population gives a novel univariate dependence measure that can detect any non-linear, non-monotone relationship. Together with a consistent nonparametric estimator, we establish its robustness on both the population and empirical levels. Simulations and real data analysis show that this measure outperforms existing independence measures like Pearson's, Kendall's $\tau$, $\tau^\star$, distance correlation, HSIC, Hoeffding's D, HHG, and MIC, for various tasks. 
+
+* Being negative matters for contrastive learning. <small> (AISTATS 2022) </small>
+: **Ashwini Pokle, Jinjin Tian, Yuchen Li, Andrej Risteski (equal contribution)**
+: A lot of recent advances in unsupervised feature learning are based on designing features which are invariant under semantic data augmentations. A common way to do this is contrastive learning, which uses positive and negative samples. Some recent works however have shown promising results for non-contrastive learning, which does not require negative samples. However, the non-contrastive losses have obvious “collapsed” minima, in which the encoders output a constant feature embedding, independent of the input. A folk conjecture is that so long as these collapsed solutions are avoided, the produced feature representations should be good. In this project, we cast doubt on this story: we show through theoretical results and controlled experiments that even on simple data models, non-contrastive losses have a preponderance of non-collapsed bad minima. Moreover, we show that the training process does not avoid these minima.
 
 * ESCO: single cell expression simulation incorporating gene co-expression. <small> (Bioinformatics 2021) [Paper](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btab116/6149079?guestAccessKey=64c91aa4-1d5e-42da-92df-678b1b08af79)  [package](https://github.com/JINJINT/ESCO)</small>
 : **Jinjin Tian, Jiebiao Wang, Kathryn Roeder**
