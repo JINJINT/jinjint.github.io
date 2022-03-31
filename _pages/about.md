@@ -26,12 +26,11 @@ Work Experience
 
 Research Interests
 =======
-My research interests take root in methods and theory for high dimensional, nonparametric data analysis with special focus on feature interaction and local structure, specifically includes
+My research interests take root in unsupervised methods and theory for complex data analysis, with special focus on nonlinearity and local structure. I have developed methods and theory mainly on
 
-* High-dimensional nonparametric inference
-* Statistical genetics
-* Self-supervised learning, representational learning
-
+* Statistical gene networks
+* Self-supervised learning, representation leanring
+* Selective inference
 
 <!--
 Ongoing Research Projects
@@ -46,17 +45,17 @@ We have proved exact recovery of signals in a single non-noise mixture setting u
 
 Publications and preprints
 =======
-* From local to global gene co-expression estimation using single-cell RNA-seq data. <small> [Paper](https://arxiv.org/abs/2203.01990)  [Package](https://github.com/JINJINT/aLDG)</small>
-: **Jinjin Tian, Jing Lei, Kathryn Roeder**
-: In this paper, we explore a state-of-the-art network estimation technique that characterizes gene-gene association at the single cell level, under the name of  cell-specific gene networks. We first show that averaging the cell-specific gene association over a population gives a novel univariate dependence measure that can detect any non-linear, non-monotone relationship. Together with a consistent nonparametric estimator, we establish its robustness on both the population and empirical levels. Simulations and real data analysis show that this measure outperforms existing independence measures like Pearson's, Kendall's $\tau$, $\tau^{\star}$, distance correlation, HSIC, Hoeffding's D, HHG, and MIC, for various tasks. 
-
-
 * Contrasting the landscape of contrastive and non-contrastive learning. <small> (AISTATS 2022) [Paper](https://arxiv.org/pdf/2203.15702.pdf)  [Code](https://github.com/ashwinipokle/contrastive_landscape) </small>
 : **Ashwini Pokle, Jinjin Tian, Yuchen Li, Andrej Risteski**
 : Some recent works have shown promising results for non-contrastive learning, which does not require negative samples. However, the non-contrastive losses have obvious “collapsed” minima, in which the encoders output a constant feature embedding, independent of the input. A folk conjecture is that so long as these collapsed solutions are avoided, the produced feature representations should be good. In this project, we cast doubt on this story: we show through theoretical results and controlled experiments that even on simple data models, non-contrastive losses have a preponderance of non-collapsed bad minima. Moreover, we show that the training process does not avoid these minima.
 
 
-* Large-scale simultaneous inference under dependence. <small>(Scandinavian Journal of Statistics 2022, minor revision)[Paper](https://arxiv.org/abs/2102.11253)  [Package](https://github.com/annavesely/sumSome/) </small>
+* From local to global gene co-expression estimation using single-cell RNA-seq data. <small> (Submitted to AOAS) [Paper](https://arxiv.org/abs/2203.01990)  [Package](https://github.com/JINJINT/aLDG)</small>
+: **Jinjin Tian, Jing Lei, Kathryn Roeder**
+: In this paper, we explore a state-of-the-art network estimation technique that characterizes gene-gene association at the single cell level, under the name of cell-specific gene networks. We first show that averaging the cell-specific gene association over a population gives a novel univariate dependence measure that can detect any non-linear, non-monotone relationship. Together with a consistent nonparametric estimator, we establish its robustness on both the population and empirical levels. Simulations and real data analysis show that this measure outperforms existing independence measures like Pearson's, Kendall's $\tau$, $\tau^{\star}$, distance correlation, HSIC, Hoeffding's D, HHG, and MIC, for various tasks. 
+
+
+* Large-scale simultaneous inference under dependence. <small>(Scandinavian Journal of Statistics 2022, minor revision submitted) [Paper](https://arxiv.org/abs/2102.11253)  [Package](https://github.com/annavesely/sumSome/) </small>
 : **Jinjin Tian, Xu Chen, Eugene Katsevich, Jelle Goeman, Aaditya Ramdas**
 : Simultaneous, post-hoc inference is desirable in large scale hypotheses testing as it allows people to explore the data while deciding on criteria for proclaiming discoveries. It was recently proved that all admissible post-hoc inference methods must be based on closed testing. In this paper we investigate closed testing with local tests that have a special property called separability, that is the test thresholds a function of a sum of test scores for the individual hypotheses. With separable local tests, we derive a class of novel, fast algorithms for various types of simultaneous inference. Paired with recent advances in separable global null tests, our work immediately instantiates a series of simultaneous inference methods that are sufficient to handle many complex dependence structures and signal compositions. 
 
@@ -73,7 +72,7 @@ Publications and preprints
 
 * Online control of the familywise error rate. <small>(Statistical Methods in Medical Research 2021) [Paper](https://journals.sagepub.com/eprint/AYRRKZX7XMTVHKCFYBJY/full) [Code](https://github.com/JINJINT/onlineFWER) </small>
 : **Jinjin Tian, Aaditya Ramdas**
-: Biological research often involves testing a growing number of null hypotheses as new data is accumulated over time. We study the problem of online control of the familywise error rate (FWER), that is testing an apriori unbounded sequence of hypotheses (p-values) one by one over time without knowing the future, such that with high probability there are no false discoveries in the entire sequence. In this project we unify algorithmic concepts developed for offline FWER control and online FDR control to develop new powerful, adaptive online FWER control method. We also formally proved the substantial gains of power of the new methods, and derived closed form of effective hyper-parameters for optimizing the power in a Gaussian sequence model.
+: Biological research often involves testing a growing number of null hypotheses as new data is accumulated over time. We study the problem of online control of the familywise error rate (FWER), that is testing an apriori unbounded sequence of hypotheses one by one over time without knowing the future, such that with high probability there are no false discoveries in the entire sequence. In this project we unify algorithmic concepts developed for offline FWER control and online FDR control to develop new powerful, adaptive online FWER control method. We also formally proved the substantial gains of power of the new methods, and derived closed form of effective hyper-parameters for optimizing the power in a Gaussian sequence model.
 
 
 * ADDIS: an adaptive discarding algorithm for online FDR control with conservative nulls. <small>(NeurIPS, 2019) [Paper](https://papers.nips.cc/paper/9136-addis-an-adaptive-discarding-algorithm-for-online-fdr-control-with-conservative-nulls.pdf) [Code](https://github.com/JINJINT/ADDIS)</small>
@@ -91,7 +90,7 @@ Some interesting projects I did in undergrad:
 
 * Brain task classification with Graph Neural Network guided by region connectivity.
 : **Jinjin Tian, Jing Lei, Kehui Chen**
-: Proposed graphical neural network models with regularization based on brain connectivity structures, which is shown to reduce over-fitting and improve accuracy in classification of  brains signals (MEG data).
+: Proposed graphical neural network models with regularization based on brain connectivity structures, which is shown to reduce over-fitting and improve accuracy in classification of brains signals (MEG data).
 
 
 
