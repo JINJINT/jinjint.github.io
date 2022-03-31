@@ -16,7 +16,7 @@ Education
 : Carnegie Mellon University, Pittsburgh, USA
 
 * B.S. in Statistics, 2018
-: University of Science and Technology of China, Hefei
+: University of Science and Technology of China, Hefei, China
 
 Work Experience
 =======
