@@ -8,18 +8,25 @@ redirect_from:
   - /about.html
 ---
 
-I am a Ph.D. student in the Department of [Statistics & Data Science at Carnegie Mellon University](http://stat.cmu.edu). I am very fortunate to be advised by professor [Jing Lei](http://www.stat.cmu.edu/~jinglei/) and professor [Kathryn Roeder](http://www.stat.cmu.edu/~roeder/). We work on developing methodology and theory for high dimensional, nonparametric data analysis with a special focus on feature interaction and local structure. I have also extensively worked with professor [Aaditya Ramdas](http://www.stat.cmu.edu/~aramdas/) on online testing. Before coming to CMU, I obtained a Bacholor's degree in statistics from [School of Gifted Young](https://en.scgy.ustc.edu.cn/), [University of Science and Technology of China](http://en.ustc.edu.cn/) in 2018, where I worked with professor [Zemin Zheng](http://bs.ustc.edu.cn/english/Profile-302.html) in high-dimensional statistical inference.
+I just graduated with a doctorate from the joint program between the Department of [Statistics & Data Science at Carnegie Mellon University](http://stat.cmu.edu) and the [Machine Learning Department](https://www.ml.cmu.edu/). I am very fortunate to be advised by professor [Jing Lei](http://www.stat.cmu.edu/~jinglei/) and professor [Kathryn Roeder](http://www.stat.cmu.edu/~roeder/). We worked on developing methodology and theory for high dimensional, nonparametric data analysis with a special focus on feature interaction and local structure. I have also extensively worked with professor [Aaditya Ramdas](http://www.stat.cmu.edu/~aramdas/) on online testing. Before coming to CMU, I obtained a Bacholor's degree in statistics from [School of Gifted Young](https://en.scgy.ustc.edu.cn/), [University of Science and Technology of China](http://en.ustc.edu.cn/) in 2018, where I worked with professor [Zemin Zheng](http://bs.ustc.edu.cn/english/Profile-302.html) in high-dimensional statistical inference.
 
 Education
 =======
-* Ph.D. in Statistics, 2023 (expected)
+* Ph.D. in Statistics and Machine Learning, 2018-2023
 : Carnegie Mellon University, Pittsburgh, USA
 
-* B.S. in Statistics, 2018
+* M.S. in Machine Learning, 2021-2022
+: Carnegie Mellon University, Pittsburgh, USA
+
+* B.S. in Statistics, 2014-2018
 : University of Science and Technology of China, Hefei, China
 
 Work Experience
 =======
+* Applied Scientist Intern, 2022
+: Alexa AI, Amazon
+: Constructed a two-stage confident learning framework for label de-nosing in NLU, which has more effectiveness as well as efficiency. 
+
 * Applied Scientist Intern, 2020
 : AWS, Amazon
 : Built an online experimentation platform that allows efficient trading off between revenue constrain and time constrain in E-commerce while being able to deal with unknown abrupt changes over time.
@@ -29,6 +36,7 @@ Research Interests
 My research interests take root in unsupervised methods and theory for complex data analysis, with a special focus on nonlinearity and local structure. I have developed methods and theories mainly on
 
 * Statistical gene networks
+* Robust and efficient NLP
 * Self-supervised learning, representation learning
 * Selective inference
 
@@ -43,19 +51,34 @@ We have proved exact recovery of signals in a single non-noise mixture setting u
 
 -->
 
+Working papers
+=======
+* LCA-on-the-Line: Benchmarking Out-of-Distribution Generalization with Class Taxonomies
+: **Jia Shi, Gautam Rajendrakumar Gare, Jinjin Tian, Siqi Chai, Zhiqiu Lin, Arun Balajee Vasudevan, Di Feng, Francesco Ferroni, Shu Kong, Deva Ramanan**
+
+* Identifying active differentially expressed gene modules for Autism
+: **Jinjin Tian, Maya Shen, Kathryn Roeder, Bernie Devlin**
+
+* Controlling False Discovery Proportions under Dependence with the Harmonic Mean P-value
+: **Xu Chen, Jinjin Tian, Aaditya Ramdas, Eugene Katsevich, Jelle Goeman**
+
 Publications and preprints
 =======
+* UseClean: learning from complex noisy labels in named entity recognition. <small> (LSD 2023)
+: **Jinjin Tian, Kun Zhou, Meiguo Wang, Yu Zhang, Benjamin Yao, Xiaohu Liu and Chenlei Guo**
+We investigate and refine denoising methods for NER task on data that potentially contains extremely noisy labels from multi-sources. In this paper, we first summarized all possible noise types and noise generation schemes, based on which we built a thorough evaluation system. We then pinpoint the bottleneck of current state-of-art denoising methods using our evaluation system. Correspondingly, we propose several refinements, including using a two-stage framework to avoid error accumulation; a novel confidence score utilizing minimal clean supervision to increase predictive power; an automatic cutoff fitting to save extensive hyper-parameter tuning; a warm started weighted partial CRF to better learn on the noisy tokens. Additionally, we propose to use adaptive sampling to further boost the performance in long-tailed entity settings. Our method improves F1 score by on average at least $ 5\sim10$\% over current state-of-art across extensive experiments.
+
 * Contrasting the landscape of contrastive and non-contrastive learning. <small> (AISTATS 2022) [Paper](https://arxiv.org/pdf/2203.15702.pdf)  [Code](https://github.com/ashwinipokle/contrastive_landscape) </small>
 : **Ashwini Pokle, Jinjin Tian, Yuchen Li, Andrej Risteski**
 : Some recent works have shown promising results for non-contrastive learning, which does not require negative samples. However, the non-contrastive losses have obvious "collapsed" minima, in which the encoders output a constant feature embedding, independent of the input. A folk conjecture is that so long as these collapsed solutions are avoided, the produced feature representations should be good. In this project, we cast doubt on this story: we show through theoretical results and controlled experiments that even on simple data models, non-contrastive losses have a preponderance of non-collapsed bad minima. Moreover, we show that the training process does not avoid these minima.
 
 
-* From local to global gene co-expression estimation using single-cell RNA-seq data. <small> (Submitted to AOAS) [Paper](https://arxiv.org/abs/2203.01990)  [Package](https://github.com/JINJINT/aLDG)</small>
+* From local to global gene co-expression estimation using single-cell RNA-seq data. <small> (Biometrics, minor revision) [Paper](https://arxiv.org/abs/2203.01990)  [Package](https://github.com/JINJINT/aLDG)</small>
 : **Jinjin Tian, Jing Lei, Kathryn Roeder**
 : In this paper, we explore a state-of-the-art network estimation technique that characterizes gene-gene association at the single cell level, under the name of cell-specific gene networks. We first show that averaging the cell-specific gene association over a population gives a novel univariate dependence measure that can detect any non-linear, non-monotone relationship. Together with a consistent nonparametric estimator, we establish its robustness on both the population and empirical levels. Simulations and real data analysis show that this measure outperforms existing independence measures like Pearson's, Kendall's $\tau$, $\tau^{\star}$, distance correlation, HSIC, Hoeffding's D, HHG, and MIC, for various tasks. 
 
 
-* Large-scale simultaneous inference under dependence. <small>(Scandinavian Journal of Statistics 2022, minor revision submitted) [Paper](https://arxiv.org/abs/2102.11253)  [Package](https://github.com/annavesely/sumSome/) </small>
+* Large-scale simultaneous inference under dependence. <small>(Scandinavian Journal of Statistics 2022) [Paper](https://arxiv.org/abs/2102.11253)  [Package](https://github.com/annavesely/sumSome/) </small>
 : **Jinjin Tian, Xu Chen, Eugene Katsevich, Jelle Goeman, Aaditya Ramdas**
 : Simultaneous, post-hoc inference is desirable in large scale hypotheses testing as it allows people to explore the data while deciding on criteria for proclaiming discoveries. It was recently proved that all admissible post-hoc inference methods must be based on closed testing. In this paper we investigate closed testing with local tests that have a special property called separability, that is the test thresholds a function of a sum of test scores for the individual hypotheses. With separable local tests, we derive a class of novel, fast algorithms for various types of simultaneous inference. Paired with recent advances in separable global null tests, our work immediately instantiates a series of simultaneous inference methods that are sufficient to handle many complex dependence structures and signal compositions. 
 
