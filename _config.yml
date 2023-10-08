@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Jinjin Tian / Ph.D. student in Statistics"
 title_separator          : "-"
 name                     : &name "Jinjin Tian"
-description              : &description "Ph.D. student in Statistics, Carnegie Mellon Univeristy"
+description              : &description "Ph.D. in Statistics and Machine Learning, Carnegie Mellon Univeristy"
 url                      : https://jinjint.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "JINJINT/jinjint.github.io"
@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Jinjin Tian"
   avatar           : "profile.png"
-  bio              : "Ph.D. student in Statistics, Carnegie Mellon Univeristy"
+  bio              : "Ph.D. in Statistics and Machine Learning, Carnegie Mellon Univeristy"
   location         : "Pittsburgh, PA, USA"
   employer         :
   pubmed           : #"https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
