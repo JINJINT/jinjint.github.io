@@ -39,7 +39,7 @@ Research Interests
 =======
 My research interests take root in unsupervised methods and theory for complex data analysis, with a special focus on nonlinearity and local structure. I have developed methods and theories mainly on
 
-* Statistical gene networks
+* Statistical networks
 * Robust and efficient NLP
 * Self-supervised learning, representation learning
 * Selective inference
@@ -67,7 +67,7 @@ Working papers
 Publications and preprints
 =======
 * LCA-on-the-Line: Benchmarking Out-of-Distribution Generalization with Class Taxonomies
-**(NeurIPS 2023 Workshop on Distribution Shifts) [Paper](https://openreview.net/forum?id=7CUutNeDDg)**
+: **(NeurIPS 2023 Workshop on Distribution Shifts) [Paper](https://openreview.net/forum?id=7CUutNeDDg)**
 : **Jia Shi, Gautam Rajendrakumar Gare, Jinjin Tian, Siqi Chai, Zhiqiu Lin, Arun Balajee Vasudevan, Di Feng, Francesco Ferroni, Shu Kong, Deva Ramanan**
 : We introduce `Least Common Ancestor (LCA)-on-the-line' as a method for predicting models' Out-of-Distribution (OOD) performance using in-distribution measurements, without the need for OOD data. Our evaluation of 75 models across five significantly shifted ImageNet-OOD datasets demonstrates the robustness of LCA-on-the-line. It reveals a strong linear correlation between in-domain ImageNet LCA distance and OOD Top-1 accuracy across various datasets, including ImageNet-S/R/A/ObjectNet. Compared to previous methods such as Accuracy-on-the-line and Agreement-on-the-line, LCA-on-the-line shows superior generalization across a wide range of models. In addition to presenting an OOD performance indicator, we also demonstrate that aligning model predictions more closely with the class hierarchy and integrating a training loss objective with soft-labels can enhance model OOD performance.
 
