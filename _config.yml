@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Jinjin Tian / Ph.D. student in Statistics"
+title                    : "Jinjin Tian / Ph.D. in Stat and ML"
 title_separator          : "-"
 name                     : &name "Jinjin Tian"
 description              : &description "Ph.D. in Statistics and Machine Learning, Carnegie Mellon Univeristy"
@@ -83,7 +83,7 @@ author:
   name             : "Jinjin Tian"
   avatar           : "profile.png"
   bio              : "Ph.D. in Statistics and Machine Learning, Carnegie Mellon Univeristy"
-  location         : "Pittsburgh, PA, USA"
+  location         : "Palo Alto, CA, USA"
   employer         :
   pubmed           : #"https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   googlescholar    : "https://scholar.google.com/citations?user=pRaC18YAAAAJ&hl=en"
